@@ -78,6 +78,7 @@ export async function PUT(
         metaKeywords: data.metaKeywords,
         featured: data.featured,
         estPublie: data.estPublie,
+        imagePrincipale: data.imagePrincipale,
         // Mise à jour des technologies
         technologies: data.technologies ? {
           deleteMany: {},
