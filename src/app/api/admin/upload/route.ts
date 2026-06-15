@@ -1,8 +1,8 @@
 // src/app/api/admin/upload/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { getSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { v2 as cloudinary } from 'cloudinary';
+import { cookies } from 'next/headers';
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -11,12 +11,26 @@ cloudinary.config({
 });
 
 export async function POST(request: NextRequest) {
-  const session = await getSession();
-  if (!session) {
-    return NextResponse.json({ erreur: 'Non autorisé' }, { status: 401 });
-  }
-
   try {
+    // Vérification simplifiée de la session
+    const cookieStore = await cookies();
+    const token = cookieStore.get('kja_admin_token')?.value;
+
+    if (!token) {
+      console.log('❌ Upload: aucun token');
+      return NextResponse.json({ erreur: 'Non autorisé - Token manquant' }, { status: 401 });
+    }
+
+    const session = await prisma.session.findUnique({
+      where: { token },
+      include: { user: true },
+    });
+
+    if (!session || session.expiresAt < new Date()) {
+      console.log('❌ Upload: session invalide ou expirée');
+      return NextResponse.json({ erreur: 'Non autorisé - Session expirée' }, { status: 401 });
+    }
+
     const formData = await request.formData();
     const fichier = formData.get('fichier') as File;
     const dossier = (formData.get('dossier') as string) || 'projets';
@@ -28,20 +42,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ erreur: 'Fichier requis' }, { status: 400 });
     }
 
-    const typesAutorises = ['image/jpeg', 'image/png', 'image/webp', 'image/avif'];
-    if (!typesAutorises.includes(fichier.type)) {
-      return NextResponse.json({ erreur: 'Format non supporté' }, { status: 400 });
-    }
+    console.log('✅ Upload: session OK, fichier:', fichier.name, 'taille:', fichier.size);
 
-    if (fichier.size > 10 * 1024 * 1024) {
-      return NextResponse.json({ erreur: 'Fichier trop volumineux (max 10MB)' }, { status: 400 });
-    }
-
-    // Convertir le fichier en base64 pour Cloudinary
+    // Upload vers Cloudinary
     const buffer = Buffer.from(await fichier.arrayBuffer());
     const base64 = `data:${fichier.type};base64,${buffer.toString('base64')}`;
 
-    // Upload vers Cloudinary
     const result = await cloudinary.uploader.upload(base64, {
       folder: `kja-studio-labs/${dossier}`,
       resource_type: 'image',
@@ -51,8 +57,9 @@ export async function POST(request: NextRequest) {
     });
 
     const url = result.secure_url;
+    console.log('✅ Upload Cloudinary OK:', url);
 
-    // Sauvegarder dans la BDD si projetId fourni
+    // Sauvegarder dans la BDD
     let imageDB = null;
     if (projetId) {
       imageDB = await prisma.image.create({
@@ -65,7 +72,7 @@ export async function POST(request: NextRequest) {
           hauteur: result.height,
           alt,
           typeMime: 'image/webp',
-          format: result.format,
+          format: result.format || 'webp',
           qualite: 85,
           type: type as any,
           estOptimise: true,
@@ -90,12 +97,15 @@ export async function POST(request: NextRequest) {
         largeur: result.width,
         hauteur: result.height,
         taille: result.bytes,
-        format: result.format,
+        format: result.format || 'webp',
       },
     });
 
-  } catch (erreur) {
-    console.error('Erreur upload:', erreur);
-    return NextResponse.json({ erreur: 'Erreur lors de l\'upload' }, { status: 500 });
+  } catch (erreur: any) {
+    console.error('❌ Erreur upload:', erreur);
+    return NextResponse.json(
+      { erreur: erreur.message || 'Erreur lors de l\'upload' },
+      { status: 500 }
+    );
   }
 }
