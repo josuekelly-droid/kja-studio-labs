@@ -147,7 +147,7 @@ export default async function AvisPage() {
           <p className="text-base sm:text-lg text-violet-200 mb-8">
             Partagez votre expérience et aidez-nous à nous améliorer.
           </p>
-          <Link href="/contact" className="btn-primary !bg-white !text-violet hover:!bg-violet-50 text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4">
+          <Link href="/laisser-un-avis" className="btn-primary !bg-white !text-violet hover:!bg-violet-50 text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4">
             Laisser un avis
           </Link>
         </div>
