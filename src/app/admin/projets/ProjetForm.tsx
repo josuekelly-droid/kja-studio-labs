@@ -66,7 +66,15 @@ export function ProjetForm({ projet }: ProjetFormProps) {
     estPublie: projet?.estPublie || false,
   });
 
-  const [images, setImages] = useState<Image[]>(projet?.images || []);
+  const [images, setImages] = useState<Image[]>(
+    projet?.images?.map((img) => ({
+      id: img.id,
+      url: img.url,
+      nomFichier: img.nomFichier,
+      type: img.type || 'GALERIE',
+      alt: img.alt,
+    })) || []
+  );
   const [imagePrincipale, setImagePrincipale] = useState(projet?.imagePrincipale || '');
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -85,7 +93,8 @@ export function ProjetForm({ projet }: ProjetFormProps) {
       const form = new FormData();
       form.append('fichier', file);
       form.append('dossier', 'projets');
-      form.append('type', images.length === 0 && !imagePrincipale ? 'PRINCIPALE' : 'GALERIE');
+      const isFirstImage = images.length === 0 && !imagePrincipale;
+      form.append('type', isFirstImage ? 'PRINCIPALE' : 'GALERIE');
       if (projet?.id) {
         form.append('projetId', projet.id);
       }
@@ -95,12 +104,17 @@ export function ProjetForm({ projet }: ProjetFormProps) {
         const data = await res.json();
 
         if (data.succes) {
-          const nouvelleImage = { url: data.url, nomFichier: data.nomFichier, type: 'GALERIE' };
+          const nouvelleImage: Image = {
+            id: data.image.id,
+            url: data.image.url,
+            nomFichier: data.image.nomFichier,
+            type: isFirstImage ? 'PRINCIPALE' : 'GALERIE',
+          };
           setImages((prev) => [...prev, nouvelleImage]);
 
-          // Première image = image principale
-          if (!imagePrincipale && images.length === 0) {
-            setImagePrincipale(data.url);
+          // Si première image OU type PRINCIPALE → définir comme principale
+          if (isFirstImage) {
+            setImagePrincipale(data.image.url);
           }
         } else {
           setError(data.erreur || 'Erreur upload');
@@ -116,8 +130,9 @@ export function ProjetForm({ projet }: ProjetFormProps) {
 
   // Supprimer une image
   function removeImage(index: number) {
+    const imageSupprimee = images[index];
     setImages((prev) => prev.filter((_, i) => i !== index));
-    if (images[index]?.url === imagePrincipale) {
+    if (imageSupprimee?.url === imagePrincipale) {
       setImagePrincipale(images[0]?.url || '');
     }
   }
@@ -142,8 +157,14 @@ export function ProjetForm({ projet }: ProjetFormProps) {
         .filter(Boolean),
       estPublie: publier,
       imagePrincipale,
-      images,
-      technologies: [], // À gérer plus tard
+      images: images.map((img) => ({
+        id: img.id,
+        url: img.url,
+        nomFichier: img.nomFichier,
+        type: img.type,
+        alt: img.alt,
+      })),
+      technologies: [],
     };
 
     try {
@@ -184,7 +205,6 @@ export function ProjetForm({ projet }: ProjetFormProps) {
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className="space-y-8">
-      {/* Messages */}
       {error && (
         <div className="bg-red-50 text-red-600 text-sm p-4 rounded-xl border border-red-100">{error}</div>
       )}
@@ -224,7 +244,7 @@ export function ProjetForm({ projet }: ProjetFormProps) {
             />
           </div>
 
-          {/* Contenu complet (Étude de cas) */}
+          {/* Contenu complet */}
           <div className="bg-white rounded-2xl border border-gray-100 p-5 sm:p-6">
             <label className="block text-sm font-heading font-semibold text-gray-700 mb-2">
               Étude de cas complète (MDX)
@@ -245,7 +265,7 @@ export function ProjetForm({ projet }: ProjetFormProps) {
             </label>
             <div className="flex flex-wrap gap-3 mb-4">
               {images.map((img, index) => (
-                <div key={index} className="relative group">
+                <div key={img.id || index} className="relative group">
                   <img
                     src={img.url}
                     alt={img.alt || `Image ${index + 1}`}
@@ -260,7 +280,7 @@ export function ProjetForm({ projet }: ProjetFormProps) {
                       className="p-1 bg-white rounded-lg text-xs"
                       title="Image principale"
                     >
-                      ⭐
+                      ★
                     </button>
                     <button
                       type="button"
@@ -268,7 +288,7 @@ export function ProjetForm({ projet }: ProjetFormProps) {
                       className="p-1 bg-red-500 text-white rounded-lg text-xs"
                       title="Supprimer"
                     >
-                      🗑️
+                      ✕
                     </button>
                   </div>
                   {img.url === imagePrincipale && (
