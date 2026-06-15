@@ -1,0 +1,274 @@
+// prisma/schema.prisma
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "postgresqlExtensions"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+}
+
+// ==========================================
+// UTILISATEURS & AUTHENTIFICATION
+// ==========================================
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  passwordHash  String
+  name          String?
+  role          Role      @default(ADMIN)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  sessions      Session[]
+  projets       Projet[]
+  articles      BlogArticle[]
+
+  @@map("users")
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@map("sessions")
+}
+
+enum Role {
+  ADMIN
+  SUPER_ADMIN
+}
+
+// ==========================================
+// PROJETS & ÉTUDES DE CAS
+// ==========================================
+
+model Projet {
+  id                String           @id @default(cuid())
+  titre             String
+  slug              String           @unique
+  descriptionCourte String           @db.Text
+  contenuComplet    String           @db.Text
+  categorie         ProjetCategorie
+  client            String?
+  dateRealisation   DateTime?
+  lienProjet        String?
+  lienFigma         String?
+  lienGithub        String?
+  tempsLecture      Int?
+  
+  // SEO
+  metaTitle         String?
+  metaDescription   String?          @db.Text
+  metaKeywords      String[]
+  schemaArticle     Json?
+  
+  // Image principale (stockage local)
+  imagePrincipale   String?
+  
+  // Statut
+  estPublie         Boolean          @default(false)
+  featured          Boolean          @default(false)
+  ordre             Int              @default(0)
+  
+  // Relations
+  images            Image[]
+  technologies      ProjetTechnologie[]
+  avis              Avis[]
+  authorId          String
+  author            User             @relation(fields: [authorId], references: [id])
+  
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+
+  @@index([slug])
+  @@index([categorie])
+  @@index([estPublie])
+  @@map("projets")
+}
+
+enum ProjetCategorie {
+  UI_UX_DESIGN
+  FULLSTACK
+  CONNECT
+}
+
+// ==========================================
+// IMAGES (Stockage Local)
+// ==========================================
+
+model Image {
+  id          String        @id @default(cuid())
+  projetId    String?
+  projet      Projet?       @relation(fields: [projetId], references: [id], onDelete: Cascade)
+  articleId   String?
+  article     BlogArticle?  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  
+  nomFichier  String
+  url         String
+  urlOriginal String?
+  taille      Int
+  largeur     Int?
+  hauteur     Int?
+  alt         String?
+  
+  typeMime    String
+  format      String
+  qualite     Int?
+  
+  ordre       Int           @default(0)
+  type        ImageType     @default(GALERIE)
+  estOptimise Boolean       @default(false)
+  
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([projetId])
+  @@index([articleId])
+  @@map("images")
+}
+
+enum ImageType {
+  PRINCIPALE
+  GALERIE
+  AVANT_APRES
+  MOBILE
+  MINIATURE
+}
+
+// ==========================================
+// TECHNOLOGIES
+// ==========================================
+
+model Technologie {
+  id      String              @id @default(cuid())
+  nom     String              @unique
+  icon    String?
+  projets ProjetTechnologie[]
+
+  @@map("technologies")
+}
+
+model ProjetTechnologie {
+  projetId      String
+  projet        Projet      @relation(fields: [projetId], references: [id], onDelete: Cascade)
+  technologieId String
+  technologie   Technologie @relation(fields: [technologieId], references: [id], onDelete: Cascade)
+
+  @@id([projetId, technologieId])
+  @@map("projet_technologies")
+}
+
+// ==========================================
+// BLOG
+// ==========================================
+
+model BlogArticle {
+  id              String        @id @default(cuid())
+  titre           String
+  slug            String        @unique
+  contenu         String        @db.Text
+  extrait         String        @db.Text
+  categorie       BlogCategorie
+  tags            String[]
+  
+  // SEO
+  metaTitle       String?
+  metaDescription String?       @db.Text
+  metaKeywords    String[]
+  schemaArticle   Json?
+  
+  imagePrincipale String?
+  images          Image[]
+  tempsLecture    Int?
+  
+  // Statut
+  estPublie       Boolean       @default(false)
+  featured        Boolean       @default(false)
+  vues            Int           @default(0)
+  
+  // Relations
+  authorId        String
+  author          User          @relation(fields: [authorId], references: [id])
+  
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([slug])
+  @@index([categorie])
+  @@index([estPublie])
+  @@map("blog_articles")
+}
+
+enum BlogCategorie {
+  DESIGN
+  DEVELOPPEMENT
+  SEO
+  BUSINESS
+  TUTORIEL
+  ACTUALITE
+}
+
+// ==========================================
+// AVIS CLIENTS
+// ==========================================
+
+model Avis {
+  id          String   @id @default(cuid())
+  nomClient   String
+  entreprise  String?
+  poste       String?
+  note        Int
+  commentaire String   @db.Text
+  avatar      String?
+  
+  projetId    String?
+  projet      Projet?  @relation(fields: [projetId], references: [id], onDelete: SetNull)
+  
+  estApprouve Boolean  @default(false)
+  estAffiché  Boolean  @default(false)
+  
+  createdAt   DateTime @default(now())
+
+  @@index([estApprouve])
+  @@map("avis")
+}
+
+// ==========================================
+// SEO LOGS
+// ==========================================
+
+model SeoLog {
+  id        String   @id @default(cuid())
+  url       String
+  action    String
+  status    String
+  response  Json?
+  createdAt DateTime @default(now())
+
+  @@index([url])
+  @@map("seo_logs")
+}
+
+// ==========================================
+// CONTACT
+// ==========================================
+
+model ContactMessage {
+  id         String   @id @default(cuid())
+  nom        String
+  email      String
+  entreprise String?
+  sujet      String
+  message    String   @db.Text
+  traite     Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  @@map("contact_messages")
+}
