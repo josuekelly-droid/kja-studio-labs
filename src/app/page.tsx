@@ -14,21 +14,18 @@ export const metadata: Metadata = {
 const services = [
   {
     titre: 'UI/UX Design',
-    description: 'Interfaces modernes et intuitives. Recherche utilisateur, wireframes, prototypes et design systems complets.',
+    description: 'Interfaces modernes et intuitives. Recherche utilisateur, wireframes, prototypes interactifs et design systems complets pour des expériences qui captivent et convertissent.',
     lien: '/services/design-ui-ux',
-    icone: '🎨',
   },
   {
     titre: 'Développement Fullstack',
-    description: 'Applications web performantes. Frontend réactif, backend robuste, bases de données optimisées.',
+    description: 'Applications web performantes et scalables. Frontend réactif, backend robuste, bases de données optimisées et déploiement continu pour des projets qui tiennent la charge.',
     lien: '/services/developpement-fullstack',
-    icone: '⚙️',
   },
   {
     titre: 'Connect',
-    description: 'Intégrations API, automatisation, synchronisation. Connectez votre écosystème digital.',
+    description: 'Intégrations API, automatisation des workflows, synchronisation en temps réel. Connectez votre CRM, emailing, paiement et analytics pour un écosystème digital unifié.',
     lien: '/services/connect',
-    icone: '🔗',
   },
 ];
 
@@ -55,7 +52,6 @@ const blogCategoriesLabels: Record<string, string> = {
 };
 
 export default async function HomePage() {
-  // Données dynamiques depuis la BDD (avec cache React)
   const projetsRecents = await getProjetsRecents();
   const articlesRecents = await getArticlesRecents();
   const avisRecents = await getAvisRecents();
@@ -64,7 +60,6 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* JSON-LD */}
       <JsonLd
         data={{
           '@context': 'https://schema.org',
@@ -141,8 +136,8 @@ export default async function HomePage() {
 
       {/* ============ SERVICES ============ */}
       <section className="py-16 sm:py-20 lg:py-28 bg-white" id="services">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10 sm:mb-16">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16">
             <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-violet-50 text-violet-700 font-heading font-medium text-xs sm:text-sm rounded-full mb-3 sm:mb-4">
               Nos expertises
             </span>
@@ -150,27 +145,29 @@ export default async function HomePage() {
               Trois piliers complémentaires
             </h2>
             <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-xl mx-auto">
-              Une approche holistique pour concevoir, développer et connecter vos projets digitaux
+              Une approche holistique pour concevoir, développer et connecter vos projets digitaux de A à Z
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-            {services.map((service) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {services.map((service, index) => (
               <Link
                 key={service.titre}
                 href={service.lien}
-                className="card p-5 sm:p-6 lg:p-8 group block"
+                className="card p-6 sm:p-8 group block"
               >
-                <span className="text-3xl sm:text-4xl mb-3 sm:mb-4 block">{service.icone}</span>
-                <h3 className="font-heading font-bold text-lg sm:text-xl text-gray-900 mb-2 sm:mb-3 group-hover:text-violet transition-colors">
+                <span className="text-3xl font-heading font-bold text-violet-200 group-hover:text-violet transition-colors">
+                  0{index + 1}
+                </span>
+                <h3 className="font-heading font-bold text-xl sm:text-2xl text-gray-900 mt-4 mb-3 group-hover:text-violet transition-colors">
                   {service.titre}
                 </h3>
                 <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                   {service.description}
                 </p>
-                <span className="inline-flex items-center gap-1.5 sm:gap-2 mt-3 sm:mt-4 text-violet font-heading font-medium text-sm group-hover:gap-2.5 sm:group-hover:gap-3 transition-all">
-                  En savoir plus
-                  <span aria-hidden="true">→</span>
+                <span className="inline-flex items-center gap-2 mt-5 text-violet font-heading font-semibold text-sm group-hover:gap-3 transition-all">
+                  Découvrir ce service
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                 </span>
               </Link>
             ))}
@@ -179,25 +176,25 @@ export default async function HomePage() {
       </section>
 
       {/* ============ STATS ============ */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-violet-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+      <section className="py-14 sm:py-18 lg:py-22 bg-violet-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {stats.map((stat) => (
-              <div key={stat.label} className="card p-4 sm:p-6 text-center">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-violet mb-1 sm:mb-2">
+              <div key={stat.label} className="card p-5 sm:p-6 text-center">
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-violet mb-2">
                   {stat.valeur}
                 </div>
-                <div className="text-xs sm:text-sm text-gray-600 font-medium">{stat.label}</div>
+                <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ============ PROJETS RÉCENTS (Dynamique) ============ */}
+      {/* ============ PROJETS RÉCENTS ============ */}
       <section className="py-16 sm:py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10 sm:mb-16">
+          <div className="text-center mb-12 sm:mb-16">
             <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-violet-50 text-violet-700 font-heading font-medium text-xs sm:text-sm rounded-full mb-3 sm:mb-4">
               Portfolio
             </span>
@@ -211,7 +208,7 @@ export default async function HomePage() {
 
           {projetsRecents.length > 0 ? (
             <>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-10 sm:mb-12">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
                 {projetsRecents.map((projet) => (
                   <Link
                     key={projet.id}
@@ -226,17 +223,19 @@ export default async function HomePage() {
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       ) : (
-                        <span className="text-4xl text-gray-300">🖼️</span>
+                        <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                          <svg className="w-10 h-10 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                        </div>
                       )}
                     </div>
-                    <div className="p-4 sm:p-5 lg:p-6">
+                    <div className="p-5 lg:p-6">
                       <span className="text-xs font-heading font-semibold text-violet uppercase tracking-wider">
                         {categoriesLabels[projet.categorie] || projet.categorie}
                       </span>
-                      <h3 className="font-heading font-bold text-base sm:text-lg text-gray-900 mt-1.5 group-hover:text-violet transition-colors line-clamp-1">
+                      <h3 className="font-heading font-bold text-base sm:text-lg text-gray-900 mt-2 group-hover:text-violet transition-colors line-clamp-1">
                         {projet.titre}
                       </h3>
-                      <p className="text-sm text-gray-600 mt-1 line-clamp-2">
+                      <p className="text-sm text-gray-600 mt-1.5 line-clamp-2 leading-relaxed">
                         {projet.descriptionCourte}
                       </p>
                     </div>
@@ -253,18 +252,21 @@ export default async function HomePage() {
               )}
             </>
           ) : (
-            <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">Aucun projet pour le moment.</p>
+            <div className="text-center py-16">
+              <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+              </div>
+              <p className="text-gray-500 text-lg font-heading font-medium">Aucun projet pour le moment.</p>
               <p className="text-gray-400 text-sm mt-2">Les projets seront publiés depuis le dashboard admin.</p>
             </div>
           )}
         </div>
       </section>
 
-      {/* ============ DERNIERS ARTICLES (Dynamique) ============ */}
-      <section className="py-16 sm:py-20 lg:py-28 bg-violet-50">
+      {/* ============ DERNIERS ARTICLES ============ */}
+      <section className="py-16 sm:py-20 lg:py-28 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10 sm:mb-16">
+          <div className="text-center mb-12 sm:mb-16">
             <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-white text-violet-700 font-heading font-medium text-xs sm:text-sm rounded-full mb-3 sm:mb-4 shadow-sm">
               Blog
             </span>
@@ -278,7 +280,7 @@ export default async function HomePage() {
 
           {articlesRecents.length > 0 ? (
             <>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-10 sm:mb-12">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
                 {articlesRecents.map((article) => (
                   <Link
                     key={article.id}
@@ -293,10 +295,12 @@ export default async function HomePage() {
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       ) : (
-                        <span className="text-4xl text-gray-300">📝</span>
+                        <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                          <svg className="w-10 h-10 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" /></svg>
+                        </div>
                       )}
                     </div>
-                    <div className="p-4 sm:p-5 lg:p-6">
+                    <div className="p-5 lg:p-6">
                       <div className="flex items-center gap-3 mb-2">
                         <span className="text-xs font-heading font-semibold text-violet uppercase tracking-wider">
                           {blogCategoriesLabels[article.categorie] || article.categorie}
@@ -308,7 +312,7 @@ export default async function HomePage() {
                       <h3 className="font-heading font-bold text-base sm:text-lg text-gray-900 group-hover:text-violet transition-colors line-clamp-2">
                         {article.titre}
                       </h3>
-                      <p className="text-sm text-gray-600 mt-2 line-clamp-2">
+                      <p className="text-sm text-gray-600 mt-2 line-clamp-2 leading-relaxed">
                         {article.extrait}
                       </p>
                       <p className="text-xs text-gray-400 mt-3">
@@ -332,19 +336,22 @@ export default async function HomePage() {
               )}
             </>
           ) : (
-            <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">Aucun article pour le moment.</p>
+            <div className="text-center py-16">
+              <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" /></svg>
+              </div>
+              <p className="text-gray-500 text-lg font-heading font-medium">Aucun article pour le moment.</p>
               <p className="text-gray-400 text-sm mt-2">Les articles seront publiés depuis le dashboard admin.</p>
             </div>
           )}
         </div>
       </section>
 
-      {/* ============ AVIS CLIENTS (Dynamique) ============ */}
+      {/* ============ AVIS CLIENTS ============ */}
       {avisRecents.length > 0 && (
         <section className="py-16 sm:py-20 lg:py-28 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-10 sm:mb-16">
+            <div className="text-center mb-12 sm:mb-16">
               <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-violet-50 text-violet-700 font-heading font-medium text-xs sm:text-sm rounded-full mb-3 sm:mb-4">
                 Avis clients
               </span>
@@ -356,10 +363,10 @@ export default async function HomePage() {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-10 sm:mb-12">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
               {avisRecents.map((avis) => (
-                <div key={avis.id} className="card p-5 sm:p-6 lg:p-8">
-                  <div className="flex items-center gap-1 mb-3 sm:mb-4">
+                <div key={avis.id} className="card p-6 sm:p-8">
+                  <div className="flex items-center gap-1 mb-4">
                     {Array.from({ length: 5 }).map((_, i) => (
                       <svg
                         key={i}
@@ -371,15 +378,15 @@ export default async function HomePage() {
                       </svg>
                     ))}
                   </div>
-                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-4 italic">
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-5 italic">
                     &ldquo;{avis.commentaire}&rdquo;
                   </p>
-                  <div>
+                  <div className="border-t border-gray-100 pt-4">
                     <p className="font-heading font-semibold text-gray-900 text-sm sm:text-base">
                       {avis.nomClient}
                     </p>
                     {(avis.poste || avis.entreprise) && (
-                      <p className="text-xs sm:text-sm text-gray-500">
+                      <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
                         {avis.poste}{avis.poste && avis.entreprise && ' chez '}{avis.entreprise}
                       </p>
                     )}
@@ -404,18 +411,18 @@ export default async function HomePage() {
         <div className="absolute inset-0 opacity-20" aria-hidden="true">
           <div className="absolute top-0 left-1/2 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-violet-300 rounded-full blur-[100px] sm:blur-[150px] -translate-x-1/2" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-white mb-3 sm:mb-4 lg:mb-6">
+        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-white mb-4 lg:mb-6">
             Prêt à lancer votre projet ?
           </h2>
-          <p className="text-base sm:text-lg text-violet-200/90 mb-6 sm:mb-8 lg:mb-10 max-w-lg mx-auto">
-            Discutons ensemble de vos objectifs et créons une solution sur mesure.
+          <p className="text-base sm:text-lg text-violet-200/90 mb-8 lg:mb-10 max-w-lg mx-auto leading-relaxed">
+            Discutons ensemble de vos objectifs et créons une solution sur mesure qui correspond exactement à vos besoins.
           </p>
           <div className="flex flex-col xs:flex-row gap-3 sm:gap-4 justify-center">
-            <Link href="/contact" className="btn-primary !bg-white !text-violet hover:!bg-violet-50 text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4">
+            <Link href="/contact" className="btn-primary !bg-white !text-violet hover:!bg-violet-50 text-sm sm:text-base px-8 py-4">
               Démarrer un projet
             </Link>
-            <Link href="/services" className="btn-secondary !border-white/30 !text-white hover:!bg-white/10 text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4">
+            <Link href="/services" className="btn-secondary !border-white/30 !text-white hover:!bg-white/10 text-sm sm:text-base px-8 py-4">
               Voir nos services
             </Link>
           </div>
