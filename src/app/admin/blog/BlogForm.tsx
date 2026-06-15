@@ -62,6 +62,7 @@ export function BlogForm({ article }: BlogFormProps) {
     if (!file) return;
 
     setUploading(true);
+    setError('');
     const form = new FormData();
     form.append('fichier', file);
     form.append('dossier', 'blog');
@@ -72,11 +73,17 @@ export function BlogForm({ article }: BlogFormProps) {
       const data = await res.json();
       if (data.succes) {
         setFormData((prev) => ({ ...prev, imagePrincipale: data.image.url }));
+      } else {
+        setError(data.erreur || 'Erreur upload');
       }
     } catch {
-      setError('Erreur upload image');
+      setError('Erreur réseau lors de l\'upload');
     }
     setUploading(false);
+  }
+
+  function removeImage() {
+    setFormData((prev) => ({ ...prev, imagePrincipale: '' }));
   }
 
   async function handleSubmit(e: React.FormEvent, publier: boolean) {
@@ -175,12 +182,28 @@ export function BlogForm({ article }: BlogFormProps) {
           {/* Image principale */}
           <div className="bg-white rounded-2xl border border-gray-100 p-5 sm:p-6">
             <label className="block text-sm font-heading font-semibold text-gray-700 mb-2">Image principale</label>
-            {formData.imagePrincipale && (
-              <img src={formData.imagePrincipale} alt="" className="w-full max-w-xs rounded-xl mb-3" />
+            {formData.imagePrincipale ? (
+              <div className="relative group mb-3 inline-block">
+                <img src={formData.imagePrincipale} alt="Image principale" className="w-full max-w-xs rounded-xl" />
+                <button
+                  type="button"
+                  onClick={removeImage}
+                  className="absolute top-2 right-2 p-1.5 bg-red-500 text-white rounded-lg text-xs opacity-0 group-hover:opacity-100 transition-opacity"
+                  title="Supprimer l'image"
+                >
+                  ✕
+                </button>
+              </div>
+            ) : (
+              <div className="w-full max-w-xs h-40 bg-gray-100 rounded-xl flex items-center justify-center mb-3">
+                <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
             )}
             <input
               type="file"
-              accept="image/jpeg,image/png,image/webp"
+              accept="image/jpeg,image/png,image/webp,image/avif"
               onChange={handleImageUpload}
               className="text-sm"
             />
