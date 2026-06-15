@@ -5,6 +5,8 @@ import { prisma } from '@/lib/prisma';
 import { siteConfig } from '@/config/site';
 import { JsonLd } from '@/components/seo/JsonLd';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Avis clients',
   description: 'Découvrez ce que nos clients disent de KJA Studio Labs. Avis vérifiés sur nos prestations en Design UI/UX, Développement Fullstack et Connect.',

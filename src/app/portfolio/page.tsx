@@ -5,6 +5,8 @@ import { prisma } from '@/lib/prisma';
 import { siteConfig } from '@/config/site';
 import { JsonLd } from '@/components/seo/JsonLd';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Portfolio',
   description: 'Découvrez nos projets en Design UI/UX, Développement Fullstack et Solutions Connect. Études de cas détaillées.',

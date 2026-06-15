@@ -5,6 +5,8 @@ import { prisma } from '@/lib/prisma';
 import { siteConfig } from '@/config/site';
 import { JsonLd } from '@/components/seo/JsonLd';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Projets UI/UX Design',
   description: 'Projets de Design UI/UX par KJA Studio Labs. Interfaces, prototypes, design systems.',

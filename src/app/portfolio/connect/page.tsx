@@ -5,6 +5,8 @@ import { prisma } from '@/lib/prisma';
 import { siteConfig } from '@/config/site';
 import { JsonLd } from '@/components/seo/JsonLd';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Projets Connect',
   description: 'Solutions Connect par KJA Studio Labs. APIs, intégrations, automatisation.',

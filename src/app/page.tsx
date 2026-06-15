@@ -5,6 +5,8 @@ import { getProjetsRecents, getArticlesRecents, getAvisRecents, getTotalProjets,
 import { JsonLd } from '@/components/seo/JsonLd';
 import { siteConfig } from '@/config/site';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: `${siteConfig.name} | ${siteConfig.slogan}`,
   description: siteConfig.description,
