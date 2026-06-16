@@ -9,14 +9,18 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Vérifier si l'utilisateur est connecté (sauf pour la page login)
   const session = await getSession();
+
+  // Rediriger vers login si pas de session
+  if (!session) {
+    redirect('/admin/login');
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
       <AdminSidebar />
       <div className="flex-1 flex flex-col">
-        <AdminHeader user={session?.user || null} />
+        <AdminHeader user={session.user} />
         <main className="flex-1 p-4 sm:p-6 lg:p-8">
           {children}
         </main>
