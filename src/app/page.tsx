@@ -146,7 +146,7 @@ export default async function HomePage() {
       {/* ============ STATS AVEC ANIMATION ============ */}
       <section className="py-16 sm:py-20 lg:py-24 bg-violet-50 overflow-hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex gap-6 lg:gap-8 animate-scroll">
+          <div className="flex gap-6 lg:gap-8 animate-scroll-fast">
             {[...stats, ...stats, ...stats].map((stat, index) => (
               <div key={`${stat.label}-${index}`} className="card p-6 sm:p-8 text-center shrink-0 w-[220px] sm:w-[250px]">
                 <div className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-violet mb-2">{stat.valeur}</div>
@@ -266,7 +266,7 @@ export default async function HomePage() {
               <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-gray-900 mb-3 sm:mb-4">Ils nous font confiance</h2>
               <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-xl mx-auto">Ce que nos clients disent de notre travail</p>
             </div>
-            <div className="flex gap-6 animate-scroll">
+            <div className="flex gap-6 animate-scroll-slow">
               {[...avisRecents, ...avisRecents].map((avis, index) => (
                 <div key={`${avis.id}-${index}`} className="card p-6 sm:p-8 shrink-0 w-[350px] sm:w-[400px]">
                   <div className="flex items-center gap-1 mb-4">

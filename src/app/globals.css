@@ -169,10 +169,15 @@
   100% { transform: translateX(-33.33%); }
 }
 
-.animate-scroll {
-  animation: scroll 25s linear infinite;
+.animate-scroll-fast {
+  animation: scroll 12s linear infinite;
 }
 
-.animate-scroll:hover {
+.animate-scroll-slow {
+  animation: scroll 22s linear infinite;
+}
+
+.animate-scroll-fast:hover,
+.animate-scroll-slow:hover {
   animation-play-state: paused;
 }
