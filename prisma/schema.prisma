@@ -256,6 +256,34 @@ model SeoLog {
   @@map("seo_logs")
 }
 
+model JobPosting {
+  id              String   @id @default(cuid())
+  titre           String
+  slug            String   @unique
+  typeContrat     ContratType
+  localisation    String
+  description     String   @db.Text
+  competences     String[]
+  salaire         String?
+  emailContact    String
+  dateExpiration  DateTime?
+  estPublie       Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([slug])
+  @@index([estPublie])
+  @@map("job_postings")
+}
+
+enum ContratType {
+  CDI
+  CDD
+  FREELANCE
+  STAGE
+  ALTERNANCE
+}
+
 // ==========================================
 // CONTACT
 // ==========================================

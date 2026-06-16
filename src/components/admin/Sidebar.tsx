@@ -9,6 +9,7 @@ const links = [
   { label: 'Dashboard', href: '/admin/dashboard', icon: '📊' },
   { label: 'Projets', href: '/admin/projets', icon: '📁' },
   { label: 'Blog', href: '/admin/blog', icon: '📝' },
+  { label: 'Offres', href: '/admin/jobs', icon: '💼' },
   { label: 'Avis', href: '/admin/avis', icon: '⭐' },
   { label: 'Messages', href: '/admin/messages', icon: '✉️' },
 ];

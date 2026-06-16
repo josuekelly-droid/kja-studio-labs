@@ -13,6 +13,7 @@ const footerLinks = {
     { titre: 'Blog', href: '/blog' },
     { titre: 'À propos', href: '/a-propos' },
     { titre: 'Avis clients', href: '/avis' },
+    { titre: 'Nos offres de recrutement', href: '/carrieres' },
     { titre: 'Laisser un avis', href: '/laisser-un-avis' },
   ],
   legal: [
