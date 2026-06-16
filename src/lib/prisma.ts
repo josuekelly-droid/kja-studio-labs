@@ -7,10 +7,9 @@ const globalForPrisma = globalThis as unknown as {
 };
 
 export const prisma = globalForPrisma.prisma ?? new PrismaClient({
-  log: process.env.NODE_ENV === 'development' ? ['error', 'warn'] : ['error'],
+  log: process.env.NODE_ENV === 'development' ? ['error', 'warn'] : [],
 });
 
-// Tentative de connexion au démarrage
 if (process.env.NODE_ENV === 'development') {
   prisma.$connect()
     .then(() => console.log('✅ Prisma connecté'))
@@ -21,7 +20,6 @@ if (process.env.NODE_ENV !== 'production') {
   globalForPrisma.prisma = prisma;
 }
 
-// Cache les requêtes pour éviter les doublons en dev
 export const getProjetsRecents = cache(async () => {
   return prisma.projet.findMany({
     where: { estPublie: true },
