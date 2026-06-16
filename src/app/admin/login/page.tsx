@@ -1,5 +1,7 @@
 // src/app/admin/login/page.tsx
 import type { Metadata } from 'next';
+import { redirect } from 'next/navigation';
+import { getSession } from '@/lib/auth';
 import { LoginForm } from './LoginForm';
 
 export const metadata: Metadata = {
@@ -7,7 +9,14 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const session = await getSession();
+  
+  // Si déjà connecté, rediriger vers le dashboard
+  if (session) {
+    redirect('/admin/dashboard');
+  }
+
   return (
     <div className="min-h-screen bg-violet-50 flex items-center justify-center px-4">
       <div className="w-full max-w-md">

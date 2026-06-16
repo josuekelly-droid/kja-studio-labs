@@ -11,7 +11,6 @@ export default async function AdminLayout({
 }) {
   const session = await getSession();
 
-  // Rediriger vers login si pas de session
   if (!session) {
     redirect('/admin/login');
   }
