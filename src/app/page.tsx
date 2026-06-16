@@ -143,14 +143,14 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ============ STATS AVEC ANIMATION ============ */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-violet-50 overflow-hidden">
+      {/* ============ STATS ============ */}
+      <section className="py-14 sm:py-18 lg:py-22 bg-violet-50 overflow-hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex gap-6 lg:gap-8 animate-scroll-fast">
+          <div className="flex gap-4 sm:gap-6 lg:gap-8 animate-scroll-fast">
             {[...stats, ...stats, ...stats].map((stat, index) => (
-              <div key={`${stat.label}-${index}`} className="card p-6 sm:p-8 text-center shrink-0 w-[220px] sm:w-[250px]">
-                <div className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-violet mb-2">{stat.valeur}</div>
-                <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
+              <div key={`${stat.label}-${index}`} className="card p-4 sm:p-6 text-center shrink-0 w-[170px] sm:w-[220px]">
+                <div className="text-2xl sm:text-4xl font-heading font-bold text-violet mb-1 sm:mb-2">{stat.valeur}</div>
+                <div className="text-xs sm:text-sm text-gray-600 font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -266,9 +266,9 @@ export default async function HomePage() {
               <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-gray-900 mb-3 sm:mb-4">Ils nous font confiance</h2>
               <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-xl mx-auto">Ce que nos clients disent de notre travail</p>
             </div>
-            <div className="flex gap-6 animate-scroll-fast">
+            <div className="flex gap-4 sm:gap-6 animate-scroll-fast">
               {[...avisRecents, ...avisRecents].map((avis, index) => (
-                <div key={`${avis.id}-${index}`} className="card p-6 sm:p-8 shrink-0 w-[350px] sm:w-[400px]">
+                <div key={`${avis.id}-${index}`} className="card p-5 sm:p-8 shrink-0 w-[300px] sm:w-[380px]">
                   <div className="flex items-center gap-1 mb-4">
                     {Array.from({ length: 5 }).map((_, i) => (
                       <svg key={i} className={`w-4 h-4 sm:w-5 sm:h-5 ${i < avis.note ? 'text-yellow-400' : 'text-gray-200'}`} fill="currentColor" viewBox="0 0 20 20">
