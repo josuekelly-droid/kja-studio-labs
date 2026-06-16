@@ -40,7 +40,7 @@ export default async function CarrieresPage() {
         <div className="absolute inset-0 opacity-20"><div className="absolute top-10 right-10 w-96 h-96 bg-violet-300 rounded-full blur-[120px]" /><div className="absolute bottom-10 left-10 w-72 h-72 bg-violet-200 rounded-full blur-[100px]" /></div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <nav className="flex items-center justify-center gap-2 text-sm text-violet-200/70 mb-6"><Link href="/" className="hover:text-white">Accueil</Link><span>/</span><span className="text-white font-medium">Carrières</span></nav>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-white mb-4">Carrières</h1>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-white mb-4">Nos offres de recrutement</h1>
           <p className="text-lg sm:text-xl text-violet-200 max-w-2xl mx-auto leading-relaxed">Rejoignez KJA Studio Labs et participez à la création de solutions digitales innovantes.</p>
         </div>
       </section>

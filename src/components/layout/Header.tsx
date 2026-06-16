@@ -27,6 +27,7 @@ const navigation = [
   },
   { titre: 'Blog', href: '/blog' },
   { titre: 'À propos', href: '/a-propos' },
+  { titre: 'Nos offres de recrutement', href: '/carrieres' },
   { titre: 'Avis', href: '/avis' },
 ];
 
