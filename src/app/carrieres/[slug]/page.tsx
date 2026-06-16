@@ -36,17 +36,42 @@ export default async function OffrePage({ params }: Props) {
   return (
     <>
       <JsonLd data={{
-        '@context': 'https://schema.org',
-        '@type': 'JobPosting',
-        title: offre.titre,
-        description: offre.description.slice(0, 300),
-        datePosted: offre.createdAt.toISOString(),
-        validThrough: offre.dateExpiration?.toISOString() || '',
-        employmentType: offre.typeContrat,
-        hiringOrganization: { '@type': 'Organization', name: siteConfig.name, sameAs: siteConfig.url },
-        jobLocation: { '@type': 'Place', address: { '@type': 'PostalAddress', addressLocality: offre.localisation } },
-        baseSalary: offre.salaire ? { '@type': 'MonetaryAmount', currency: 'EUR', value: { '@type': 'QuantitativeValue', value: offre.salaire, unitText: 'YEAR' } } : undefined,
-      }} />
+  '@context': 'https://schema.org',
+  '@type': 'JobPosting',
+  title: offre.titre,
+  description: offre.description.slice(0, 300),
+  datePosted: offre.createdAt.toISOString(),
+  validThrough: offre.dateExpiration?.toISOString() || '',
+  employmentType: offre.typeContrat,
+  hiringOrganization: { 
+    '@type': 'Organization', 
+    name: siteConfig.name, 
+    sameAs: siteConfig.url,
+    logo: `${siteConfig.url}${siteConfig.logo}`
+  },
+  jobLocation: { 
+    '@type': 'Place', 
+    address: { 
+      '@type': 'PostalAddress', 
+      addressLocality: offre.localisation,
+      addressCountry: 'BJ'
+    } 
+  },
+  baseSalary: offre.salaire ? { 
+    '@type': 'MonetaryAmount', 
+    currency: 'XOF', 
+    value: { 
+      '@type': 'QuantitativeValue', 
+      value: offre.salaire, 
+      unitText: 'MONTH' 
+    } 
+  } : undefined,
+  identifier: {
+    '@type': 'PropertyValue',
+    name: siteConfig.name,
+    value: offre.id
+  }
+}} />
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: siteConfig.url }, { '@type': 'ListItem', position: 2, name: 'Carrières', item: `${siteConfig.url}/carrieres` }, { '@type': 'ListItem', position: 3, name: offre.titre, item: `${siteConfig.url}/carrieres/${offre.slug}` }] }} />
 
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 lg:pb-24 bg-hero-pattern relative overflow-hidden">
