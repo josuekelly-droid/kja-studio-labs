@@ -13,7 +13,7 @@ const footerLinks = {
     { titre: 'Blog', href: '/blog' },
     { titre: 'À propos', href: '/a-propos' },
     { titre: 'Avis clients', href: '/avis' },
-    { titre: 'Nos offres de recrutement', href: '/carrieres' },
+    { titre: 'Recrutement', href: '/carrieres' },
     { titre: 'Laisser un avis', href: '/laisser-un-avis' },
   ],
   legal: [
@@ -65,25 +65,26 @@ const reseaux = [
 export default function Footer() {
   return (
     <footer className="bg-gray-950 text-white">
-      {/* Main footer */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           
-          {/* Brand - Logo SANS invert pour qu'il soit visible */}
+          {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-2">
-            <Link href="/" className="inline-block mb-4 sm:mb-6">
+            <Link href="/" className="inline-flex items-center gap-3 mb-4 sm:mb-6">
               <img
                 src="/logo/kja-studio-labs.jpg"
                 alt="KJA Studio Labs"
                 className="h-8 sm:h-10 w-auto"
               />
+              <span className="font-heading font-bold text-white text-sm sm:text-base">
+                KJA Studio Labs
+              </span>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-4 sm:mb-6 max-w-sm">
               Studio créatif francophone. Design UI/UX, Développement Web Fullstack et Solutions Connect. 
               Projets sur mesure, SEO optimisé, performance garantie.
             </p>
             
-            {/* Réseaux sociaux avec vraies icônes */}
             <div className="flex gap-2 sm:gap-3">
               {reseaux.map((reseau) => (
                 <a
@@ -102,15 +103,11 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="font-heading font-semibold text-xs sm:text-sm uppercase tracking-wider text-violet-300 mb-3 sm:mb-4">
-              Services
-            </h4>
+            <h4 className="font-heading font-semibold text-xs sm:text-sm uppercase tracking-wider text-violet-300 mb-3 sm:mb-4">Services</h4>
             <ul className="space-y-2 sm:space-y-2.5">
               {footerLinks.services.map((lien) => (
                 <li key={lien.href}>
-                  <Link href={lien.href} className="text-gray-400 hover:text-white transition-colors text-sm">
-                    {lien.titre}
-                  </Link>
+                  <Link href={lien.href} className="text-gray-400 hover:text-white transition-colors text-sm">{lien.titre}</Link>
                 </li>
               ))}
             </ul>
@@ -118,15 +115,11 @@ export default function Footer() {
 
           {/* Entreprise */}
           <div>
-            <h4 className="font-heading font-semibold text-xs sm:text-sm uppercase tracking-wider text-violet-300 mb-3 sm:mb-4">
-              Entreprise
-            </h4>
+            <h4 className="font-heading font-semibold text-xs sm:text-sm uppercase tracking-wider text-violet-300 mb-3 sm:mb-4">Entreprise</h4>
             <ul className="space-y-2 sm:space-y-2.5">
               {footerLinks.entreprise.map((lien) => (
                 <li key={lien.href}>
-                  <Link href={lien.href} className="text-gray-400 hover:text-white transition-colors text-sm">
-                    {lien.titre}
-                  </Link>
+                  <Link href={lien.href} className="text-gray-400 hover:text-white transition-colors text-sm">{lien.titre}</Link>
                 </li>
               ))}
             </ul>
@@ -134,14 +127,10 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-heading font-semibold text-xs sm:text-sm uppercase tracking-wider text-violet-300 mb-3 sm:mb-4">
-              Contact
-            </h4>
+            <h4 className="font-heading font-semibold text-xs sm:text-sm uppercase tracking-wider text-violet-300 mb-3 sm:mb-4">Contact</h4>
             <ul className="space-y-2 sm:space-y-2.5">
               <li>
-                <a href={`mailto:${siteConfig.contact.email}`} className="text-gray-400 hover:text-white transition-colors text-sm break-all">
-                  {siteConfig.contact.email}
-                </a>
+                <a href={`mailto:${siteConfig.contact.email}`} className="text-gray-400 hover:text-white transition-colors text-sm break-all">{siteConfig.contact.email}</a>
               </li>
             </ul>
             <Link
@@ -154,22 +143,15 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom bar */}
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 sm:py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
             <p className="text-gray-500 text-xs sm:text-sm text-center sm:text-left">
-              © {new Date().getFullYear()} {siteConfig.name}. Tous droits réservés.
+              &copy; {new Date().getFullYear()} {siteConfig.name}. Tous droits r&eacute;serv&eacute;s.
             </p>
             <nav className="flex flex-wrap justify-center gap-x-4 sm:gap-x-6 gap-y-1">
               {footerLinks.legal.map((lien) => (
-                <Link
-                  key={lien.href}
-                  href={lien.href}
-                  className="text-gray-500 hover:text-white text-xs sm:text-sm transition-colors"
-                >
-                  {lien.titre}
-                </Link>
+                <Link key={lien.href} href={lien.href} className="text-gray-500 hover:text-white text-xs sm:text-sm transition-colors">{lien.titre}</Link>
               ))}
             </nav>
           </div>
