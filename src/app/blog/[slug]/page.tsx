@@ -94,17 +94,19 @@ export default async function ArticlePage({ params }: Props) {
           <div className="absolute top-10 right-10 w-72 sm:w-96 h-72 sm:h-96 bg-violet-300 rounded-full blur-[100px]" />
         </div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <nav className="flex items-center justify-center gap-2 text-sm text-violet-200/70 mb-6">
-            <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
-            <span>/</span>
-            <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
-            <span>/</span>
-            <span className="text-white font-medium">{article.titre}</span>
-          </nav>
+          <nav className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-violet-200/70 mb-6">
+  <Link href="/" className="hover:text-white transition-colors shrink-0">Accueil</Link>
+  <span className="shrink-0">/</span>
+  <Link href="/blog" className="hover:text-white transition-colors shrink-0">Blog</Link>
+  <span className="shrink-0">/</span>
+  <span className="text-white font-medium break-words text-center">{article.titre}</span>
+</nav>
           <span className="inline-block px-3 py-1 bg-white/10 text-violet-200 font-heading font-medium text-xs sm:text-sm rounded-full mb-4 backdrop-blur-sm">
             {categoriesLabels[article.categorie] || article.categorie}
           </span>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-4">{article.titre}</h1>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-4 break-words">
+  {article.titre}
+</h1>
           <div className="flex items-center justify-center gap-4 text-sm text-violet-200/80">
             <span>{article.author.name || siteConfig.name}</span>
             <span>{new Date(article.createdAt).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
