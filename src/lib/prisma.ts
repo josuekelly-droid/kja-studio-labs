@@ -24,7 +24,7 @@ export const getProjetsRecents = cache(async () => {
   return prisma.projet.findMany({
     where: { estPublie: true },
     orderBy: { createdAt: 'desc' },
-    take: 3,
+    take: 10,
     select: {
       id: true,
       slug: true,
