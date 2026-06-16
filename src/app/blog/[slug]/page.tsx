@@ -54,8 +54,8 @@ export default async function ArticlePage({ params }: Props) {
 
   if (!article) notFound();
 
-  // Convertir Markdown en HTML
-  const contenuHTML = await marked(article.contenu, {
+  // Convertir Markdown en HTML avec parseInline pour forcer les paragraphes
+  const contenuHTML = marked.parse(article.contenu, {
     breaks: true,
     gfm: true,
   });
@@ -88,25 +88,22 @@ export default async function ArticlePage({ params }: Props) {
         }}
       />
 
-      {/* Hero */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-hero-pattern relative overflow-hidden">
         <div className="absolute inset-0 opacity-20" aria-hidden="true">
           <div className="absolute top-10 right-10 w-72 sm:w-96 h-72 sm:h-96 bg-violet-300 rounded-full blur-[100px]" />
         </div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <nav className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-violet-200/70 mb-6">
-  <Link href="/" className="hover:text-white transition-colors shrink-0">Accueil</Link>
-  <span className="shrink-0">/</span>
-  <Link href="/blog" className="hover:text-white transition-colors shrink-0">Blog</Link>
-  <span className="shrink-0">/</span>
-  <span className="text-white font-medium break-words text-center">{article.titre}</span>
-</nav>
+            <Link href="/" className="hover:text-white transition-colors shrink-0">Accueil</Link>
+            <span className="shrink-0">/</span>
+            <Link href="/blog" className="hover:text-white transition-colors shrink-0">Blog</Link>
+            <span className="shrink-0">/</span>
+            <span className="text-white font-medium break-words text-center">{article.titre}</span>
+          </nav>
           <span className="inline-block px-3 py-1 bg-white/10 text-violet-200 font-heading font-medium text-xs sm:text-sm rounded-full mb-4 backdrop-blur-sm">
             {categoriesLabels[article.categorie] || article.categorie}
           </span>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-4 break-words">
-  {article.titre}
-</h1>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-4 break-words">{article.titre}</h1>
           <div className="flex items-center justify-center gap-4 text-sm text-violet-200/80">
             <span>{article.author.name || siteConfig.name}</span>
             <span>{new Date(article.createdAt).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
@@ -115,7 +112,6 @@ export default async function ArticlePage({ params }: Props) {
         </div>
       </section>
 
-      {/* Contenu */}
       <section className="py-16 sm:py-20 lg:py-28 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           {article.imagePrincipale && (
