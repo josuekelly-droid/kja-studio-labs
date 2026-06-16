@@ -5,6 +5,7 @@ import { prisma } from '@/lib/prisma';
 import { siteConfig } from '@/config/site';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { notFound } from 'next/navigation';
+import { marked } from 'marked';
 
 export const dynamic = 'force-dynamic';
 
@@ -53,6 +54,12 @@ export default async function ArticlePage({ params }: Props) {
 
   if (!article) notFound();
 
+  // Convertir Markdown en HTML
+  const contenuHTML = await marked(article.contenu, {
+    breaks: true,
+    gfm: true,
+  });
+
   return (
     <>
       <JsonLd
@@ -99,9 +106,9 @@ export default async function ArticlePage({ params }: Props) {
           </span>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-4">{article.titre}</h1>
           <div className="flex items-center justify-center gap-4 text-sm text-violet-200/80">
-            <span>✍️ {article.author.name || siteConfig.name}</span>
-            <span>📅 {new Date(article.createdAt).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-            <span>⏱️ {article.tempsLecture} min</span>
+            <span>{article.author.name || siteConfig.name}</span>
+            <span>{new Date(article.createdAt).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            <span>{article.tempsLecture} min de lecture</span>
           </div>
         </div>
       </section>
@@ -113,7 +120,7 @@ export default async function ArticlePage({ params }: Props) {
             <img src={article.imagePrincipale} alt={article.titre} className="w-full rounded-2xl mb-10 shadow-lg" />
           )}
           <div className="prose prose-gray max-w-none">
-            <div dangerouslySetInnerHTML={{ __html: article.contenu.replace(/\n/g, '<br />') }} />
+            <div dangerouslySetInnerHTML={{ __html: contenuHTML }} />
           </div>
           {article.tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-10 pt-6 border-t border-gray-200">

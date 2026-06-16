@@ -5,6 +5,7 @@ import { siteConfig } from '@/config/site';
 import { JsonLd } from '@/components/seo/JsonLd';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { marked } from 'marked';
 
 export const dynamic = 'force-dynamic';
 
@@ -56,9 +57,14 @@ export default async function ProjetPage({ params }: Props) {
     notFound();
   }
 
+  // Convertir Markdown en HTML
+  const contenuHTML = await marked(projet.contenuComplet || '', {
+    breaks: true,
+    gfm: true,
+  });
+
   return (
     <>
-      {/* JSON-LD Article */}
       <JsonLd
         data={{
           '@context': 'https://schema.org',
@@ -71,8 +77,6 @@ export default async function ProjetPage({ params }: Props) {
           dateModified: projet.updatedAt.toISOString(),
         }}
       />
-
-      {/* JSON-LD Breadcrumb */}
       <JsonLd
         data={{
           '@context': 'https://schema.org',
@@ -85,13 +89,11 @@ export default async function ProjetPage({ params }: Props) {
         }}
       />
 
-      {/* ============ HERO ============ */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-hero-pattern relative overflow-hidden">
         <div className="absolute inset-0 opacity-20" aria-hidden="true">
           <div className="absolute top-10 right-10 w-72 sm:w-96 h-72 sm:h-96 bg-violet-300 rounded-full blur-[100px]" />
         </div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          {/* Breadcrumb */}
           <nav className="flex items-center justify-center gap-2 text-sm text-violet-200/70 mb-6" aria-label="Fil d'ariane">
             <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
             <span>/</span>
@@ -99,97 +101,54 @@ export default async function ProjetPage({ params }: Props) {
             <span>/</span>
             <span className="text-white font-medium">{projet.titre}</span>
           </nav>
-
-          {/* Catégorie */}
           <span className="inline-block px-3 py-1 bg-white/10 text-violet-200 font-heading font-medium text-xs sm:text-sm rounded-full mb-4 backdrop-blur-sm">
             {categoriesLabels[projet.categorie] || projet.categorie}
           </span>
-
-          {/* Titre */}
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
-            {projet.titre}
-          </h1>
-
-          {/* Description */}
-          <p className="text-base sm:text-lg text-violet-200 max-w-2xl mx-auto leading-relaxed">
-            {projet.descriptionCourte}
-          </p>
-
-          {/* Métadonnées */}
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-4">{projet.titre}</h1>
+          <p className="text-base sm:text-lg text-violet-200 max-w-2xl mx-auto leading-relaxed">{projet.descriptionCourte}</p>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-6 text-sm text-violet-200/80">
-            {projet.client && (
-              <span>👤 Client : <strong className="text-white">{projet.client}</strong></span>
-            )}
-            {projet.dateRealisation && (
-              <span>📅 {new Date(projet.dateRealisation).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' })}</span>
-            )}
+            {projet.client && <span>Client : <strong className="text-white">{projet.client}</strong></span>}
+            {projet.dateRealisation && <span>{new Date(projet.dateRealisation).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' })}</span>}
           </div>
-
-          {/* Liens */}
           <div className="flex flex-wrap justify-center gap-3 mt-8">
             {projet.lienProjet && (
-              <a href={projet.lienProjet} target="_blank" rel="noopener noreferrer" className="btn-primary !bg-white !text-violet hover:!bg-violet-50 text-sm px-5 py-2.5">
-                🌐 Voir le projet
-              </a>
+              <a href={projet.lienProjet} target="_blank" rel="noopener noreferrer" className="btn-primary !bg-white !text-violet hover:!bg-violet-50 text-sm px-5 py-2.5">Voir le projet</a>
             )}
             {projet.lienFigma && (
-              <a href={projet.lienFigma} target="_blank" rel="noopener noreferrer" className="btn-secondary !border-white/30 !text-white hover:!bg-white/10 text-sm px-5 py-2.5">
-                🎨 Figma
-              </a>
+              <a href={projet.lienFigma} target="_blank" rel="noopener noreferrer" className="btn-secondary !border-white/30 !text-white hover:!bg-white/10 text-sm px-5 py-2.5">Figma</a>
             )}
             {projet.lienGithub && (
-              <a href={projet.lienGithub} target="_blank" rel="noopener noreferrer" className="btn-secondary !border-white/30 !text-white hover:!bg-white/10 text-sm px-5 py-2.5">
-                💻 GitHub
-              </a>
+              <a href={projet.lienGithub} target="_blank" rel="noopener noreferrer" className="btn-secondary !border-white/30 !text-white hover:!bg-white/10 text-sm px-5 py-2.5">GitHub</a>
             )}
           </div>
         </div>
       </section>
 
-      {/* ============ CONTENU ============ */}
       <section className="py-16 sm:py-20 lg:py-28 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Image principale */}
           {projet.imagePrincipale && (
             <div className="rounded-2xl overflow-hidden mb-12 shadow-lg">
-              <img
-                src={projet.imagePrincipale}
-                alt={projet.titre}
-                className="w-full h-auto"
-              />
+              <img src={projet.imagePrincipale} alt={projet.titre} className="w-full h-auto" />
             </div>
           )}
-
-          {/* Technologies */}
           {projet.technologies.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-10">
               {projet.technologies.map((pt) => (
-                <span key={pt.technologie.id} className="px-3 py-1.5 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
-                  {pt.technologie.nom}
-                </span>
+                <span key={pt.technologie.id} className="px-3 py-1.5 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">{pt.technologie.nom}</span>
               ))}
             </div>
           )}
-
-          {/* Contenu étude de cas */}
           {projet.contenuComplet && (
             <div className="prose prose-gray max-w-none bg-white rounded-2xl border border-gray-100 p-6 sm:p-8 lg:p-10">
-              <div dangerouslySetInnerHTML={{ __html: projet.contenuComplet.replace(/\n/g, '<br />') }} />
+              <div dangerouslySetInnerHTML={{ __html: contenuHTML }} />
             </div>
           )}
-
-          {/* Galerie */}
           {projet.images.length > 0 && (
             <div className="mt-12">
               <h2 className="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-6">Galerie</h2>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {projet.images.map((image) => (
-                  <img
-                    key={image.id}
-                    src={image.url}
-                    alt={image.alt || projet.titre}
-                    className="rounded-xl w-full h-48 object-cover hover:scale-105 transition-transform"
-                  />
+                  <img key={image.id} src={image.url} alt={image.alt || projet.titre} className="rounded-xl w-full h-48 object-cover hover:scale-105 transition-transform" />
                 ))}
               </div>
             </div>
