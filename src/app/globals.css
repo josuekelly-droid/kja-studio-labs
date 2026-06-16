@@ -181,3 +181,8 @@
 .animate-scroll-slow:hover {
   animation-play-state: paused;
 }
+
+.prose p {
+  margin-bottom: 1.25rem;
+  line-height: 1.75;
+}
