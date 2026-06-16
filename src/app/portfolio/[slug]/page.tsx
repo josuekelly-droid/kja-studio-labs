@@ -5,7 +5,6 @@ import { siteConfig } from '@/config/site';
 import { JsonLd } from '@/components/seo/JsonLd';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { marked } from 'marked';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,9 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     select: { titre: true, metaTitle: true, metaDescription: true, imagePrincipale: true },
   });
 
-  if (!projet) {
-    return { title: 'Projet non trouvé' };
-  }
+  if (!projet) return { title: 'Projet non trouvé' };
 
   return {
     title: projet.metaTitle || projet.titre,
@@ -53,15 +50,13 @@ export default async function ProjetPage({ params }: Props) {
     },
   });
 
-  if (!projet) {
-    notFound();
-  }
+  if (!projet) notFound();
 
-  // Convertir Markdown en HTML
-  const contenuHTML = await marked(projet.contenuComplet || '', {
-    breaks: true,
-    gfm: true,
-  });
+  // Convertir le contenu en HTML avec paragraphes
+  const contenuHTML = (projet.contenuComplet || '')
+    .split(/\n\n+/)
+    .map((p: string) => `<p>${p.replace(/\n/g, '<br />')}</p>`)
+    .join('');
 
   return (
     <>
@@ -95,18 +90,16 @@ export default async function ProjetPage({ params }: Props) {
         </div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <nav className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-violet-200/70 mb-6">
-  <Link href="/" className="hover:text-white transition-colors shrink-0">Accueil</Link>
-  <span className="shrink-0">/</span>
-  <Link href="/portfolio" className="hover:text-white transition-colors shrink-0">Portfolio</Link>
-  <span className="shrink-0">/</span>
-  <span className="text-white font-medium break-words text-center">{projet.titre}</span>
-</nav>
+            <Link href="/" className="hover:text-white transition-colors shrink-0">Accueil</Link>
+            <span className="shrink-0">/</span>
+            <Link href="/portfolio" className="hover:text-white transition-colors shrink-0">Portfolio</Link>
+            <span className="shrink-0">/</span>
+            <span className="text-white font-medium break-words text-center">{projet.titre}</span>
+          </nav>
           <span className="inline-block px-3 py-1 bg-white/10 text-violet-200 font-heading font-medium text-xs sm:text-sm rounded-full mb-4 backdrop-blur-sm">
             {categoriesLabels[projet.categorie] || projet.categorie}
           </span>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-4 break-words">
-  {projet.titre}
-</h1>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-4 break-words">{projet.titre}</h1>
           <p className="text-base sm:text-lg text-violet-200 max-w-2xl mx-auto leading-relaxed">{projet.descriptionCourte}</p>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-6 text-sm text-violet-200/80">
             {projet.client && <span>Client : <strong className="text-white">{projet.client}</strong></span>}

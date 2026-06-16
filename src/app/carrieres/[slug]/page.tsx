@@ -5,7 +5,6 @@ import { prisma } from '@/lib/prisma';
 import { siteConfig } from '@/config/site';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { notFound } from 'next/navigation';
-import { marked } from 'marked';
 
 export const dynamic = 'force-dynamic';
 
@@ -31,7 +30,11 @@ export default async function OffrePage({ params }: Props) {
   const offre = await prisma.jobPosting.findUnique({ where: { slug, estPublie: true } });
   if (!offre) notFound();
 
-  const descriptionHTML = await marked(offre.description, { breaks: true, gfm: true });
+  // Convertir le contenu en HTML avec paragraphes
+  const descriptionHTML = (offre.description || '')
+    .split(/\n\n+/)
+    .map((p: string) => `<p>${p.replace(/\n/g, '<br />')}</p>`)
+    .join('');
 
   return (
     <>
