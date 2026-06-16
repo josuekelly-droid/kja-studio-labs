@@ -268,7 +268,7 @@ export default async function HomePage() {
             </div>
             <div className="flex gap-4 sm:gap-6 animate-scroll-fast">
               {[...avisRecents, ...avisRecents].map((avis, index) => (
-                <div key={`${avis.id}-${index}`} className="card p-5 sm:p-8 shrink-0 w-[300px] sm:w-[380px]">
+                <div key={`${avis.id}-${index}`} className="card p-4 sm:p-8 shrink-0 w-[85vw] sm:w-[380px]">
                   <div className="flex items-center gap-1 mb-4">
                     {Array.from({ length: 5 }).map((_, i) => (
                       <svg key={i} className={`w-4 h-4 sm:w-5 sm:h-5 ${i < avis.note ? 'text-yellow-400' : 'text-gray-200'}`} fill="currentColor" viewBox="0 0 20 20">
