@@ -55,10 +55,10 @@ export default async function ArticlePage({ params }: Props) {
   if (!article) notFound();
 
   // Convertir Markdown en HTML avec parseInline pour forcer les paragraphes
-  const contenuHTML = marked.parse(article.contenu, {
-    breaks: true,
-    gfm: true,
-  });
+  const contenuHTML = article.contenu
+  .split(/\n\n+/)
+  .map((p: string) => `<p>${p.replace(/\n/g, '<br />')}</p>`)
+  .join('');
 
   return (
     <>
