@@ -170,11 +170,11 @@
 }
 
 .animate-scroll-fast {
-  animation: scroll 12s linear infinite;
+  animation: scroll 8s linear infinite;
 }
 
 .animate-scroll-slow {
-  animation: scroll 22s linear infinite;
+  animation: scroll 10s linear infinite;
 }
 
 .animate-scroll-fast:hover,

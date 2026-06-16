@@ -266,7 +266,7 @@ export default async function HomePage() {
               <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-gray-900 mb-3 sm:mb-4">Ils nous font confiance</h2>
               <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-xl mx-auto">Ce que nos clients disent de notre travail</p>
             </div>
-            <div className="flex gap-6 animate-scroll-slow">
+            <div className="flex gap-6 animate-scroll-fast">
               {[...avisRecents, ...avisRecents].map((avis, index) => (
                 <div key={`${avis.id}-${index}`} className="card p-6 sm:p-8 shrink-0 w-[350px] sm:w-[400px]">
                   <div className="flex items-center gap-1 mb-4">
