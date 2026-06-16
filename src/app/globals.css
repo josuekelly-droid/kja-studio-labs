@@ -163,3 +163,16 @@
   color: transparent;
   background-image: linear-gradient(to right, var(--color-violet-400), var(--color-violet), var(--color-violet-800));
 }
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); }
+}
+
+.animate-scroll {
+  animation: scroll 25s linear infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
