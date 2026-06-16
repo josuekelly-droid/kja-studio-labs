@@ -2,6 +2,7 @@
 import type { Metadata } from 'next';
 import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
+import { IndexAllButton } from './IndexAllButton';
 
 export const metadata: Metadata = {
   title: 'Dashboard - Admin',
@@ -40,7 +41,7 @@ export default async function DashboardPage() {
         ))}
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-6">
+      <div className="grid lg:grid-cols-3 gap-6 mb-8">
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sm:p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-heading font-semibold text-gray-900">Derniers projets</h2>
@@ -65,6 +66,8 @@ export default async function DashboardPage() {
           <OffresRecentes />
         </div>
       </div>
+
+      <IndexAllButton />
     </div>
   );
 }
