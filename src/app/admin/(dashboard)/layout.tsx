@@ -1,10 +1,10 @@
-// src/app/admin/layout.tsx
+// src/app/admin/(dashboard)/layout.tsx
 import { redirect } from 'next/navigation';
 import { getSession } from '@/lib/auth';
 import AdminSidebar from '@/components/admin/Sidebar';
 import AdminHeader from '@/components/admin/Header';
 
-export default async function AdminLayout({
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
