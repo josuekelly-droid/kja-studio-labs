@@ -58,7 +58,7 @@ export const getAvisRecents = cache(async () => {
   return prisma.avis.findMany({
     where: { estApprouve: true, estAffiché: true },
     orderBy: { createdAt: 'desc' },
-    take: 10,
+    take: 3,
     select: {
       id: true,
       nomClient: true,
