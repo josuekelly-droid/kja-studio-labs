@@ -267,7 +267,7 @@ export default async function HomePage() {
               <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-xl mx-auto">Ce que nos clients disent de notre travail</p>
             </div>
             <div className="flex gap-4 sm:gap-6 animate-scroll-fast">
-              {[...avisRecents, ...avisRecents].map((avis, index) => (
+              {[...avisRecents, ...avisRecents, ...avisRecents].map((avis, index) => (
                 <div key={`${avis.id}-${index}`} className="card p-4 sm:p-8 shrink-0 w-[85vw] sm:w-[380px]">
                   <div className="flex items-center gap-1 mb-4">
                     {Array.from({ length: 5 }).map((_, i) => (
