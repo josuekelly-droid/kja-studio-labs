@@ -196,7 +196,7 @@ export default async function HomePage() {
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-10">
-              {avisRecents.slice(0, 3).map((avis, index) => (
+              {avisRecents.slice(0, 4).map((avis, index) => (
                 <div key={avis.id} className={`card p-5 sm:p-6 lg:p-8 flex flex-col ${index === 0 ? 'lg:col-span-2 lg:flex-row lg:items-center lg:gap-8' : ''}`}>
                   <div className={`${index === 0 ? 'lg:w-1/3 text-center lg:text-left' : ''}`}>
                     <div className="flex items-center gap-1 mb-3 lg:mb-4">
