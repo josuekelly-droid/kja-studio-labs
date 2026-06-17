@@ -6,10 +6,10 @@ export const siteConfig = {
   
   url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
   
-  logo: '/logo/kja-logo.svg',
-  logoWhite: '/logo/kja-logo-white.svg',
-  favicon: '/logo/kja-favicon.svg',
-  ogImage: '/logo/kja-og-image.jpg',
+  logo: '/logo/kja-studio-labs.jpg',
+logoWhite: '/logo/kja-logo-white.png',
+favicon: '/logo/kja-favicon.png',
+ogImage: '/logo/kja-og-image.jpg',
   
   social: {
   instagram: 'https://instagram.com/kjastudiolabs',
