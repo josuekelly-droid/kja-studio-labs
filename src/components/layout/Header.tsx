@@ -20,8 +20,9 @@ const navigation = [
     titre: 'Services',
     href: '/services',
     enfants: [
+      { titre: 'Tous les services', href: '/services' },
       { titre: 'UI/UX Design', href: '/services/design-ui-ux' },
-      { titre: 'Fullstack', href: '/services/developpement-fullstack' },
+      { titre: 'Développement Fullstack', href: '/services/developpement-fullstack' },
       { titre: 'Connect', href: '/services/connect' },
     ],
   },
@@ -45,27 +46,13 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-  if (mobileOpen) {
-    const scrollY = window.scrollY;
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.width = '100%';
-    document.body.dataset.scrollY = String(scrollY);
-  } else {
-    const scrollY = parseInt(document.body.style.top || '0') * -1;
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.width = '';
-    window.scrollTo({ top: scrollY, behavior: 'instant' as any });
-  }
-  return () => {
-    const scrollY = parseInt(document.body.style.top || '0') * -1;
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.width = '';
-    if (!mobileOpen) window.scrollTo({ top: scrollY, behavior: 'instant' as any });
-  };
-}, [mobileOpen]);
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    document.body.style.touchAction = mobileOpen ? 'none' : '';
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+    };
+  }, [mobileOpen]);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -93,7 +80,6 @@ export default function Header() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <nav className="flex items-center justify-between h-16 sm:h-20">
-          {/* Logo */}
           <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0 z-[101]">
             <img src="/logo/kja-studio-labs.jpg" alt="KJA Studio Labs" className="h-8 sm:h-10 w-auto" />
             <span className={`font-heading font-bold text-sm sm:text-base ${isScrolled ? 'text-gray-900' : 'text-white'}`}>
@@ -121,7 +107,14 @@ export default function Header() {
                   <Link href={item.href} className={linkClass(item.href)}>{item.titre}</Link>
                 )}
                 {item.enfants && dropdownOpen === item.titre && (
-                  <div className="absolute top-full left-0 mt-1 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-2 animate-fade-in z-50">
+                  <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-lg border border-gray-100 py-2 animate-fade-in z-50">
+                    <Link
+                      href={item.href}
+                      onClick={() => setDropdownOpen(null)}
+                      className="block px-4 py-2.5 text-sm font-medium text-violet hover:bg-violet-50 transition-colors border-b border-gray-50"
+                    >
+                      Voir tout
+                    </Link>
                     {item.enfants.map((enfant) => (
                       <Link
                         key={enfant.href}
@@ -144,7 +137,7 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Mobile Burger Button */}
+          {/* Mobile Burger */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="lg:hidden z-[103] p-2 -mr-2"
@@ -152,33 +145,23 @@ export default function Header() {
             aria-expanded={mobileOpen}
           >
             <div className="w-6 flex flex-col gap-1.5">
-              <span className={`block h-0.5 transition-all duration-300 rounded-full ${
-                isScrolled || mobileOpen ? 'bg-gray-900' : 'bg-white'
-              } ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
-              <span className={`block h-0.5 transition-all duration-300 rounded-full ${
-                isScrolled || mobileOpen ? 'bg-gray-900' : 'bg-white'
-              } ${mobileOpen ? 'opacity-0 scale-x-0' : ''}`} />
-              <span className={`block h-0.5 transition-all duration-300 rounded-full ${
-                isScrolled || mobileOpen ? 'bg-gray-900' : 'bg-white'
-              } ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+              <span className={`block h-0.5 transition-all duration-300 rounded-full ${isScrolled || mobileOpen ? 'bg-gray-900' : 'bg-white'} ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
+              <span className={`block h-0.5 transition-all duration-300 rounded-full ${isScrolled || mobileOpen ? 'bg-gray-900' : 'bg-white'} ${mobileOpen ? 'opacity-0 scale-x-0' : ''}`} />
+              <span className={`block h-0.5 transition-all duration-300 rounded-full ${isScrolled || mobileOpen ? 'bg-gray-900' : 'bg-white'} ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
             </div>
           </button>
         </nav>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Overlay */}
       <div
-        className={`fixed inset-0 bg-black/30 z-40 lg:hidden transition-opacity duration-300 ${
-          mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
+        className={`fixed inset-0 bg-black/30 z-40 lg:hidden transition-opacity duration-300 ${mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
         onClick={() => setMobileOpen(false)}
       />
 
-      {/* Mobile Menu Panel */}
+      {/* Mobile Panel */}
       <div
-        className={`fixed top-0 right-0 h-full w-80 max-w-[calc(100vw-3rem)] bg-white z-[102] lg:hidden transform transition-transform duration-300 ease-out shadow-2xl overflow-y-auto ${
-          mobileOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        className={`fixed top-0 right-0 h-full w-80 max-w-[calc(100vw-3rem)] bg-white z-[102] lg:hidden transform transition-transform duration-300 ease-out shadow-2xl overflow-y-auto ${mobileOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <div className="pt-20 pb-8 px-6">
           <nav className="flex flex-col gap-1">
@@ -191,46 +174,30 @@ export default function Header() {
                       className="w-full flex items-center justify-between py-3.5 text-base font-heading font-semibold text-gray-900 hover:text-violet transition-colors"
                     >
                       {item.titre}
-                      <svg
-                        className={`w-4 h-4 transition-transform duration-200 ${mobileDropdown === item.titre ? 'rotate-180' : ''}`}
-                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                      >
+                      <svg className={`w-4 h-4 transition-transform duration-200 ${mobileDropdown === item.titre ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </button>
-                    <div
-                      className={`overflow-hidden transition-all duration-200 ${
-                        mobileDropdown === item.titre ? 'max-h-60 pb-2' : 'max-h-0'
-                      }`}
-                    >
+                    <div className={`overflow-hidden transition-all duration-200 ${mobileDropdown === item.titre ? 'max-h-80 pb-2' : 'max-h-0'}`}>
+                      <Link href={item.href} className="block pl-4 py-2.5 text-sm font-medium text-violet transition-colors border-l-2 border-violet-300 ml-2">
+                        Voir tout
+                      </Link>
                       {item.enfants.map((enfant) => (
-                        <Link
-                          key={enfant.href}
-                          href={enfant.href}
-                          className="block pl-4 py-2.5 text-sm text-gray-600 hover:text-violet transition-colors border-l-2 border-violet-100 ml-2"
-                        >
+                        <Link key={enfant.href} href={enfant.href} className="block pl-4 py-2.5 text-sm text-gray-600 hover:text-violet transition-colors border-l-2 border-violet-100 ml-2">
                           {enfant.titre}
                         </Link>
                       ))}
                     </div>
                   </>
                 ) : (
-                  <Link
-                    href={item.href}
-                    className={`block py-3.5 text-base font-heading font-semibold transition-colors ${
-                      isActive(item.href) ? 'text-violet' : 'text-gray-900 hover:text-violet'
-                    }`}
-                  >
+                  <Link href={item.href} className={`block py-3.5 text-base font-heading font-semibold transition-colors ${isActive(item.href) ? 'text-violet' : 'text-gray-900 hover:text-violet'}`}>
                     {item.titre}
                   </Link>
                 )}
               </div>
             ))}
           </nav>
-          <Link
-            href="/contact"
-            className="mt-6 w-full py-3.5 bg-violet text-white font-heading font-semibold text-base rounded-full text-center block shadow-md hover:bg-violet-700 transition-colors"
-          >
+          <Link href="/contact" className="mt-6 w-full py-3.5 bg-violet text-white font-heading font-semibold text-base rounded-full text-center block shadow-md hover:bg-violet-700 transition-colors">
             Contactez-nous
           </Link>
         </div>

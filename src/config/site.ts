@@ -14,9 +14,9 @@ export const siteConfig = {
   social: {
   instagram: 'https://instagram.com/kjastudiolabs',
   twitter: '@kjastudiolabs',
-  facebook: 'https://facebook.com/kjastudiolabs',
+  facebook: 'https://web.facebook.com/profile.php?id=61590969716943',
   linkedin: 'https://linkedin.com/company/kja-studio-labs',
-  github: 'https://github.com/kja-studio-labs',
+  github: 'https://github.com/KJA-Studio-Labs',
 },
   
   contact: {

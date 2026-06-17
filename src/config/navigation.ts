@@ -68,6 +68,10 @@ export const navigationPrincipale: NavItem[] = [
     href: '/a-propos',
   },
   {
+    titre: 'Carrières',
+    href: '/carrieres',
+  },
+  {
     titre: 'Avis clients',
     href: '/avis',
   },
@@ -87,7 +91,9 @@ export const navigationFooter = {
     { titre: 'À propos', href: '/a-propos' },
     { titre: 'Portfolio', href: '/portfolio' },
     { titre: 'Blog', href: '/blog' },
+    { titre: 'Carrières', href: '/carrieres' },
     { titre: 'Avis clients', href: '/avis' },
+    { titre: 'Laisser un avis', href: '/laisser-un-avis' },
   ],
   legal: [
     { titre: 'Mentions légales', href: '/mentions-legales' },
@@ -98,8 +104,9 @@ export const navigationFooter = {
     email: 'contact@kja-studio-labs.com',
     reseaux: [
       { nom: 'LinkedIn', href: 'https://linkedin.com/company/kja-studio-labs' },
-      { nom: 'GitHub', href: 'https://github.com/kja-studio-labs' },
+      { nom: 'GitHub', href: 'https://github.com/KJA-Studio-Labs' },
       { nom: 'Twitter', href: 'https://twitter.com/kjastudiolabs' },
+      { nom: 'Facebook', href: 'https://web.facebook.com/profile.php?id=61590969716943' },
     ],
   },
 };

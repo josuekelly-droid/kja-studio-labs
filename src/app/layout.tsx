@@ -97,9 +97,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* Vérification identité - Liens profils sociaux */}
         <link rel="me" href="https://instagram.com/kjastudiolabs" />
-        <link rel="me" href="https://facebook.com/kjastudiolabs" />
+        <link rel="me" href="https://web.facebook.com/profile.php?id=61590969716943" />
         <link rel="me" href="https://twitter.com/kjastudiolabs" />
-        <link rel="me" href="https://github.com/kja-studio-labs" />
+        <link rel="me" href="https://github.com/KJA-Studio-Labs" />
         <link rel="me" href="https://linkedin.com/company/kja-studio-labs" />
       </head>
       <body className="font-body antialiased bg-white text-gray-900 min-h-screen flex flex-col">
