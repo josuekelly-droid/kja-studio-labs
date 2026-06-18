@@ -73,7 +73,7 @@ export default async function HomePage() {
         </div>
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="mb-6 sm:mb-10 animate-fade-in"><img src="/logo/kja-studio-labs.jpg" alt="KJA Studio Labs" width="200" height="50" className="h-12 sm:h-16 lg:h-20 mx-auto" /></div>
+            <div className="mb-6 sm:mb-10 animate-fade-in"><img src="/logo/kja-studio-labs.jpg" alt="KJA Studio Labs" className="h-12 sm:h-16 lg:h-20 mx-auto" /></div>
             <h1 className="font-heading font-bold text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] mb-4 sm:mb-6 animate-slide-up">Design <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-200 to-white">UI/UX</span> & Développement <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-violet-200">Fullstack</span></h1>
             <p className="text-base sm:text-lg lg:text-xl text-violet-200/90 mb-8 sm:mb-10 lg:mb-12 max-w-xl mx-auto animate-slide-up leading-relaxed">Studio créatif francophone. Solutions digitales sur mesure, design premium, code propre, SEO optimisé pour performer à l&apos;international.</p>
             <div className="flex flex-col xs:flex-row gap-3 sm:gap-4 justify-center animate-slide-up">
