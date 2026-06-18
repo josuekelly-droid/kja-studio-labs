@@ -73,7 +73,7 @@ export default async function HomePage() {
         </div>
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="mb-6 sm:mb-10 animate-fade-in"><img src="/logo/kja-studio-labs.jpg" alt="KJA Studio Labs" className="h-12 sm:h-16 lg:h-20 mx-auto" /></div>
+            <div className="mb-6 sm:mb-10 animate-fade-in"><img src="/logo/kja-studio-labs.webp" alt="KJA Studio Labs" className="h-12 sm:h-16 lg:h-20 mx-auto" /></div>
             <h1 className="font-heading font-bold text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] mb-4 sm:mb-6 animate-slide-up">Design <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-200 to-white">UI/UX</span> & Développement <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-violet-200">Fullstack</span></h1>
             <p className="text-base sm:text-lg lg:text-xl text-violet-200/90 mb-8 sm:mb-10 lg:mb-12 max-w-xl mx-auto animate-slide-up leading-relaxed">Studio créatif francophone. Solutions digitales sur mesure, design premium, code propre, SEO optimisé pour performer à l&apos;international.</p>
             <div className="flex flex-col xs:flex-row gap-3 sm:gap-4 justify-center animate-slide-up">
@@ -134,7 +134,7 @@ export default async function HomePage() {
                 {projetsRecents.map((projet) => (
                   <Link key={projet.id} href={`/portfolio/${projet.slug}`} className="card overflow-hidden group block">
                     <div className="aspect-video bg-gray-100 flex items-center justify-center overflow-hidden">
-                      {projet.imagePrincipale ? <img src={projet.imagePrincipale} alt={projet.titre} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /> : <div className="w-full h-full bg-gray-200 flex items-center justify-center"><svg className="w-10 h-10 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg></div>}
+                      {projet.imagePrincipale ? <img src={projet.imagePrincipale} alt={projet.titre} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /> : <div className="w-full h-full bg-gray-200 flex items-center justify-center"><svg className="w-10 h-10 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg></div>}
                     </div>
                     <div className="p-5 lg:p-6">
                       <span className="text-xs font-heading font-semibold text-violet uppercase tracking-wider">{categoriesLabels[projet.categorie] || projet.categorie}</span>
@@ -166,7 +166,7 @@ export default async function HomePage() {
                 {articlesRecents.map((article) => (
                   <Link key={article.id} href={`/blog/${article.slug}`} className="card overflow-hidden group block bg-white">
                     <div className="aspect-video bg-gray-100 flex items-center justify-center overflow-hidden">
-                      {article.imagePrincipale ? <img src={article.imagePrincipale} alt={article.titre} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /> : <div className="w-full h-full bg-gray-200 flex items-center justify-center"><svg className="w-10 h-10 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" /></svg></div>}
+                      {article.imagePrincipale ? <img src={article.imagePrincipale} alt={article.titre} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /> : <div className="w-full h-full bg-gray-200 flex items-center justify-center"><svg className="w-10 h-10 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" /></svg></div>}
                     </div>
                     <div className="p-5 lg:p-6">
                       <div className="flex items-center gap-3 mb-2"><span className="text-xs font-heading font-semibold text-violet uppercase tracking-wider">{blogCategoriesLabels[article.categorie] || article.categorie}</span>{article.tempsLecture && <span className="text-xs text-gray-400">{article.tempsLecture} min de lecture</span>}</div>
