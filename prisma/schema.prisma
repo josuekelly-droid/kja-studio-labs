@@ -1,7 +1,7 @@
 // prisma/schema.prisma
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["fullTextSearch", "postgresqlExtensions"]
+  previewFeatures = ["fullTextSearchPostgres", "postgresqlExtensions"]
 }
 
 datasource db {
