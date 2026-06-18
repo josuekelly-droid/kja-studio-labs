@@ -40,7 +40,7 @@ export const getArticlesRecents = cache(async () => {
   return prisma.blogArticle.findMany({
     where: { estPublie: true },
     orderBy: { createdAt: 'desc' },
-    take: 4,
+    take: 6,
     select: {
       id: true,
       slug: true,
