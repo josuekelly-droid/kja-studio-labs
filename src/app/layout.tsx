@@ -80,7 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <meta name="theme-color" content="#4F19A4" />
-        <link rel="me" href="https://instagram.com/kjastudiolabs" />
+        <link rel="me" href="https://instagram.com/kja.studiolabs" />
         <link rel="me" href="https://web.facebook.com/kjastudiolabs/" />
         <link rel="me" href="https://twitter.com/kjastudiolabs" />
         <link rel="me" href="https://github.com/KJA-Studio-Labs" />

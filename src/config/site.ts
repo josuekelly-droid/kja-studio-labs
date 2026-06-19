@@ -12,7 +12,7 @@ favicon: '/logo/kja-favicon.png',
 ogImage: '/logo/kja-og-image.jpg',
   
   social: {
-  instagram: 'https://instagram.com/kjastudiolabs',
+  instagram: 'https://instagram.com/kja.studiolabs',
   twitter: '@kjastudiolabs',
   facebook: 'https://web.facebook.com/kjastudiolabs/',
   linkedin: 'https://linkedin.com/company/kja-studio-labs',
