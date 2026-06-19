@@ -106,7 +106,7 @@ export const navigationFooter = {
       { nom: 'LinkedIn', href: 'https://linkedin.com/company/kja-studio-labs' },
       { nom: 'GitHub', href: 'https://github.com/KJA-Studio-Labs' },
       { nom: 'Twitter', href: 'https://twitter.com/kjastudiolabs' },
-      { nom: 'Facebook', href: 'https://web.facebook.com/profile.php?id=61590969716943' },
+      { nom: 'Facebook', href: 'https://web.facebook.com/kjastudiolabs/' },
     ],
   },
 };

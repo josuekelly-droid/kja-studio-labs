@@ -81,7 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <meta name="theme-color" content="#4F19A4" />
         <link rel="me" href="https://instagram.com/kjastudiolabs" />
-        <link rel="me" href="https://web.facebook.com/profile.php?id=61590969716943" />
+        <link rel="me" href="https://web.facebook.com/kjastudiolabs/" />
         <link rel="me" href="https://twitter.com/kjastudiolabs" />
         <link rel="me" href="https://github.com/KJA-Studio-Labs" />
         <link rel="me" href="https://linkedin.com/company/kja-studio-labs" />

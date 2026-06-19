@@ -14,7 +14,7 @@ ogImage: '/logo/kja-og-image.jpg',
   social: {
   instagram: 'https://instagram.com/kjastudiolabs',
   twitter: '@kjastudiolabs',
-  facebook: 'https://web.facebook.com/profile.php?id=61590969716943',
+  facebook: 'https://web.facebook.com/kjastudiolabs/',
   linkedin: 'https://linkedin.com/company/kja-studio-labs',
   github: 'https://github.com/KJA-Studio-Labs',
 },
