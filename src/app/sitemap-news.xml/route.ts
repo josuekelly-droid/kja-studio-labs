@@ -19,6 +19,13 @@ export async function GET() {
     take: 100,
   });
 
+  const offres = await prisma.jobPosting.findMany({
+    where: { estPublie: true },
+    orderBy: { createdAt: 'desc' },
+    select: { titre: true, slug: true, createdAt: true, dateExpiration: true },
+    take: 100,
+  });
+
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
@@ -44,6 +51,18 @@ ${projets.map((projet) => `
       </news:publication>
       <news:publication_date>${projet.createdAt.toISOString()}</news:publication_date>
       <news:title>${escapeXml(projet.titre)}</news:title>
+    </news:news>
+  </url>`).join('')}
+${offres.map((offre) => `
+  <url>
+    <loc>${SITE_URL}/carrieres/${offre.slug}</loc>
+    <news:news>
+      <news:publication>
+        <news:name>${SITE_NAME}</news:name>
+        <news:language>fr</news:language>
+      </news:publication>
+      <news:publication_date>${offre.createdAt.toISOString()}</news:publication_date>
+      <news:title>${escapeXml(offre.titre)}</news:title>
     </news:news>
   </url>`).join('')}
 </urlset>`;

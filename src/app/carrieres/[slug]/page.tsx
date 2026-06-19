@@ -30,7 +30,6 @@ export default async function OffrePage({ params }: Props) {
   const offre = await prisma.jobPosting.findUnique({ where: { slug, estPublie: true } });
   if (!offre) notFound();
 
-  // Convertir le contenu en HTML avec paragraphes
   const descriptionHTML = (offre.description || '')
     .split(/\n\n+/)
     .map((p: string) => `<p>${p.replace(/\n/g, '<br />')}</p>`)
@@ -44,8 +43,13 @@ export default async function OffrePage({ params }: Props) {
         title: offre.titre,
         description: offre.description.slice(0, 300),
         datePosted: offre.createdAt.toISOString(),
-        validThrough: offre.dateExpiration?.toISOString() || '',
+        validThrough: offre.dateExpiration?.toISOString() || new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
         employmentType: offre.typeContrat,
+        directApply: true,
+        industry: 'Technologie, Design, Développement Web',
+        qualifications: offre.competences.join(', '),
+        responsibilities: offre.description.slice(0, 500),
+        workHours: 'Temps plein',
         hiringOrganization: { 
           '@type': 'Organization', 
           name: siteConfig.name, 
@@ -76,6 +80,10 @@ export default async function OffrePage({ params }: Props) {
           '@type': 'PropertyValue',
           name: siteConfig.name,
           value: offre.id
+        },
+        applicationContact: {
+          '@type': 'ContactPoint',
+          email: offre.emailContact
         }
       }} />
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: siteConfig.url }, { '@type': 'ListItem', position: 2, name: 'Carrières', item: `${siteConfig.url}/carrieres` }, { '@type': 'ListItem', position: 3, name: offre.titre, item: `${siteConfig.url}/carrieres/${offre.slug}` }] }} />
