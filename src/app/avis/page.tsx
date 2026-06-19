@@ -27,7 +27,6 @@ export default async function AvisPage() {
     },
   });
 
-  // Calculer la moyenne
   const moyenne = avis.length > 0
     ? (avis.reduce((acc, a) => acc + a.note, 0) / avis.length).toFixed(1)
     : '0';
@@ -37,9 +36,8 @@ export default async function AvisPage() {
       <JsonLd
         data={{
           '@context': 'https://schema.org',
-          '@type': 'WebPage',
-          name: 'Avis clients KJA Studio Labs',
-          url: `${siteConfig.url}/avis`,
+          '@type': 'Product',
+          name: 'KJA Studio Labs',
           aggregateRating: avis.length > 0 ? {
             '@type': 'AggregateRating',
             ratingValue: moyenne,
@@ -60,7 +58,6 @@ export default async function AvisPage() {
         }}
       />
 
-      {/* Hero */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-hero-pattern relative overflow-hidden">
         <div className="absolute inset-0 opacity-20" aria-hidden="true">
           <div className="absolute top-10 right-10 w-72 sm:w-96 h-72 sm:h-96 bg-violet-300 rounded-full blur-[100px]" />
@@ -71,12 +68,8 @@ export default async function AvisPage() {
             <span>/</span>
             <span className="text-white font-medium">Avis clients</span>
           </nav>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-white mb-4">
-            Ils nous font confiance
-          </h1>
-          <p className="text-base sm:text-lg text-violet-200 max-w-xl mx-auto">
-            Ce que nos clients disent de notre travail
-          </p>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-white mb-4">Ils nous font confiance</h1>
+          <p className="text-base sm:text-lg text-violet-200 max-w-xl mx-auto">Ce que nos clients disent de notre travail</p>
           {avis.length > 0 && (
             <div className="flex items-center justify-center gap-2 mt-6">
               <span className="text-3xl font-heading font-bold text-white">{moyenne}</span>
@@ -93,13 +86,11 @@ export default async function AvisPage() {
         </div>
       </section>
 
-      {/* Liste des avis */}
       <section className="py-16 sm:py-20 lg:py-28 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {avis.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-gray-500 text-lg">Aucun avis pour le moment.</p>
-              <p className="text-gray-400 text-sm mt-2">Les avis de nos clients apparaîtront ici.</p>
             </div>
           ) : (
             <div className="space-y-6">
@@ -112,22 +103,16 @@ export default async function AvisPage() {
                       </svg>
                     ))}
                   </div>
-                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-4 italic">
-                    &ldquo;{a.commentaire}&rdquo;
-                  </p>
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-4 italic">&ldquo;{a.commentaire}&rdquo;</p>
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="font-heading font-semibold text-gray-900 text-sm sm:text-base">{a.nomClient}</p>
                       {(a.poste || a.entreprise) && (
-                        <p className="text-xs sm:text-sm text-gray-500">
-                          {a.poste}{a.poste && a.entreprise && ' chez '}{a.entreprise}
-                        </p>
+                        <p className="text-xs sm:text-sm text-gray-500">{a.poste}{a.poste && a.entreprise && ' chez '}{a.entreprise}</p>
                       )}
                     </div>
                     {a.projet && (
-                      <Link href={`/portfolio/${a.projet.slug}`} className="text-xs text-violet hover:underline">
-                        Voir le projet
-                      </Link>
+                      <Link href={`/portfolio/${a.projet.slug}`} className="text-xs text-violet hover:underline">Voir le projet</Link>
                     )}
                   </div>
                 </div>
@@ -137,21 +122,14 @@ export default async function AvisPage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-16 sm:py-20 lg:py-28 bg-hero-pattern relative overflow-hidden">
         <div className="absolute inset-0 opacity-20" aria-hidden="true">
           <div className="absolute top-0 left-1/2 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-violet-300 rounded-full blur-[100px] sm:blur-[150px] -translate-x-1/2" />
         </div>
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white mb-4">
-            Vous avez travaillé avec nous ?
-          </h2>
-          <p className="text-base sm:text-lg text-violet-200 mb-8">
-            Partagez votre expérience et aidez-nous à nous améliorer.
-          </p>
-          <Link href="/laisser-un-avis" className="btn-primary !bg-white !text-violet hover:!bg-violet-50 text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4">
-            Laisser un avis
-          </Link>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white mb-4">Vous avez travaillé avec nous ?</h2>
+          <p className="text-base sm:text-lg text-violet-200 mb-8">Partagez votre expérience et aidez-nous à nous améliorer.</p>
+          <Link href="/laisser-un-avis" className="btn-primary !bg-white !text-violet hover:!bg-violet-50 text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4">Laisser un avis</Link>
         </div>
       </section>
     </>
