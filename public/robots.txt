@@ -4,3 +4,4 @@ Disallow: /admin/
 Disallow: /api/
 
 Sitemap: https://kja-studio-labs.com/sitemap.xml
+Sitemap: https://kja-studio-labs.com/sitemap-jobs.xml
