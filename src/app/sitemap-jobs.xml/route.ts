@@ -12,17 +12,13 @@ export async function GET() {
   });
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:job="http://www.google.com/schemas/sitemap-job/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${offres.map((offre) => `
   <url>
     <loc>${SITE_URL}/carrieres/${offre.slug}</loc>
     <lastmod>${offre.createdAt.toISOString()}</lastmod>
-    <job:job>
-      <job:title>${escapeXml(offre.titre)}</job:title>
-      <job:datePosted>${offre.createdAt.toISOString()}</job:datePosted>
-      ${offre.dateExpiration ? `<job:validThrough>${new Date(offre.dateExpiration).toISOString()}</job:validThrough>` : ''}
-    </job:job>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>`).join('')}
 </urlset>`;
 
@@ -32,13 +28,4 @@ ${offres.map((offre) => `
       'Cache-Control': 'public, max-age=3600',
     },
   });
-}
-
-function escapeXml(str: string): string {
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&apos;');
 }
