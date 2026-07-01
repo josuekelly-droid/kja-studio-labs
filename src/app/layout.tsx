@@ -8,6 +8,7 @@ import { CookieConsent } from '@/components/ui/CookieConsent';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import './globals.css';
+import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -110,6 +111,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <CookieConsent />
         <Analytics />
         <SpeedInsights />
+        <WhatsAppButton />
       </body>
     </html>
   );
