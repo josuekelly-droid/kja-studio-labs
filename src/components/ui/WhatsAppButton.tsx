@@ -2,7 +2,7 @@
 'use client';
 
 export function WhatsAppButton() {
-  const phoneNumber = '22951827718';
+  const phoneNumber = '22960150782';
   const message = encodeURIComponent(
     "Bonjour,\n\nJe me permets de vous écrire car j'ai découvert KJA Studio Labs et je souhaiterais échanger avec vous au sujet de mes besoins en Design UI/UX, Développement Fullstack ou Solutions Connect.\n\nPouvez-vous me donner plus d'informations sur vos services ?\n\nCordialement,"
   );
