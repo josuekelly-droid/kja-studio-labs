@@ -35,7 +35,7 @@ const reseaux = [
   },
   {
     nom: 'Twitter',
-    href: '#https://twitter.com/kjastudiolabs',
+    href: 'https://twitter.com/kjastudiolabs',
     icon: (
       <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -64,35 +64,37 @@ const reseaux = [
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-950 text-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+    <footer className="bg-[#05020a] text-white border-t border-white/10 relative overflow-hidden">
+      {/* Ambient glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-violet-600/10 rounded-full blur-[140px] pointer-events-none" aria-hidden="true" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-12 py-16 sm:py-20 lg:py-24">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-16">
           
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-2">
-            <Link href="/" className="inline-flex items-center gap-3 mb-4 sm:mb-6">
+            <Link href="/" className="inline-flex items-center gap-3 mb-6 group">
               <img
-                src="/logo/kja-studio-labs.jpg"
+                src="/logo/kja-studio-labs.webp"
                 alt="KJA Studio Labs"
-                className="h-8 sm:h-10 w-auto"
+                className="h-10 sm:h-12 w-auto drop-shadow-[0_0_20px_rgba(139,92,246,0.3)]"
               />
-              <span className="font-heading font-bold text-white text-sm sm:text-base">
+              <span className="font-heading font-bold text-white text-base sm:text-lg tracking-tight">
                 KJA Studio Labs
               </span>
             </Link>
-            <p className="text-gray-400 text-sm leading-relaxed mb-4 sm:mb-6 max-w-sm">
-              Studio créatif francophone. Design UI/UX, Développement Web Fullstack et Solutions Connect. 
-              Projets sur mesure, SEO optimisé, performance garantie.
+            <p className="text-gray-400 text-sm leading-relaxed mb-8 max-w-sm font-light">
+              Studio créatif francophone d'élite. Design UI/UX, développement web fullstack et connectivité sur mesure. Performance et esthétique sans compromis.
             </p>
             
-            <div className="flex gap-2 sm:gap-3">
+            <div className="flex gap-3">
               {reseaux.map((reseau) => (
                 <a
                   key={reseau.nom}
                   href={reseau.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-violet transition-colors"
+                  className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-white hover:bg-violet-600/30 hover:border-violet-500/50 transition-all duration-300"
                   aria-label={reseau.nom}
                 >
                   {reseau.icon}
@@ -103,11 +105,13 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="font-heading font-semibold text-xs sm:text-sm uppercase tracking-wider text-violet-300 mb-3 sm:mb-4">Services</h4>
-            <ul className="space-y-2 sm:space-y-2.5">
+            <h4 className="font-mono text-xs uppercase tracking-widest text-violet-400 mb-6">// Services</h4>
+            <ul className="space-y-3">
               {footerLinks.services.map((lien) => (
                 <li key={lien.href}>
-                  <Link href={lien.href} className="text-gray-400 hover:text-white transition-colors text-sm">{lien.titre}</Link>
+                  <Link href={lien.href} className="text-gray-400 hover:text-white transition-colors text-sm font-light">
+                    {lien.titre}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -115,11 +119,13 @@ export default function Footer() {
 
           {/* Entreprise */}
           <div>
-            <h4 className="font-heading font-semibold text-xs sm:text-sm uppercase tracking-wider text-violet-300 mb-3 sm:mb-4">Entreprise</h4>
-            <ul className="space-y-2 sm:space-y-2.5">
+            <h4 className="font-mono text-xs uppercase tracking-widest text-violet-400 mb-6">// Studio</h4>
+            <ul className="space-y-3">
               {footerLinks.entreprise.map((lien) => (
                 <li key={lien.href}>
-                  <Link href={lien.href} className="text-gray-400 hover:text-white transition-colors text-sm">{lien.titre}</Link>
+                  <Link href={lien.href} className="text-gray-400 hover:text-white transition-colors text-sm font-light">
+                    {lien.titre}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -127,15 +133,17 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-heading font-semibold text-xs sm:text-sm uppercase tracking-wider text-violet-300 mb-3 sm:mb-4">Contact</h4>
-            <ul className="space-y-2 sm:space-y-2.5">
+            <h4 className="font-mono text-xs uppercase tracking-widest text-violet-400 mb-6">// Contact</h4>
+            <ul className="space-y-3 mb-6">
               <li>
-                <a href={`mailto:${siteConfig.contact.email}`} className="text-gray-400 hover:text-white transition-colors text-sm break-all">{siteConfig.contact.email}</a>
+                <a href={`mailto:${siteConfig.contact.email}`} className="text-gray-300 hover:text-white transition-colors text-sm font-mono break-all">
+                  {siteConfig.contact.email}
+                </a>
               </li>
             </ul>
             <Link
               href="/contact"
-              className="inline-block mt-4 px-4 sm:px-5 py-2 sm:py-2.5 border border-violet-400/30 text-violet-300 font-heading font-semibold text-xs sm:text-sm rounded-full hover:bg-violet hover:text-white hover:border-violet transition-all"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:border-violet-500/50 text-white font-heading font-semibold text-xs uppercase tracking-wider backdrop-blur-md transition-all duration-300 hover:bg-white/10"
             >
               Démarrer un projet
             </Link>
@@ -143,15 +151,17 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 sm:py-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-            <p className="text-gray-500 text-xs sm:text-sm text-center sm:text-left">
-              &copy; {new Date().getFullYear()} {siteConfig.name}. Tous droits r&eacute;serv&eacute;s.
+      <div className="border-t border-white/10 relative z-10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12 py-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <p className="text-gray-500 text-xs font-mono">
+              &copy; {new Date().getFullYear()} {siteConfig.name}. Tous droits réservés.
             </p>
-            <nav className="flex flex-wrap justify-center gap-x-4 sm:gap-x-6 gap-y-1">
+            <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
               {footerLinks.legal.map((lien) => (
-                <Link key={lien.href} href={lien.href} className="text-gray-500 hover:text-white text-xs sm:text-sm transition-colors">{lien.titre}</Link>
+                <Link key={lien.href} href={lien.href} className="text-gray-500 hover:text-gray-300 text-xs font-light transition-colors">
+                  {lien.titre}
+                </Link>
               ))}
             </nav>
           </div>

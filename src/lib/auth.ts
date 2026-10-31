@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 import { cache } from 'react';
 
 const SESSION_COOKIE = 'kja_admin_token';
-const SESSION_DURATION = 7 * 24 * 60 * 60 * 1000; // 7 jours
+const SESSION_DURATION = 7 * 24 * 60 * 60 * 1000; // 7 jours en millisecondes
 
 // Créer une session
 export async function createSession(userId: string): Promise<string> {
@@ -32,7 +32,7 @@ export async function createSession(userId: string): Promise<string> {
   return token;
 }
 
-// Vérifier la session
+// Vérifier la session (mis en cache par requête React)
 export const getSession = cache(async () => {
   const cookieStore = await cookies();
   const token = cookieStore.get(SESSION_COOKIE)?.value;
@@ -46,7 +46,7 @@ export const getSession = cache(async () => {
 
   if (!session || session.expiresAt < new Date()) {
     if (session) {
-      await prisma.session.delete({ where: { id: session.id } });
+      await prisma.session.delete({ where: { id: session.id } }).catch(() => {});
     }
     return null;
   }
@@ -67,10 +67,13 @@ export async function destroySession(): Promise<void> {
   const token = cookieStore.get(SESSION_COOKIE)?.value;
 
   if (token) {
-    await prisma.session.deleteMany({ where: { token } });
+    await prisma.session.deleteMany({ where: { token } }).catch(() => {});
   }
 
-  cookieStore.delete(SESSION_COOKIE);
+  cookieStore.delete({
+    name: SESSION_COOKIE,
+    path: '/',
+  });
 }
 
 // Vérifier le mot de passe
@@ -84,7 +87,7 @@ export async function verifyPassword(email: string, password: string) {
   return user;
 }
 
-// Middleware de protection admin
+// Guard de protection pour les Server Actions ou composants Admin
 export async function requireAdmin() {
   const session = await getSession();
   if (!session) {

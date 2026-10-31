@@ -55,41 +55,44 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #05020a;
   }
   body {
-    background-color: white;
-    color: #111827;
+    background-color: #05020a;
+    color: #f3f4f6;
     font-family: var(--font-body);
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: 700;
     letter-spacing: -0.02em;
+    color: #ffffff;
   }
   ::selection {
-    background-color: var(--color-violet);
+    background-color: var(--color-violet-600);
     color: white;
   }
 }
 
-/* Composants */
+/* Composants Awwards Dark Style */
 @layer components {
   .btn-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 1rem 2rem;
-    background-color: var(--color-violet);
-    color: white;
+    background-color: #ffffff;
+    color: #05020a;
     font-family: var(--font-heading);
-    font-weight: 600;
+    font-weight: 700;
     border-radius: 9999px;
-    box-shadow: 0 4px 16px rgba(79, 25, 164, 0.2);
-    transition: all 0.3s ease-out;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .btn-primary:hover {
-    background-color: var(--color-violet-700);
-    box-shadow: 0 8px 32px rgba(79, 25, 164, 0.25);
+    background-color: var(--color-violet-100);
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.4);
+    transform: translateY(-2px);
   }
   
   .btn-secondary {
@@ -97,27 +100,32 @@
     align-items: center;
     justify-content: center;
     padding: 1rem 2rem;
-    border: 2px solid var(--color-violet-200);
-    color: var(--color-violet);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background-color: rgba(255, 255, 255, 0.03);
+    color: white;
     font-family: var(--font-heading);
     font-weight: 600;
     border-radius: 9999px;
-    transition: all 0.3s ease-out;
+    backdrop-filter: blur(12px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .btn-secondary:hover {
-    background-color: var(--color-violet-50);
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(139, 92, 246, 0.5);
+    transform: translateY(-2px);
   }
   
   .card {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.03);
     border-radius: 1.5rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
-    border: 1px solid #f3f4f6;
-    transition: all 0.5s ease-out;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .card:hover {
-    box-shadow: 0 8px 32px rgba(79, 25, 164, 0.2);
-    border-color: var(--color-violet-100);
+    box-shadow: 0 20px 50px rgba(139, 92, 246, 0.15);
+    border-color: rgba(139, 92, 246, 0.4);
+    transform: translateY(-4px);
   }
   
   .section-padding {
@@ -135,7 +143,7 @@
     font-size: clamp(1.5rem, 3vw, 2.5rem);
     font-family: var(--font-heading);
     font-weight: 700;
-    color: #111827;
+    color: #ffffff;
     margin-bottom: 1.5rem;
   }
   @media (min-width: 768px) {
@@ -147,21 +155,21 @@
   .section-subtitle {
     font-size: 1.125rem;
     line-height: 1.7;
-    color: #4b5563;
+    color: #9ca3af;
     max-width: 42rem;
   }
 }
 
 /* Utilitaires */
 @utility bg-hero-pattern {
-  background-image: linear-gradient(135deg, #2D0E5E 0%, #4F19A4 50%, #784FBA 100%);
+  background-image: radial-gradient(circle at 50% 0%, #2D0E5E 0%, #05020a 70%);
 }
 
 @utility text-gradient {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  background-image: linear-gradient(to right, var(--color-violet-400), var(--color-violet), var(--color-violet-800));
+  background-image: linear-gradient(to right, var(--color-violet-300), #ffffff, var(--color-violet-400));
 }
 
 @keyframes scroll {
@@ -185,4 +193,5 @@
 .prose p {
   margin-bottom: 1.25rem;
   line-height: 1.75;
+  color: #d1d5db;
 }

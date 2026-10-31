@@ -16,7 +16,7 @@ export const designSystem = {
       950: '#110524',
     },
     white: '#FFFFFF',
-    black: '#0A0A0A',
+    black: '#05020a',
   },
   
   typography: {

@@ -85,7 +85,7 @@ export default function AdminSidebar() {
       {/* Mobile toggle */}
       <button
         onClick={() => setOpen(!open)}
-        className="lg:hidden fixed top-3 left-3 z-[60] p-2.5 bg-white rounded-xl shadow-lg border border-gray-100"
+        className="lg:hidden fixed top-3 left-3 z-[60] p-2.5 bg-[#0c0616] text-white rounded-xl shadow-lg border border-white/10"
         aria-label="Menu"
       >
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -95,46 +95,49 @@ export default function AdminSidebar() {
 
       {/* Overlay mobile */}
       {open && (
-        <div className="lg:hidden fixed inset-0 bg-black/40 z-[55]" onClick={() => setOpen(false)} />
+        <div className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[55]" onClick={() => setOpen(false)} />
       )}
 
       {/* Sidebar */}
       <aside
-        className={`fixed lg:sticky top-0 left-0 h-screen w-64 bg-white border-r border-gray-100 z-[55] transform transition-transform duration-300 lg:transform-none flex flex-col ${
+        className={`fixed lg:sticky top-0 left-0 h-screen w-64 bg-[#05020a] border-r border-white/10 z-[55] transform transition-transform duration-300 lg:transform-none flex flex-col ${
           open ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >
-        <div className="p-5 border-b border-gray-100">
-          <Link href="/admin/dashboard" className="flex items-center gap-3">
-            <img src="/logo/kja-studio-labs.jpg" alt="KJA" className="h-8 w-auto rounded-lg" />
-            <span className="font-heading font-bold text-gray-900 text-sm">KJA Studio</span>
+        <div className="p-5 border-b border-white/10 flex items-center justify-between">
+          <Link href="/admin/dashboard" className="flex items-center gap-3 group">
+            <img src="/logo/kja-studio-labs.webp" alt="KJA" className="h-8 w-auto rounded-lg drop-shadow-[0_0_10px_rgba(139,92,246,0.3)]" />
+            <span className="font-heading font-bold text-white text-sm tracking-tight">KJA Studio</span>
           </Link>
         </div>
 
-        <nav className="flex-1 p-3 space-y-0.5 overflow-y-auto">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                pathname.startsWith(link.href)
-                  ? 'bg-violet-50 text-violet-700'
-                  : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
-              }`}
-            >
-              <span className={`shrink-0 ${pathname.startsWith(link.href) ? 'text-violet' : 'text-gray-400'}`}>
-                {link.icon}
-              </span>
-              {link.label}
-            </Link>
-          ))}
+        <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
+          {links.map((link) => {
+            const isActive = pathname.startsWith(link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className={`flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
+                  isActive
+                    ? 'bg-violet-600/20 text-white border border-violet-500/40 shadow-[0_0_20px_rgba(139,92,246,0.15)]'
+                    : 'text-gray-400 hover:bg-white/5 hover:text-white'
+                }`}
+              >
+                <span className={`shrink-0 ${isActive ? 'text-violet-400' : 'text-gray-400'}`}>
+                  {link.icon}
+                </span>
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
-        <div className="p-3 border-t border-gray-100">
+        <div className="p-3 border-t border-white/10 space-y-1">
           <Link
             href="/"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-all mb-0.5"
+            className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all font-light"
           >
             <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -143,7 +146,7 @@ export default function AdminSidebar() {
           </Link>
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-red-500 hover:bg-red-50 transition-all"
+            className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-all font-light"
           >
             <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />

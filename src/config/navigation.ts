@@ -1,13 +1,14 @@
 // src/config/navigation.ts
+
 export interface NavItem {
-  titre: string;
-  href: string;
-  description?: string;
-  enfants?: NavItem[];
-  icone?: string;
+  readonly titre: string;
+  readonly href: string;
+  readonly description?: string;
+  readonly enfants?: readonly NavItem[];
+  readonly icone?: string;
 }
 
-export const navigationPrincipale: NavItem[] = [
+export const navigationPrincipale = [
   {
     titre: 'Accueil',
     href: '/',
@@ -79,7 +80,7 @@ export const navigationPrincipale: NavItem[] = [
     titre: 'Contact',
     href: '/contact',
   },
-];
+] as const satisfies readonly NavItem[];
 
 export const navigationFooter = {
   services: [
@@ -110,4 +111,4 @@ export const navigationFooter = {
       { nom: 'Instagram', href: 'https://instagram.com/kja.studiolabs' },
     ],
   },
-};
+} as const;

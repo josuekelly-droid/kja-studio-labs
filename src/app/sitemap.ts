@@ -2,7 +2,7 @@
 import type { MetadataRoute } from 'next';
 import { prisma } from '@/lib/prisma';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '');
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
@@ -26,10 +26,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/cgv`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
   ];
 
-  const projets = await prisma.projet.findMany({
-    where: { estPublie: true },
-    select: { slug: true, updatedAt: true },
-  });
+  // Récupération parallélisée des données dynamiques pour optimiser les performances
+  const [projets, articles, offres] = await Promise.all([
+    prisma.projet.findMany({
+      where: { estPublie: true },
+      select: { slug: true, updatedAt: true },
+    }),
+    prisma.blogArticle.findMany({
+      where: { estPublie: true },
+      select: { slug: true, updatedAt: true },
+    }),
+    prisma.jobPosting.findMany({
+      where: { estPublie: true },
+      select: { slug: true, updatedAt: true },
+    }),
+  ]);
 
   const projetPages: MetadataRoute.Sitemap = projets.map((projet) => ({
     url: `${SITE_URL}/portfolio/${projet.slug}`,
@@ -38,22 +49,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.9,
   }));
 
-  const articles = await prisma.blogArticle.findMany({
-    where: { estPublie: true },
-    select: { slug: true, updatedAt: true },
-  });
-
   const blogPages: MetadataRoute.Sitemap = articles.map((article) => ({
     url: `${SITE_URL}/blog/${article.slug}`,
     lastModified: article.updatedAt,
     changeFrequency: 'weekly',
     priority: 0.8,
   }));
-
-  const offres = await prisma.jobPosting.findMany({
-    where: { estPublie: true },
-    select: { slug: true, updatedAt: true },
-  });
 
   const offrePages: MetadataRoute.Sitemap = offres.map((o) => ({
     url: `${SITE_URL}/carrieres/${o.slug}`,

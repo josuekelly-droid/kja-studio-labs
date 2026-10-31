@@ -6,18 +6,21 @@ const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };
 
-export const prisma = globalForPrisma.prisma ?? new PrismaClient({
-  log: process.env.NODE_ENV === 'development' ? ['error', 'warn'] : [],
-});
-
-if (process.env.NODE_ENV === 'development') {
-  prisma.$connect()
-    .then(() => console.log('✅ Prisma connecté'))
-    .catch((e) => console.log('⏳ Prisma - connexion différée:', e.message));
-}
+export const prisma =
+  globalForPrisma.prisma ??
+  new PrismaClient({
+    log: process.env.NODE_ENV === 'development' ? ['error', 'warn'] : ['error'],
+  });
 
 if (process.env.NODE_ENV !== 'production') {
   globalForPrisma.prisma = prisma;
+}
+
+if (process.env.NODE_ENV === 'development') {
+  prisma
+    .$connect()
+    .then(() => console.log('✅ Prisma connecté'))
+    .catch((e: Error) => console.log('⏳ Prisma - connexion différée:', e.message));
 }
 
 export const getProjetsRecents = cache(async () => {

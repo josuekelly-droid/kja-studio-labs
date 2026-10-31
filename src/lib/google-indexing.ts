@@ -2,13 +2,27 @@
 import { google } from 'googleapis';
 import { prisma } from './prisma';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '');
+
+export interface GoogleIndexResult {
+  succes: boolean;
+  dev?: boolean;
+  data?: unknown;
+  erreur?: string;
+}
 
 function getIndexingClient() {
+  const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
+  const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+
+  if (!clientEmail || !privateKey) {
+    throw new Error('Google Indexing API credentials non configurées dans les variables d\'environnement.');
+  }
+
   const auth = new google.auth.GoogleAuth({
     credentials: {
-      client_email: process.env.GOOGLE_CLIENT_EMAIL,
-      private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+      client_email: clientEmail,
+      private_key: privateKey,
     },
     scopes: ['https://www.googleapis.com/auth/indexing'],
   });
@@ -17,10 +31,11 @@ function getIndexingClient() {
 }
 
 export async function notifyGoogleIndex(
-  url: string,
+  urlPath: string,
   action: 'URL_UPDATED' | 'URL_DELETED' = 'URL_UPDATED'
-) {
-  const urlComplete = `${SITE_URL}${url}`;
+): Promise<GoogleIndexResult> {
+  const formattedPath = urlPath.startsWith('/') ? urlPath : `/${urlPath}`;
+  const urlComplete = `${SITE_URL}${formattedPath}`;
 
   const logEntry = await prisma.seoLog.create({
     data: { url: urlComplete, action, status: 'PENDING' },
@@ -30,7 +45,7 @@ export async function notifyGoogleIndex(
     console.log(`[SEO DEV] ${action}: ${urlComplete}`);
     await prisma.seoLog.update({
       where: { id: logEntry.id },
-      data: { status: 'DEV_SKIPPED', response: { url: urlComplete, action } },
+      data: { status: 'DEV_SKIPPED', response: { url: urlComplete, action } as any },
     });
     return { succes: true, dev: true };
   }
@@ -41,20 +56,25 @@ export async function notifyGoogleIndex(
       requestBody: { url: urlComplete, type: action },
     });
 
+    const responseData = response.data ? (JSON.parse(JSON.stringify(response.data)) as Record<string, unknown>) : {};
+
     await prisma.seoLog.update({
       where: { id: logEntry.id },
-      data: { status: 'SUCCESS', response: response.data as any },
+      data: { status: 'SUCCESS', response: responseData as any },
     });
 
-    console.log(`[SEO] ✅ Indexé: ${urlComplete}`);
+    console.log(`[SEO] ✅ Indexé avec succès: ${urlComplete}`);
     return { succes: true, data: response.data };
-  } catch (erreur: any) {
-    console.error(`[SEO] ❌ Erreur indexation: ${urlComplete}`, erreur.message);
+  } catch (erreur: unknown) {
+    const errorMessage = erreur instanceof Error ? erreur.message : 'Erreur inconnue lors de l\'indexation Google';
+    console.error(`[SEO] ❌ Erreur d'indexation: ${urlComplete}`, errorMessage);
+
     await prisma.seoLog.update({
       where: { id: logEntry.id },
-      data: { status: 'ERROR', response: { erreur: erreur.message } },
+      data: { status: 'ERROR', response: { erreur: errorMessage } as any },
     });
-    return { succes: false, erreur: erreur.message };
+
+    return { succes: false, erreur: errorMessage };
   }
 }
 
@@ -80,10 +100,11 @@ export async function indexAllPages() {
     '/cgv',
   ];
 
-  // Pages dynamiques
-  const projets = await prisma.projet.findMany({ where: { estPublie: true }, select: { slug: true } });
-  const articles = await prisma.blogArticle.findMany({ where: { estPublie: true }, select: { slug: true } });
-  const offres = await prisma.jobPosting.findMany({ where: { estPublie: true }, select: { slug: true } });
+  const [projets, articles, offres] = await Promise.all([
+    prisma.projet.findMany({ where: { estPublie: true }, select: { slug: true } }),
+    prisma.blogArticle.findMany({ where: { estPublie: true }, select: { slug: true } }),
+    prisma.jobPosting.findMany({ where: { estPublie: true }, select: { slug: true } }),
+  ]);
 
   const allPages = [
     ...staticPages,

@@ -1,5 +1,5 @@
 // src/app/layout.tsx
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import { siteConfig } from '@/config/site';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -17,14 +17,14 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: siteConfig.keywords,
-  authors: siteConfig.authors,
+  keywords: [...siteConfig.keywords],
+  authors: [...siteConfig.authors],
   creator: siteConfig.creator,
   publisher: siteConfig.publisher,
   openGraph: {
     type: 'website',
     locale: siteConfig.locale,
-    alternateLocale: siteConfig.alternateLocales,
+    alternateLocale: [...siteConfig.alternateLocales],
     siteName: siteConfig.name,
     title: `${siteConfig.name} | ${siteConfig.slogan}`,
     description: siteConfig.description,
@@ -64,31 +64,32 @@ export const metadata: Metadata = {
     google: process.env.GOOGLE_SEARCH_CONSOLE_VERIFICATION,
   },
   icons: {
-    icon: '/logo/kja-favicon.png',
+    icon: siteConfig.favicon,
     apple: '/logo/kja-apple-touch.png',
   },
-  other: {
-    'theme-color': '#4F19A4',
-    'msapplication-TileColor': '#4F19A4',
-  },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#05020a',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr">
+    <html lang="fr" className="scroll-smooth bg-[#05020a]">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-        <meta name="theme-color" content="#4F19A4" />
-        <link rel="me" href="https://instagram.com/kja.studiolabs" />
-        <link rel="me" href="https://web.facebook.com/kjastudiolabs/" />
-        <link rel="me" href="https://twitter.com/kjastudiolabs" />
-        <link rel="me" href="https://github.com/KJA-Studio-Labs" />
-        <link rel="me" href="https://linkedin.com/company/kja-studio-labs" />
+        <link rel="me" href={siteConfig.social.instagram} />
+        <link rel="me" href={siteConfig.social.facebook} />
+        <link rel="me" href={siteConfig.social.twitter} />
+        <link rel="me" href={siteConfig.social.github} />
+        <link rel="me" href={siteConfig.social.linkedin} />
       </head>
-      <body className="font-body antialiased bg-white text-gray-900 min-h-screen flex flex-col">
-        {/* Google Analytics - chargé uniquement si consenti */}
+      <body className="font-body antialiased bg-[#05020a] text-white min-h-screen flex flex-col selection:bg-violet-600 selection:text-white">
+        {/* Google Analytics - Consent Mode v2 par défaut refusé */}
         <Script id="google-consent" strategy="beforeInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -105,7 +106,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`} />
         )}
 
-        <JsonLd data={{ '@context': 'https://schema.org', '@type': 'Organization', name: siteConfig.name, alternateName: 'KJA Studio', url: siteConfig.url, logo: `${siteConfig.url}${siteConfig.logo}`, description: siteConfig.description, email: siteConfig.contact.email, sameAs: ['https://instagram.com/kjastudiolabs', 'https://facebook.com/kjastudiolabs', 'https://twitter.com/kjastudiolabs', siteConfig.social.linkedin, siteConfig.social.github], contactPoint: { '@type': 'ContactPoint', email: siteConfig.contact.email, contactType: 'customer service', availableLanguage: ['French'] }, foundingDate: '2023', areaServed: ['FR', 'BE', 'CH', 'CA', 'LU', 'BJ', 'CI', 'SN', 'CM', 'GA', 'TG', 'NE', 'BF', 'ML', 'GN', 'CD', 'CG', 'TD', 'RW', 'BI'] }} />
+        <JsonLd data={{ 
+          '@context': 'https://schema.org', 
+          '@type': 'Organization', 
+          name: siteConfig.name, 
+          alternateName: 'KJA Studio', 
+          url: siteConfig.url, 
+          logo: `${siteConfig.url}${siteConfig.logo}`, 
+          description: siteConfig.description, 
+          email: siteConfig.contact.email, 
+          sameAs: [
+            siteConfig.social.instagram, 
+            siteConfig.social.facebook, 
+            siteConfig.social.twitter, 
+            siteConfig.social.linkedin, 
+            siteConfig.social.github
+          ], 
+          contactPoint: { 
+            '@type': 'ContactPoint', 
+            email: siteConfig.contact.email, 
+            contactType: 'customer service', 
+            availableLanguage: ['French'] 
+          }, 
+          foundingDate: '2023', 
+          areaServed: ['FR', 'BE', 'CH', 'CA', 'LU', 'BJ', 'CI', 'SN', 'CM', 'GA', 'TG', 'NE', 'BF', 'ML', 'GN', 'CD', 'CG', 'TD', 'RW', 'BI'] 
+        }} />
 
         <LayoutWrapper>{children}</LayoutWrapper>
         <CookieConsent />
