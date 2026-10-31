@@ -57,17 +57,17 @@ export function AvisForm() {
 
   if (success) {
     return (
-      <div className="text-center py-8">
-        <div className="text-5xl mb-4">🎉</div>
-        <h2 className="text-2xl font-heading font-bold text-gray-900 mb-2">
+      <div className="text-center py-10">
+        <div className="text-6xl mb-6">🎉</div>
+        <h2 className="text-2xl font-heading font-bold text-white mb-3">
           Merci pour votre avis !
         </h2>
-        <p className="text-gray-600 mb-6">
+        <p className="text-gray-400 font-light mb-8 max-w-md mx-auto leading-relaxed">
           Votre avis a bien été envoyé. Il sera publié après validation par notre équipe.
         </p>
         <button
           onClick={() => setSuccess(false)}
-          className="btn-primary text-sm px-6 py-2.5"
+          className="inline-flex items-center justify-center px-8 py-3.5 bg-white text-gray-950 font-heading font-bold text-sm rounded-full hover:bg-violet-100 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:scale-105"
         >
           Laisser un autre avis
         </button>
@@ -78,17 +78,17 @@ export function AvisForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {error && (
-        <div className="bg-red-50 text-red-600 text-sm p-4 rounded-xl border border-red-100">
+        <div className="bg-red-500/10 text-red-400 text-sm p-4 rounded-2xl border border-red-500/20 backdrop-blur-md">
           {error}
         </div>
       )}
 
       {/* Note */}
       <div className="text-center">
-        <label className="block text-sm font-heading font-semibold text-gray-700 mb-3">
+        <label className="block text-sm font-heading font-semibold text-gray-300 mb-3">
           Votre note
         </label>
-        <div className="flex items-center justify-center gap-1.5">
+        <div className="flex items-center justify-center gap-2">
           {[1, 2, 3, 4, 5].map((star) => (
             <button
               key={star}
@@ -96,11 +96,11 @@ export function AvisForm() {
               onClick={() => updateField('note', star)}
               onMouseEnter={() => setHoverNote(star)}
               onMouseLeave={() => setHoverNote(0)}
-              className="transition-transform hover:scale-110"
+              className="transition-transform hover:scale-110 focus:outline-none"
             >
               <svg
-                className={`w-8 h-8 sm:w-10 sm:h-10 ${
-                  star <= (hoverNote || formData.note) ? 'text-yellow-400' : 'text-gray-200'
+                className={`w-8 h-8 sm:w-10 sm:h-10 transition-colors ${
+                  star <= (hoverNote || formData.note) ? 'text-yellow-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.4)]' : 'text-white/20'
                 }`}
                 fill="currentColor"
                 viewBox="0 0 20 20"
@@ -110,7 +110,7 @@ export function AvisForm() {
             </button>
           ))}
         </div>
-        <p className="text-xs text-gray-400 mt-1">
+        <p className="text-xs text-violet-300 font-light mt-2">
           {formData.note === 5 && 'Excellent !'}
           {formData.note === 4 && 'Très bien'}
           {formData.note === 3 && 'Bien'}
@@ -121,7 +121,7 @@ export function AvisForm() {
 
       {/* Nom */}
       <div>
-        <label htmlFor="nom" className="block text-sm font-heading font-semibold text-gray-700 mb-1.5">
+        <label htmlFor="nom" className="block text-sm font-heading font-semibold text-gray-300 mb-2">
           Votre nom *
         </label>
         <input
@@ -130,7 +130,7 @@ export function AvisForm() {
           value={formData.nomClient}
           onChange={(e) => updateField('nomClient', e.target.value)}
           required
-          className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm"
+          className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm transition-all"
           placeholder="Jean Dupont"
         />
       </div>
@@ -138,7 +138,7 @@ export function AvisForm() {
       {/* Entreprise + Poste */}
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="entreprise" className="block text-sm font-heading font-semibold text-gray-700 mb-1.5">
+          <label htmlFor="entreprise" className="block text-sm font-heading font-semibold text-gray-300 mb-2">
             Entreprise
           </label>
           <input
@@ -146,12 +146,12 @@ export function AvisForm() {
             type="text"
             value={formData.entreprise}
             onChange={(e) => updateField('entreprise', e.target.value)}
-            className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm"
+            className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm transition-all"
             placeholder="Nom de votre entreprise"
           />
         </div>
         <div>
-          <label htmlFor="poste" className="block text-sm font-heading font-semibold text-gray-700 mb-1.5">
+          <label htmlFor="poste" className="block text-sm font-heading font-semibold text-gray-300 mb-2">
             Poste
           </label>
           <input
@@ -159,7 +159,7 @@ export function AvisForm() {
             type="text"
             value={formData.poste}
             onChange={(e) => updateField('poste', e.target.value)}
-            className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm"
+            className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm transition-all"
             placeholder="CEO, Designer..."
           />
         </div>
@@ -167,7 +167,7 @@ export function AvisForm() {
 
       {/* Commentaire */}
       <div>
-        <label htmlFor="commentaire" className="block text-sm font-heading font-semibold text-gray-700 mb-1.5">
+        <label htmlFor="commentaire" className="block text-sm font-heading font-semibold text-gray-300 mb-2">
           Votre avis *
         </label>
         <textarea
@@ -176,10 +176,10 @@ export function AvisForm() {
           onChange={(e) => updateField('commentaire', e.target.value)}
           required
           rows={5}
-          className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm resize-none"
+          className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm resize-none transition-all"
           placeholder="Partagez votre expérience avec KJA Studio Labs... (minimum 10 caractères)"
         />
-        <p className="text-xs text-gray-400 mt-1 text-right">
+        <p className="text-xs text-gray-500 font-light mt-1.5 text-right">
           {formData.commentaire.length} / 500 caractères minimum
         </p>
       </div>
@@ -188,12 +188,12 @@ export function AvisForm() {
       <button
         type="submit"
         disabled={loading || !formData.nomClient || formData.commentaire.length < 10}
-        className="w-full py-3 bg-violet text-white font-heading font-semibold rounded-xl hover:bg-violet-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full py-4 bg-white text-gray-950 font-heading font-bold text-sm rounded-2xl hover:bg-violet-100 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_25px_rgba(255,255,255,0.15)] hover:scale-[1.02]"
       >
         {loading ? 'Envoi en cours...' : 'Envoyer mon avis'}
       </button>
 
-      <p className="text-xs text-gray-400 text-center">
+      <p className="text-xs text-gray-500 font-light text-center">
         Votre avis sera publié après validation par notre équipe.
       </p>
     </form>

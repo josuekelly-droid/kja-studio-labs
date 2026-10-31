@@ -5,12 +5,12 @@ import { siteConfig } from '@/config/site';
 import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Service UI/UX Design',
-  description: 'Design UI/UX premium par KJA Studio Labs. Recherche UX, wireframes, prototypes Figma, design systems, tests utilisateurs. Studio créatif francophone.',
+  title: 'Service UI/UX Design | Expériences Utilisateur d\'Exception',
+  description: 'Design UI/UX premium par KJA Studio Labs. Recherche UX, wireframes, prototypes Figma, design systems et tests utilisateurs.',
   alternates: { canonical: '/services/design-ui-ux' },
   openGraph: {
     title: 'UI/UX Design | KJA Studio Labs',
-    description: 'Design d\'interfaces modernes et expériences utilisateur optimisées.',
+    description: 'Design d\'interfaces modernes et expériences utilisateur optimisées pour la conversion.',
     url: `${siteConfig.url}/services/design-ui-ux`,
   },
 };
@@ -74,29 +74,49 @@ export default function DesignUIUXPage() {
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'Service', name: 'UI/UX Design', provider: { '@type': 'Organization', name: siteConfig.name }, description: 'Design UI/UX premium : recherche UX, wireframes, prototypes Figma, design systems.', url: `${siteConfig.url}/services/design-ui-ux` }} />
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: siteConfig.url }, { '@type': 'ListItem', position: 2, name: 'Services', item: `${siteConfig.url}/services` }, { '@type': 'ListItem', position: 3, name: 'UI/UX Design', item: `${siteConfig.url}/services/design-ui-ux` }] }} />
 
-      {/* Hero */}
-      <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 lg:pb-24 bg-hero-pattern relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20"><div className="absolute top-10 right-10 w-96 h-96 bg-violet-300 rounded-full blur-[120px]" /><div className="absolute bottom-10 left-10 w-72 h-72 bg-violet-200 rounded-full blur-[100px]" /></div>
+      {/* Hero Section */}
+      <section className="pt-32 sm:pt-36 lg:pt-44 pb-20 sm:pb-24 lg:pb-28 bg-[#05020a] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-30 pointer-events-none">
+          <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[140px]" />
+          <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-indigo-600/15 rounded-full blur-[120px]" />
+        </div>
+        
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <nav className="flex items-center justify-center gap-2 text-sm text-violet-200/70 mb-6"><Link href="/" className="hover:text-white">Accueil</Link><span>/</span><Link href="/services" className="hover:text-white">Services</Link><span>/</span><span className="text-white font-medium">UI/UX Design</span></nav>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-white mb-4">UI/UX Design</h1>
-          <p className="text-lg sm:text-xl text-violet-200 max-w-2xl mx-auto leading-relaxed">Des interfaces qui captivent, des expériences qui convertissent. Chaque écran est pensé avec une obsession : vos utilisateurs.</p>
+          <nav className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-violet-200/80 mb-8 backdrop-blur-md">
+            <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
+            <span>/</span>
+            <Link href="/services" className="hover:text-white transition-colors">Services</Link>
+            <span>/</span>
+            <span className="text-white font-medium">UI/UX Design</span>
+          </nav>
+          
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-bold text-white tracking-tight mb-6">
+            UI/UX <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-300">Design</span>
+          </h1>
+          <p className="text-base sm:text-xl text-gray-400 font-light max-w-2xl mx-auto leading-relaxed">
+            Des interfaces qui captivent, des expériences qui convertissent. Chaque écran est pensé avec une obsession : vos utilisateurs.
+          </p>
         </div>
       </section>
 
-      {/* Vision */}
-      <section className="py-16 sm:py-20 lg:py-28 bg-white">
+      {/* Vision Section */}
+      <section className="py-20 sm:py-24 lg:py-32 bg-[#05020a] relative border-t border-white/10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div>
-              <span className="inline-block px-3 py-1 bg-violet-50 text-violet-700 font-heading font-medium text-xs rounded-full mb-4">Notre vision</span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-6">Le design au service de vos objectifs business</h2>
-              <div className="space-y-4 text-gray-600 leading-relaxed">
-                <p>Un beau design ne suffit pas. Il doit être <strong>fonctionnel, intuitif et orienté résultats</strong>. Chaque pixel, chaque interaction est pensée pour guider vos utilisateurs vers l&apos;action souhaitée et générer de la valeur pour votre entreprise.</p>
-                <p>Notre approche combine <strong>recherche utilisateur approfondie</strong>, principes d&apos;ergonomie cognitive et tendances design actuelles pour créer des interfaces qui marquent les esprits.</p>
-                <p>Nous concevons des expériences <strong>responsive, accessibles (WCAG 2.1) et performantes</strong>, adaptées à tous les écrans et à tous les utilisateurs, quel que soit leur contexte.</p>
+              <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/30 text-violet-300 font-heading font-medium text-xs rounded-full mb-6 backdrop-blur-md">
+                Notre vision
+              </span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white mb-6 tracking-tight">
+                Le design au service de vos objectifs business
+              </h2>
+              <div className="space-y-4 text-gray-400 font-light leading-relaxed">
+                <p>Un beau design ne suffit pas. Il doit être <strong className="text-white font-medium">fonctionnel, intuitif et orienté résultats</strong>. Chaque pixel, chaque interaction est pensée pour guider vos utilisateurs vers l&apos;action souhaitée et générer de la valeur pour votre entreprise.</p>
+                <p>Notre approche combine <strong className="text-white font-medium">recherche utilisateur approfondie</strong>, principes d&apos;ergonomie cognitive et tendances design actuelles pour créer des interfaces qui marquent les esprits.</p>
+                <p>Nous concevons des expériences <strong className="text-white font-medium">responsive, accessibles (WCAG 2.1) et performantes</strong>, adaptées à tous les écrans et à tous les utilisateurs, quel que soit leur contexte.</p>
               </div>
             </div>
+
             <div className="space-y-4">
               {[
                 { titre: 'Design centré utilisateur', desc: 'Basé sur la recherche, les données et les tests' },
@@ -104,9 +124,16 @@ export default function DesignUIUXPage() {
                 { titre: 'Accessibilité WCAG 2.1', desc: 'Interfaces inclusives pour tous les utilisateurs' },
                 { titre: 'Performance visuelle', desc: 'Animations fluides, temps de chargement optimisés' },
               ].map((item) => (
-                <div key={item.titre} className="flex gap-4 p-4 bg-violet-50/50 rounded-xl">
-                  <svg className="w-5 h-5 text-violet shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
-                  <div><h3 className="font-heading font-semibold text-gray-900">{item.titre}</h3><p className="text-sm text-gray-600">{item.desc}</p></div>
+                <div key={item.titre} className="flex gap-4 p-5 rounded-2xl bg-[#0c0616]/70 backdrop-blur-xl border border-white/10 hover:border-violet-500/40 transition-all duration-300">
+                  <div className="w-8 h-8 rounded-full bg-violet-500/10 border border-violet-500/30 flex items-center justify-center shrink-0 mt-0.5">
+                    <svg className="w-4 h-4 text-violet-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-heading font-semibold text-white text-sm sm:text-base">{item.titre}</h3>
+                    <p className="text-xs sm:text-sm text-gray-400 font-light mt-1">{item.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -114,73 +141,141 @@ export default function DesignUIUXPage() {
         </div>
       </section>
 
-      {/* Services */}
-      <section className="py-16 sm:py-20 lg:py-28 bg-gray-50">
+      {/* Services Section */}
+      <section className="py-20 sm:py-24 lg:py-32 bg-[#05020a] relative border-t border-white/10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-16">
-            <span className="inline-block px-3 py-1 bg-violet-50 text-violet-700 font-heading font-medium text-xs rounded-full mb-4">Ce que nous faisons</span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4">Nos prestations UI/UX</h2>
-            <p className="text-gray-600 max-w-xl mx-auto">Un accompagnement complet, de la stratégie au pixel final</p>
+          <div className="text-center mb-16">
+            <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/30 text-violet-300 font-heading font-medium text-xs rounded-full mb-4 backdrop-blur-md">
+              Ce que nous faisons
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white mb-4 tracking-tight">
+              Nos prestations UI/UX
+            </h2>
+            <p className="text-gray-400 font-light max-w-xl mx-auto text-sm sm:text-base">
+              Un accompagnement complet, de la stratégie au pixel final
+            </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((s) => (
-              <div key={s.titre} className="card p-5 text-center group hover:shadow-violet-md transition-all">
-                <svg className="w-8 h-8 text-violet mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <h3 className="font-heading font-semibold text-gray-900 mb-2">{s.titre}</h3>
-                <p className="text-xs text-gray-600 leading-relaxed">{s.desc}</p>
+              <div 
+                key={s.titre} 
+                className="p-6 rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 hover:border-violet-500/50 shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_60px_rgba(139,92,246,0.15)] transition-all duration-500 text-center group flex flex-col items-center justify-between"
+              >
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-violet-600/20 border border-violet-500/40 flex items-center justify-center text-violet-300 mb-5 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_20px_rgba(139,92,246,0.2)] mx-auto">
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-heading font-bold text-white text-base mb-2 group-hover:text-violet-300 transition-colors">
+                    {s.titre}
+                  </h3>
+                  <p className="text-xs text-gray-400 font-light leading-relaxed">
+                    {s.desc}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Processus */}
-      <section className="py-16 sm:py-20 lg:py-28 bg-white">
+      {/* Processus Section */}
+      <section className="py-20 sm:py-24 lg:py-32 bg-[#05020a] relative border-t border-white/10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-16">
-            <span className="inline-block px-3 py-1 bg-violet-50 text-violet-700 font-heading font-medium text-xs rounded-full mb-4">Méthodologie</span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4">Notre processus de design en 6 étapes</h2>
-            <p className="text-gray-600 max-w-xl mx-auto">De la recherche à l&apos;itération continue, une approche éprouvée</p>
+          <div className="text-center mb-16">
+            <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/30 text-violet-300 font-heading font-medium text-xs rounded-full mb-4 backdrop-blur-md">
+              Méthodologie
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white mb-4 tracking-tight">
+              Notre processus de design en 6 étapes
+            </h2>
+            <p className="text-gray-400 font-light max-w-xl mx-auto text-sm sm:text-base">
+              De la recherche à l&apos;itération continue, une approche éprouvée
+            </p>
           </div>
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {processus.map((p) => (
-              <div key={p.etape} className="card p-6 group">
-                <span className="text-4xl font-heading font-bold text-violet-200 group-hover:text-violet transition-colors">{p.etape}</span>
-                <h3 className="font-heading font-bold text-lg text-gray-900 mt-3 mb-2">{p.titre}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{p.description}</p>
+              <div 
+                key={p.etape} 
+                className="p-8 rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 hover:border-violet-500/50 shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_60px_rgba(139,92,246,0.15)] transition-all duration-500 group flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-4xl font-heading font-bold text-violet-400/70 group-hover:text-violet-300 transition-colors">
+                    {p.etape}
+                  </span>
+                  <h3 className="font-heading font-bold text-white text-lg mt-4 mb-3 group-hover:text-violet-300 transition-colors">
+                    {p.titre}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-400 font-light leading-relaxed">
+                    {p.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Outils */}
-      <section className="py-16 sm:py-20 lg:py-28 bg-gray-50">
+      {/* Outils Section */}
+      <section className="py-20 sm:py-24 lg:py-32 bg-[#05020a] relative border-t border-white/10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-16">
-            <span className="inline-block px-3 py-1 bg-violet-50 text-violet-700 font-heading font-medium text-xs rounded-full mb-4">Outils</span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4">Nos outils de prédilection</h2>
-            <p className="text-gray-600 max-w-xl mx-auto">Les meilleurs logiciels pour un design efficace et collaboratif</p>
+          <div className="text-center mb-16">
+            <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/30 text-violet-300 font-heading font-medium text-xs rounded-full mb-4 backdrop-blur-md">
+              Outils
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white mb-4 tracking-tight">
+              Nos outils de prédilection
+            </h2>
+            <p className="text-gray-400 font-light max-w-xl mx-auto text-sm sm:text-base">
+              Les meilleurs logiciels pour un design efficace et collaboratif
+            </p>
           </div>
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {outils.map((outil) => (
-              <div key={outil.nom} className="card p-6 text-center group hover:shadow-violet-md transition-all">
-                <img src={outil.logo} alt={outil.nom} className="h-10 mx-auto mb-4" />
-                <h3 className="font-heading font-bold text-gray-900 mb-2">{outil.nom}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{outil.description}</p>
+              <div 
+                key={outil.nom} 
+                className="p-6 rounded-2xl bg-[#0c0616]/70 backdrop-blur-xl border border-white/10 hover:border-violet-500/50 shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:shadow-[0_15px_40px_rgba(139,92,246,0.12)] transition-all duration-300 text-center group flex flex-col items-center justify-between"
+              >
+                <div>
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/10 w-fit mx-auto mb-4 group-hover:bg-violet-600/20 transition-colors">
+                    <img src={outil.logo} alt={outil.nom} className="h-8 w-8 object-contain filter brightness-200" />
+                  </div>
+                  <h3 className="font-heading font-bold text-white text-base mb-2 group-hover:text-violet-300 transition-colors">
+                    {outil.nom}
+                  </h3>
+                  <p className="text-xs text-gray-400 font-light leading-relaxed">
+                    {outil.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 sm:py-20 bg-hero-pattern relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20"><div className="absolute top-0 left-1/2 w-[600px] h-[600px] bg-violet-300 rounded-full blur-[150px] -translate-x-1/2" /></div>
+      {/* CTA Section */}
+      <section className="py-24 sm:py-28 bg-[#05020a] relative overflow-hidden border-t border-white/10">
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-violet-600/30 rounded-full blur-[160px] -translate-x-1/2 -translate-y-1/2" />
+        </div>
+        
         <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white mb-4">Un projet de design en tête ?</h2>
-          <p className="text-violet-200 mb-8">Parlons-en et créons ensemble une expérience exceptionnelle pour vos utilisateurs.</p>
-          <Link href="/contact" className="btn-primary !bg-white !text-violet text-sm sm:text-base px-8 py-4">Démarrer un projet</Link>
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-6 tracking-tight">
+            Un projet de design en tête ?
+          </h2>
+          <p className="text-gray-400 font-light text-base sm:text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+            Parlons-en et créons ensemble une expérience exceptionnelle pour marquer durablement vos utilisateurs.
+          </p>
+          <Link 
+            href="/contact" 
+            className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-950 text-sm sm:text-base font-heading font-bold rounded-full hover:bg-violet-100 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-105"
+          >
+            Démarrer un projet
+          </Link>
         </div>
       </section>
     </>

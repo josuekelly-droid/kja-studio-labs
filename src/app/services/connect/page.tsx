@@ -5,19 +5,19 @@ import { siteConfig } from '@/config/site';
 import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Service Connect',
-  description: 'Solutions Connect par KJA Studio Labs. APIs, webhooks, automatisation, intégrations CRM, synchronisation en temps réel, Stripe, HubSpot.',
+  title: 'Service Connect | Intégrations API & Automatisation Workflows',
+  description: 'Solutions Connect par KJA Studio Labs. APIs, webhooks, automatisation, intégrations CRM, synchronisation en temps réel, Stripe, HubSpot et écosystèmes sur-mesure.',
   alternates: { canonical: '/services/connect' },
   openGraph: {
     title: 'Connect | KJA Studio Labs',
-    description: 'Intégrations API, automatisation et synchronisation de vos outils digitaux.',
+    description: 'Intégrations API, automatisation et synchronisation de vos outils digitaux pour une productivité maximale.',
     url: `${siteConfig.url}/services/connect`,
   },
 };
 
 const integrations = [
   { nom: 'APIs REST & GraphQL', logo: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/graphql.svg', description: 'Création d\'APIs sur mesure documentées (Swagger/OpenAPI) pour connecter tous vos services entre eux.' },
-  { nom: 'Webhooks', logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM0RjE5QTQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMTggMTYuOThjLTEuNDkgMS4wMi0zLjI1IDEuNjMtNS4xNCAxLjYzQzguMDggMTguNjEgNCAxNC41MyA0IDkuNjEgNCA3Ljc3IDQuNzcgNi4wNyA2LjA5IDQuOCIvPjxwYXRoIGQ9Ik0xMiAyMS44YzEuNDkgMCAyLjg3LS40NiA0LTEuMjciLz48cGF0aCBkPSJNMTcuNjYgMTcuNjZjMS4wMi0xLjA3IDEuNjYtMi40NiAxLjY2LTMuOTciLz48cGF0aCBkPSJNMTIgMkM3LjAzIDIgMyA2LjAzIDMgMTFzNC4wMyA5IDkgOSIvPjxwYXRoIGQ9Ik0xMiAydjMiLz48cGF0aCBkPSJNMTIgNnYzIi8+PHBhdGggZD0iTTEyIDEydjMiLz48cGF0aCBkPSJNMTIgMTh2MyIvPjxwYXRoIGQ9Im0xNSAxNS0zLTNtMy0zbC0zIDMiLz48L3N2Zz4=', description: 'Communication en temps réel entre applications. Notifications instantanées et événements automatisés.' },
+  { nom: 'Webhooks', iconSvg: true, description: 'Communication en temps réel entre applications. Notifications instantanées et événements automatisés.' },
   { nom: 'Automatisation', logo: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/zapier.svg', description: 'Workflows automatisés avec Zapier, Make (Integromat) et n8n. Zéro code, 100% productivité.' },
   { nom: 'Stripe', logo: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/stripe.svg', description: 'Paiement en ligne sécurisé. Abonnements, facturation, marketplace. Leader mondial du paiement.' },
   { nom: 'PayPal', logo: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/paypal.svg', description: 'Solution de paiement internationale avec couverture dans plus de 200 pays.' },
@@ -52,34 +52,61 @@ export default function ConnectPage() {
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'Service', name: 'Connect', provider: { '@type': 'Organization', name: siteConfig.name }, description: 'Intégrations API, automatisation et synchronisation d\'outils digitaux.', url: `${siteConfig.url}/services/connect` }} />
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: siteConfig.url }, { '@type': 'ListItem', position: 2, name: 'Services', item: `${siteConfig.url}/services` }, { '@type': 'ListItem', position: 3, name: 'Connect', item: `${siteConfig.url}/services/connect` }] }} />
 
-      {/* Hero */}
-      <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 lg:pb-24 bg-hero-pattern relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20"><div className="absolute top-10 right-10 w-96 h-96 bg-violet-300 rounded-full blur-[120px]" /><div className="absolute bottom-10 left-10 w-72 h-72 bg-violet-200 rounded-full blur-[100px]" /></div>
+      {/* Hero Section */}
+      <section className="pt-32 sm:pt-36 lg:pt-44 pb-20 sm:pb-24 lg:pb-28 bg-[#05020a] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-30 pointer-events-none">
+          <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[140px]" />
+          <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-indigo-600/15 rounded-full blur-[120px]" />
+        </div>
+        
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <nav className="flex items-center justify-center gap-2 text-sm text-violet-200/70 mb-6"><Link href="/" className="hover:text-white">Accueil</Link><span>/</span><Link href="/services" className="hover:text-white">Services</Link><span>/</span><span className="text-white font-medium">Connect</span></nav>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-white mb-4">Connect</h1>
-          <p className="text-lg sm:text-xl text-violet-200 max-w-2xl mx-auto leading-relaxed">Connectez vos outils, automatisez vos workflows, synchronisez vos données. Un écosystème digital fluide et sans couture.</p>
+          <nav className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-violet-200/80 mb-8 backdrop-blur-md">
+            <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
+            <span>/</span>
+            <Link href="/services" className="hover:text-white transition-colors">Services</Link>
+            <span>/</span>
+            <span className="text-white font-medium">Connect</span>
+          </nav>
+          
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-bold text-white tracking-tight mb-6">
+            KJA <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-300">Connect</span>
+          </h1>
+          <p className="text-base sm:text-xl text-gray-400 font-light max-w-2xl mx-auto leading-relaxed">
+            Connectez vos outils, automatisez vos workflows, synchronisez vos données. Un écosystème digital fluide et sans couture.
+          </p>
         </div>
       </section>
 
-      {/* Vision */}
-      <section className="py-16 sm:py-20 lg:py-28 bg-white">
+      {/* Vision Section */}
+      <section className="py-20 sm:py-24 lg:py-32 bg-[#05020a] relative border-t border-white/10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div>
-              <span className="inline-block px-3 py-1 bg-violet-50 text-violet-700 font-heading font-medium text-xs rounded-full mb-4">Pourquoi Connect ?</span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-6">Fini les outils qui ne communiquent pas</h2>
-              <div className="space-y-4 text-gray-600 leading-relaxed">
-                <p>Votre entreprise utilise probablement une dizaine d&apos;outils différents : CRM, emailing, analytics, paiement, stockage, ERP... <strong>Et s&apos;ils travaillaient ensemble de manière fluide ?</strong></p>
-                <p>Nous créons des <strong>ponts sur mesure</strong> entre vos services pour automatiser vos processus, éliminer les tâches manuelles répétitives et synchroniser vos données en temps réel.</p>
-                <p>Résultat : <strong>moins d&apos;erreurs, plus de productivité</strong>, et une vision unifiée de votre activité. Vous reprenez le contrôle de votre écosystème digital.</p>
+              <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/30 text-violet-300 font-heading font-medium text-xs rounded-full mb-6 backdrop-blur-md">
+                Pourquoi Connect ?
+              </span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white mb-6 tracking-tight">
+                Fini les outils qui ne communiquent pas
+              </h2>
+              <div className="space-y-4 text-gray-400 font-light leading-relaxed">
+                <p>Votre entreprise использует probablement une dizaine d&apos;outils différents : CRM, emailing, analytics, paiement, stockage, ERP... <strong className="text-white font-medium">Et s&apos;ils travaillaient ensemble de manière fluide ?</strong></p>
+                <p>Nous créons des <strong className="text-white font-medium">ponts sur mesure</strong> entre vos services pour automatiser vos processus, éliminer les tâches manuelles répétitives et synchroniser vos données en temps réel.</p>
+                <p>Résultat : <strong className="text-white font-medium">moins d&apos;erreurs, plus de productivité</strong>, et une vision unifiée de votre activité. Vous reprenez le contrôle de votre écosystème digital.</p>
               </div>
             </div>
+
             <div className="space-y-4">
               {avantages.map((item) => (
-                <div key={item.titre} className="flex gap-4 p-4 bg-violet-50/50 rounded-xl">
-                  <svg className="w-5 h-5 text-violet shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
-                  <div><h3 className="font-heading font-semibold text-gray-900">{item.titre}</h3><p className="text-sm text-gray-600">{item.desc}</p></div>
+                <div key={item.titre} className="flex gap-4 p-5 rounded-2xl bg-[#0c0616]/70 backdrop-blur-xl border border-white/10 hover:border-violet-500/40 transition-all duration-300">
+                  <div className="w-8 h-8 rounded-full bg-violet-500/10 border border-violet-500/30 flex items-center justify-center shrink-0 mt-0.5">
+                    <svg className="w-4 h-4 text-violet-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-heading font-semibold text-white text-sm sm:text-base">{item.titre}</h3>
+                    <p className="text-xs sm:text-sm text-gray-400 font-light mt-1">{item.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -87,44 +114,107 @@ export default function ConnectPage() {
         </div>
       </section>
 
-      {/* Méthodologie */}
-      <section className="py-16 sm:py-20 lg:py-28 bg-gray-50">
+      {/* Méthodologie Section */}
+      <section className="py-20 sm:py-24 lg:py-32 bg-[#05020a] relative border-t border-white/10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12"><span className="inline-block px-3 py-1 bg-violet-50 text-violet-700 font-heading font-medium text-xs rounded-full mb-4">Méthode</span><h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4">Comment nous travaillons</h2><p className="text-gray-600 max-w-xl mx-auto">Une approche structurée pour des intégrations réussies et durables</p></div>
+          <div className="text-center mb-16">
+            <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/30 text-violet-300 font-heading font-medium text-xs rounded-full mb-4 backdrop-blur-md">
+              Méthode
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white mb-4 tracking-tight">
+              Comment nous travaillons
+            </h2>
+            <p className="text-gray-400 font-light max-w-xl mx-auto text-sm sm:text-base">
+              Une approche structurée pour des intégrations réussies et durables
+            </p>
+          </div>
+
           <div className="grid sm:grid-cols-3 gap-6">
             {methodologie.map((p) => (
-              <div key={p.etape} className="card p-6 text-center group">
-                <span className="text-4xl font-heading font-bold text-violet-200 group-hover:text-violet transition-colors">{p.etape}</span>
-                <h3 className="font-heading font-bold text-lg text-gray-900 mt-3 mb-2">{p.titre}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{p.desc}</p>
+              <div 
+                key={p.etape} 
+                className="p-8 rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 hover:border-violet-500/50 shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_60px_rgba(139,92,246,0.15)] transition-all duration-500 group flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-4xl font-heading font-bold text-violet-400/70 group-hover:text-violet-300 transition-colors">
+                    {p.etape}
+                  </span>
+                  <h3 className="font-heading font-bold text-white text-lg mt-4 mb-3 group-hover:text-violet-300 transition-colors">
+                    {p.titre}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-400 font-light leading-relaxed">
+                    {p.desc}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Intégrations */}
-      <section className="py-16 sm:py-20 lg:py-28 bg-white">
+      {/* Intégrations Section */}
+      <section className="py-20 sm:py-24 lg:py-32 bg-[#05020a] relative border-t border-white/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12"><span className="inline-block px-3 py-1 bg-violet-50 text-violet-700 font-heading font-medium text-xs rounded-full mb-4">Intégrations</span><h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4">Ce que nous connectons</h2><p className="text-gray-600 max-w-xl mx-auto">APIs, webhooks, services SaaS : nous intégrons tout votre écosystème digital</p></div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="text-center mb-16">
+            <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/30 text-violet-300 font-heading font-medium text-xs rounded-full mb-4 backdrop-blur-md">
+              Intégrations
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white mb-4 tracking-tight">
+              Ce que nous connectons
+            </h2>
+            <p className="text-gray-400 font-light max-w-xl mx-auto text-sm sm:text-base">
+              APIs, webhooks, services SaaS : nous intégrons tout votre écosystème digital
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {integrations.map((item) => (
-              <div key={item.nom} className="card p-4 flex items-start gap-3 group hover:shadow-violet-md transition-all">
-                <img src={item.logo} alt={item.nom} className="h-7 w-7 shrink-0 mt-0.5" />
-                <div><h3 className="font-heading font-bold text-sm text-gray-900 group-hover:text-violet transition-colors">{item.nom}</h3><p className="text-xs text-gray-600 leading-relaxed mt-0.5">{item.description}</p></div>
+              <div 
+                key={item.nom} 
+                className="p-6 rounded-2xl bg-[#0c0616]/70 backdrop-blur-xl border border-white/10 hover:border-violet-500/50 shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:shadow-[0_15px_40px_rgba(139,92,246,0.12)] transition-all duration-300 flex items-start gap-4 group"
+              >
+                <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 shrink-0 group-hover:bg-violet-600/20 transition-colors">
+                  {item.iconSvg ? (
+                    <svg className="w-6 h-6 text-violet-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  ) : (
+                    <img src={item.logo} alt={item.nom} className="h-6 w-6 object-contain filter brightness-200" />
+                  )}
+                </div>
+                <div>
+                  <h3 className="font-heading font-bold text-sm text-white group-hover:text-violet-300 transition-colors">
+                    {item.nom}
+                  </h3>
+                  <p className="text-xs text-gray-400 font-light leading-relaxed mt-1">
+                    {item.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 sm:py-20 bg-hero-pattern relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20"><div className="absolute top-0 left-1/2 w-[600px] h-[600px] bg-violet-300 rounded-full blur-[150px] -translate-x-1/2" /></div>
+      {/* CTA Section */}
+      <section className="py-24 sm:py-28 bg-[#05020a] relative overflow-hidden border-t border-white/10">
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-violet-600/30 rounded-full blur-[160px] -translate-x-1/2 -translate-y-1/2" />
+        </div>
+        
         <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white mb-4">Prêt à automatiser votre business ?</h2>
-          <p className="text-violet-200 mb-8">Parlons de vos outils et créons ensemble l&apos;écosystème digital qui va accélérer votre croissance.</p>
-          <Link href="/contact" className="btn-primary !bg-white !text-violet text-sm sm:text-base px-8 py-4">Démarrer un projet</Link>
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-6 tracking-tight">
+            Prêt à automatiser votre business ?
+          </h2>
+          <p className="text-gray-400 font-light text-base sm:text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+            Parlons de vos outils et créons ensemble l&apos;écosystème digital qui va accélérer votre croissance.
+          </p>
+          <Link 
+            href="/contact" 
+            className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-950 text-sm sm:text-base font-heading font-bold rounded-full hover:bg-violet-100 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-105"
+          >
+            Démarrer un projet
+          </Link>
         </div>
       </section>
     </>

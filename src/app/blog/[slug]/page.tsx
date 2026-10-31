@@ -54,11 +54,11 @@ export default async function ArticlePage({ params }: Props) {
 
   if (!article) notFound();
 
-  // Convertir Markdown en HTML avec parseInline pour forcer les paragraphes
+  // Convertir Markdown en HTML avec paragraphes
   const contenuHTML = article.contenu
-  .split(/\n\n+/)
-  .map((p: string) => `<p>${p.replace(/\n/g, '<br />')}</p>`)
-  .join('');
+    .split(/\n\n+/)
+    .map((p: string) => `<p>${p.replace(/\n/g, '<br />')}</p>`)
+    .join('');
 
   return (
     <>
@@ -88,42 +88,63 @@ export default async function ArticlePage({ params }: Props) {
         }}
       />
 
-      <section className="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-hero-pattern relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20" aria-hidden="true">
-          <div className="absolute top-10 right-10 w-72 sm:w-96 h-72 sm:h-96 bg-violet-300 rounded-full blur-[100px]" />
+      {/* Hero Section */}
+      <section className="pt-32 sm:pt-36 lg:pt-44 pb-16 sm:pb-20 lg:pb-24 bg-[#05020a] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-30 pointer-events-none" aria-hidden="true">
+          <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[140px]" />
+          <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-indigo-600/15 rounded-full blur-[120px]" />
         </div>
+
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <nav className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-violet-200/70 mb-6">
+          <nav className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-violet-200/80 mb-8 backdrop-blur-md">
             <Link href="/" className="hover:text-white transition-colors shrink-0">Accueil</Link>
             <span className="shrink-0">/</span>
             <Link href="/blog" className="hover:text-white transition-colors shrink-0">Blog</Link>
             <span className="shrink-0">/</span>
             <span className="text-white font-medium break-words text-center">{article.titre}</span>
           </nav>
-          <span className="inline-block px-3 py-1 bg-white/10 text-violet-200 font-heading font-medium text-xs sm:text-sm rounded-full mb-4 backdrop-blur-sm">
+          
+          <span className="inline-block px-3.5 py-1.5 bg-violet-600/25 text-violet-300 border border-violet-500/40 font-heading font-medium text-xs rounded-full mb-6 backdrop-blur-md uppercase tracking-wider">
             {categoriesLabels[article.categorie] || article.categorie}
           </span>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-4 break-words">{article.titre}</h1>
-          <div className="flex items-center justify-center gap-4 text-sm text-violet-200/80">
-            <span>{article.author.name || siteConfig.name}</span>
+
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-bold text-white tracking-tight mb-6 break-words">
+            {article.titre}
+          </h1>
+
+          <div className="flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm text-gray-400 font-light">
+            <span className="text-white font-medium">{article.author.name || siteConfig.name}</span>
+            <span>•</span>
             <span>{new Date(article.createdAt).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            <span>•</span>
             <span>{article.tempsLecture} min de lecture</span>
           </div>
         </div>
       </section>
 
-      <section className="py-16 sm:py-20 lg:py-28 bg-white">
+      {/* Content Section */}
+      <section className="py-20 sm:py-24 lg:py-32 bg-[#05020a] relative border-t border-white/10">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           {article.imagePrincipale && (
-            <img src={article.imagePrincipale} alt={article.titre} className="w-full rounded-2xl mb-10 shadow-lg" />
+            <div className="rounded-3xl overflow-hidden mb-12 shadow-[0_20px_60px_rgba(0,0,0,0.6)] border border-white/10 bg-white/5">
+              <img src={article.imagePrincipale} alt={article.titre} className="w-full h-auto object-cover" />
+            </div>
           )}
-          <div className="prose prose-gray max-w-none">
+
+          <div className="prose prose-invert max-w-none bg-[#0c0616]/70 backdrop-blur-2xl rounded-3xl border border-white/10 p-8 sm:p-12 shadow-[0_8px_32px_rgba(0,0,0,0.4)] text-gray-300 font-light leading-relaxed">
             <div dangerouslySetInnerHTML={{ __html: contenuHTML }} />
           </div>
+
           {article.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mt-10 pt-6 border-t border-gray-200">
+            <div className="mt-12 p-6 rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 flex flex-wrap gap-2.5 items-center">
+              <span className="text-xs text-gray-400 font-light mr-2">Tags :</span>
               {article.tags.map((tag) => (
-                <span key={tag} className="px-3 py-1.5 bg-violet-50 text-violet-700 text-xs font-medium rounded-full">{tag}</span>
+                <span 
+                  key={tag} 
+                  className="px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/30 text-violet-300 text-xs font-medium rounded-full backdrop-blur-md"
+                >
+                  #{tag}
+                </span>
               ))}
             </div>
           )}

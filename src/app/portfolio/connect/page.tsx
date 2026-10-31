@@ -8,33 +8,87 @@ import { JsonLd } from '@/components/seo/JsonLd';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Projets Connect',
-  description: 'Solutions Connect par KJA Studio Labs. APIs, intégrations, automatisation.',
+  title: 'Projets Connect | Portfolio',
+  description: 'Découvrez nos réalisations Connect par KJA Studio Labs. Intégrations API sur mesure, webhooks, automatisation et synchronisation d\'écosystèmes digitaux.',
   alternates: { canonical: '/portfolio/connect' },
+  openGraph: {
+    title: 'Projets Connect | KJA Studio Labs',
+    description: 'APIs, webhooks, automatisation et synchronisation d\'écosystèmes sur-mesure.',
+    url: `${siteConfig.url}/portfolio/connect`,
+  },
 };
 
 export default async function PortfolioConnectPage() {
-  const projets = await prisma.projet.findMany({ where: { estPublie: true, categorie: 'CONNECT' }, orderBy: { createdAt: 'desc' } });
+  const projets = await prisma.projet.findMany({ 
+    where: { estPublie: true, categorie: 'CONNECT' }, 
+    orderBy: { createdAt: 'desc' } 
+  });
 
   return (
     <>
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: siteConfig.url }, { '@type': 'ListItem', position: 2, name: 'Portfolio', item: `${siteConfig.url}/portfolio` }, { '@type': 'ListItem', position: 3, name: 'Connect', item: `${siteConfig.url}/portfolio/connect` }] }} />
-      <section className="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-hero-pattern relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20"><div className="absolute top-10 right-10 w-72 sm:w-96 h-72 sm:h-96 bg-violet-300 rounded-full blur-[100px]" /></div>
+      
+      {/* Hero Section */}
+      <section className="pt-32 sm:pt-36 lg:pt-44 pb-20 sm:pb-24 lg:pb-28 bg-[#05020a] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-30 pointer-events-none" aria-hidden="true">
+          <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[140px]" />
+          <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-indigo-600/15 rounded-full blur-[120px]" />
+        </div>
+        
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <nav className="flex items-center justify-center gap-2 text-sm text-violet-200/70 mb-6"><Link href="/" className="hover:text-white">Accueil</Link><span>/</span><Link href="/portfolio" className="hover:text-white">Portfolio</Link><span>/</span><span className="text-white font-medium">Connect</span></nav>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-4">Connect</h1>
-          <p className="text-violet-200">APIs, intégrations et automatisation</p>
+          <nav className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-violet-200/80 mb-8 backdrop-blur-md">
+            <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
+            <span>/</span>
+            <Link href="/portfolio" className="hover:text-white transition-colors">Portfolio</Link>
+            <span>/</span>
+            <span className="text-white font-medium">Connect</span>
+          </nav>
+          
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-bold text-white tracking-tight mb-6">
+            Projets <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-300">Connect</span>
+          </h1>
+          <p className="text-base sm:text-xl text-gray-400 font-light max-w-xl mx-auto leading-relaxed">
+            APIs, intégrations sur-mesure et automatisation d&apos;écosystèmes digitaux.
+          </p>
         </div>
       </section>
-      <section className="py-16 sm:py-20 lg:py-28 bg-white">
+
+      {/* Grid Section */}
+      <section className="py-20 sm:py-24 lg:py-32 bg-[#05020a] relative border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {projets.length === 0 ? <div className="text-center py-12"><p className="text-gray-500">Aucun projet dans cette catégorie.</p></div> : (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+          {projets.length === 0 ? (
+            <div className="text-center py-20">
+              <p className="text-gray-400 text-lg font-light">Aucun projet dans cette catégorie pour le moment.</p>
+            </div>
+          ) : (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {projets.map((p) => (
-                <Link key={p.id} href={`/portfolio/${p.slug}`} className="card overflow-hidden group block">
-                  <div className="aspect-video bg-gray-100 flex items-center justify-center">{p.imagePrincipale ? <img src={p.imagePrincipale} alt={p.titre} className="w-full h-full object-cover group-hover:scale-105 transition-transform" /> : <span>🖼️</span>}</div>
-                  <div className="p-4"><h3 className="font-heading font-bold text-gray-900 group-hover:text-violet">{p.titre}</h3><p className="text-sm text-gray-600 line-clamp-2">{p.descriptionCourte}</p></div>
+                <Link 
+                  key={p.id} 
+                  href={`/portfolio/${p.slug}`} 
+                  className="rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 hover:border-violet-500/50 shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_60px_rgba(139,92,246,0.15)] transition-all duration-500 overflow-hidden group block flex flex-col justify-between"
+                >
+                  <div className="aspect-video bg-white/5 flex items-center justify-center overflow-hidden relative">
+                    {p.imagePrincipale ? (
+                      <img 
+                        src={p.imagePrincipale} 
+                        alt={p.titre} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+                      />
+                    ) : (
+                      <span className="text-4xl text-gray-600">🖼️</span>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0c0616]/80 via-transparent to-transparent opacity-60" />
+                  </div>
+                  
+                  <div className="p-6 sm:p-7">
+                    <h3 className="font-heading font-bold text-lg sm:text-xl text-white group-hover:text-violet-300 transition-colors line-clamp-1">
+                      {p.titre}
+                    </h3>
+                    <p className="text-sm text-gray-400 font-light mt-2 line-clamp-2 leading-relaxed">
+                      {p.descriptionCourte}
+                    </p>
+                  </div>
                 </Link>
               ))}
             </div>
