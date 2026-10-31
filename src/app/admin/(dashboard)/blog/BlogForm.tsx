@@ -109,92 +109,96 @@ export function BlogForm({ article }: BlogFormProps) {
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
-      {error && <div className="bg-red-50 text-red-600 text-sm p-4 rounded-xl border border-red-100">{error}</div>}
-      {success && <div className="bg-green-50 text-green-600 text-sm p-4 rounded-xl border border-green-100">{success}</div>}
+      {error && <div className="bg-red-500/10 text-red-400 text-sm p-4 rounded-2xl border border-red-500/20 backdrop-blur-md">{error}</div>}
+      {success && <div className="bg-emerald-500/10 text-emerald-400 text-sm p-4 rounded-2xl border border-emerald-500/20 backdrop-blur-md">{success}</div>}
 
       <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
         {/* Colonne principale */}
-        <div className="lg:col-span-2 space-y-5">
-          <div className="bg-white rounded-2xl border border-gray-100 p-5">
-            <label className="block text-xs font-heading font-semibold text-gray-500 uppercase tracking-wider mb-2">Titre *</label>
-            <input type="text" value={formData.titre} onChange={(e) => updateField('titre', e.target.value)} required className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm" placeholder="Titre de l'article" />
+        <div className="lg:col-span-2 space-y-6">
+          <div className="rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+            <label className="block text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider mb-2">Titre *</label>
+            <input type="text" value={formData.titre} onChange={(e) => updateField('titre', e.target.value)} required className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm transition-all" placeholder="Titre de l'article" />
           </div>
 
-          <div className="bg-white rounded-2xl border border-gray-100 p-5">
-            <label className="block text-xs font-heading font-semibold text-gray-500 uppercase tracking-wider mb-2">Extrait</label>
-            <textarea value={formData.extrait} onChange={(e) => updateField('extrait', e.target.value)} rows={3} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm resize-none" placeholder="Résumé affiché sur la homepage et le listing" />
+          <div className="rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+            <label className="block text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider mb-2">Extrait</label>
+            <textarea value={formData.extrait} onChange={(e) => updateField('extrait', e.target.value)} rows={3} className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm resize-none transition-all" placeholder="Résumé affiché sur la homepage et le listing" />
           </div>
 
-          <div className="bg-white rounded-2xl border border-gray-100 p-5">
-            <label className="block text-xs font-heading font-semibold text-gray-500 uppercase tracking-wider mb-2">Contenu (Markdown)</label>
-            <textarea value={formData.contenu} onChange={(e) => updateField('contenu', e.target.value)} rows={18} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm font-mono resize-none" placeholder="Écrivez votre article en Markdown..." />
+          <div className="rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+            <label className="block text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider mb-2">Contenu (Markdown)</label>
+            <textarea value={formData.contenu} onChange={(e) => updateField('contenu', e.target.value)} rows={18} className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm font-mono resize-none transition-all" placeholder="Écrivez votre article en Markdown..." />
           </div>
 
-          <div className="bg-white rounded-2xl border border-gray-100 p-5">
-            <label className="block text-xs font-heading font-semibold text-gray-500 uppercase tracking-wider mb-2">Image principale</label>
+          <div className="rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+            <label className="block text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider mb-3">Image principale</label>
             {formData.imagePrincipale ? (
-              <div className="relative group mb-3 inline-block">
-                <img src={formData.imagePrincipale} alt="" className="w-full max-w-xs rounded-xl" />
-                <button type="button" onClick={removeImage} className="absolute top-2 right-2 p-1.5 bg-red-500 text-white rounded-lg text-xs opacity-0 group-hover:opacity-100 transition-opacity">
-                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+              <div className="relative group mb-4 inline-block">
+                <img src={formData.imagePrincipale} alt="" className="w-full max-w-xs rounded-2xl border border-white/10" />
+                <button type="button" onClick={removeImage} className="absolute top-2 right-2 p-1.5 bg-red-600 text-white rounded-xl text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
                 </button>
               </div>
             ) : (
-              <div className="w-full max-w-xs h-40 bg-gray-50 rounded-xl flex items-center justify-center mb-3 border-2 border-dashed border-gray-200">
-                <svg className="w-8 h-8 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+              <div className="w-full max-w-xs h-40 bg-white/5 rounded-2xl flex items-center justify-center mb-4 border border-dashed border-white/20">
+                <svg className="w-8 h-8 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
               </div>
             )}
-            <input type="file" accept="image/jpeg,image/png,image/webp,image/avif" onChange={handleImageUpload} className="text-xs" />
-            {uploading && <p className="text-xs text-gray-400 mt-1">Upload en cours...</p>}
+            <input type="file" accept="image/jpeg,image/png,image/webp,image/avif" onChange={handleImageUpload} className="text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-white/10 file:text-white hover:file:bg-white/20 file:cursor-pointer transition-all" />
+            {uploading && <p className="text-xs text-violet-300 font-light mt-2">Upload en cours...</p>}
           </div>
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-5">
-          <div className="bg-white rounded-2xl border border-gray-100 p-5">
-            <h3 className="font-heading font-semibold text-gray-900 text-sm mb-4">Publication</h3>
+        <div className="space-y-6">
+          <div className="rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+            <h3 className="font-heading font-semibold text-white text-sm mb-4">Publication</h3>
             <div className="space-y-3">
               <label className="flex items-center gap-3 cursor-pointer">
-                <input type="checkbox" checked={formData.estPublie} onChange={(e) => updateField('estPublie', e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-violet focus:ring-violet" />
-                <span className="text-sm text-gray-700">Publié</span>
+                <input type="checkbox" checked={formData.estPublie} onChange={(e) => updateField('estPublie', e.target.checked)} className="w-4 h-4 rounded bg-white/5 border-white/20 text-violet-600 focus:ring-violet-500/20" />
+                <span className="text-sm text-gray-300 font-light">Publié</span>
               </label>
               <label className="flex items-center gap-3 cursor-pointer">
-                <input type="checkbox" checked={formData.featured} onChange={(e) => updateField('featured', e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-violet focus:ring-violet" />
-                <span className="text-sm text-gray-700">Mis en avant</span>
+                <input type="checkbox" checked={formData.featured} onChange={(e) => updateField('featured', e.target.checked)} className="w-4 h-4 rounded bg-white/5 border-white/20 text-violet-600 focus:ring-violet-500/20" />
+                <span className="text-sm text-gray-300 font-light">Mis en avant</span>
               </label>
             </div>
-            <div className="mt-4 space-y-2">
-              <button type="button" onClick={(e) => handleSubmit(e, true)} disabled={loading || !formData.titre} className="w-full py-2.5 bg-violet text-white font-heading font-semibold text-sm rounded-xl hover:bg-violet-700 transition-all disabled:opacity-50">{loading ? 'Enregistrement...' : 'Publier'}</button>
-              <button type="button" onClick={(e) => handleSubmit(e, false)} disabled={loading || !formData.titre} className="w-full py-2.5 border border-gray-200 text-gray-700 font-heading font-semibold text-sm rounded-xl hover:bg-gray-50 transition-all disabled:opacity-50">Brouillon</button>
+            <div className="mt-6 space-y-3">
+              <button type="button" onClick={(e) => handleSubmit(e, true)} disabled={loading || !formData.titre} className="w-full py-3 bg-white text-gray-950 font-heading font-bold text-sm rounded-2xl hover:bg-violet-100 transition-all duration-300 disabled:opacity-50 shadow-[0_0_20px_rgba(255,255,255,0.15)]">
+                {loading ? 'Enregistrement...' : 'Publier'}
+              </button>
+              <button type="button" onClick={(e) => handleSubmit(e, false)} disabled={loading || !formData.titre} className="w-full py-3 bg-white/5 border border-white/10 text-white font-heading font-semibold text-sm rounded-2xl hover:bg-white/10 transition-all duration-300 disabled:opacity-50">
+                Brouillon
+              </button>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl border border-gray-100 p-5">
-            <label className="block text-xs font-heading font-semibold text-gray-500 uppercase tracking-wider mb-2">Catégorie</label>
-            <select value={formData.categorie} onChange={(e) => updateField('categorie', e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm">
+          <div className="rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+            <label className="block text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider mb-2">Catégorie</label>
+            <select value={formData.categorie} onChange={(e) => updateField('categorie', e.target.value)} className="w-full px-4 py-3 rounded-2xl bg-[#05020a] border border-white/10 text-white focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm transition-all">
               {categories.map((cat) => (<option key={cat.valeur} value={cat.valeur}>{cat.label}</option>))}
             </select>
           </div>
 
-          <div className="bg-white rounded-2xl border border-gray-100 p-5">
-            <label className="block text-xs font-heading font-semibold text-gray-500 uppercase tracking-wider mb-2">Tags</label>
-            <input type="text" value={formData.tags} onChange={(e) => updateField('tags', e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm" placeholder="design, ui, tendances..." />
-            <p className="text-xs text-gray-400 mt-1">Séparés par des virgules</p>
+          <div className="rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+            <label className="block text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider mb-2">Tags</label>
+            <input type="text" value={formData.tags} onChange={(e) => updateField('tags', e.target.value)} className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm transition-all" placeholder="design, ui, tendances..." />
+            <p className="text-xs text-gray-500 font-light mt-1.5">Séparés par des virgules</p>
           </div>
 
-          <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
-            <h3 className="font-heading font-semibold text-gray-900 text-sm">SEO</h3>
+          <div className="rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)] space-y-4">
+            <h3 className="font-heading font-semibold text-white text-sm">SEO</h3>
             <div>
-              <label className="block text-xs font-medium text-gray-500 mb-1">Meta Title</label>
-              <input type="text" value={formData.metaTitle} onChange={(e) => updateField('metaTitle', e.target.value)} className="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-xs" placeholder="Titre SEO (60-70 caractères)" />
+              <label className="block text-xs font-light text-gray-400 mb-1.5">Meta Title</label>
+              <input type="text" value={formData.metaTitle} onChange={(e) => updateField('metaTitle', e.target.value)} className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-xs transition-all" placeholder="Titre SEO (60-70 caractères)" />
             </div>
             <div>
-              <label className="block text-xs font-medium text-gray-500 mb-1">Meta Description</label>
-              <textarea value={formData.metaDescription} onChange={(e) => updateField('metaDescription', e.target.value)} rows={3} className="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-xs resize-none" placeholder="Description SEO (150-160 caractères)" />
+              <label className="block text-xs font-light text-gray-400 mb-1.5">Meta Description</label>
+              <textarea value={formData.metaDescription} onChange={(e) => updateField('metaDescription', e.target.value)} rows={3} className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-xs resize-none transition-all" placeholder="Description SEO (150-160 caractères)" />
             </div>
             <div>
-              <label className="block text-xs font-medium text-gray-500 mb-1">Mots-clés</label>
-              <input type="text" value={formData.metaKeywords} onChange={(e) => updateField('metaKeywords', e.target.value)} className="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-xs" placeholder="blog, design, tutoriel..." />
+              <label className="block text-xs font-light text-gray-400 mb-1.5">Mots-clés</label>
+              <input type="text" value={formData.metaKeywords} onChange={(e) => updateField('metaKeywords', e.target.value)} className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-xs transition-all" placeholder="blog, design, tutoriel..." />
             </div>
           </div>
         </div>

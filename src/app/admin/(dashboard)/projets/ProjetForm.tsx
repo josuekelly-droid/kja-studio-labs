@@ -139,85 +139,85 @@ export function ProjetForm({ projet }: ProjetFormProps) {
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
-      {error && <div className="bg-red-50 text-red-600 text-sm p-4 rounded-xl border border-red-100">{error}</div>}
-      {success && <div className="bg-green-50 text-green-600 text-sm p-4 rounded-xl border border-green-100">{success}</div>}
+      {error && <div className="bg-red-500/10 text-red-400 text-sm p-4 rounded-2xl border border-red-500/20 backdrop-blur-md">{error}</div>}
+      {success && <div className="bg-emerald-500/10 text-emerald-400 text-sm p-4 rounded-2xl border border-emerald-500/20 backdrop-blur-md">{success}</div>}
 
       <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
-        <div className="lg:col-span-2 space-y-5">
-          <div className="bg-white rounded-2xl border border-gray-100 p-5">
-            <label className="block text-xs font-heading font-semibold text-gray-500 uppercase tracking-wider mb-2">Titre du projet *</label>
-            <input type="text" value={formData.titre} onChange={(e) => updateField('titre', e.target.value)} required className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm" placeholder="Nom du projet" />
+        <div className="lg:col-span-2 space-y-6">
+          <div className="rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+            <label className="block text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider mb-2">Titre du projet *</label>
+            <input type="text" value={formData.titre} onChange={(e) => updateField('titre', e.target.value)} required className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm transition-all" placeholder="Nom du projet" />
           </div>
 
-          <div className="bg-white rounded-2xl border border-gray-100 p-5">
-            <label className="block text-xs font-heading font-semibold text-gray-500 uppercase tracking-wider mb-2">Description courte</label>
-            <textarea value={formData.descriptionCourte} onChange={(e) => updateField('descriptionCourte', e.target.value)} rows={3} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm resize-none" placeholder="Résumé du projet (affiché sur la homepage)" />
+          <div className="rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+            <label className="block text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider mb-2">Description courte</label>
+            <textarea value={formData.descriptionCourte} onChange={(e) => updateField('descriptionCourte', e.target.value)} rows={3} className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm resize-none transition-all" placeholder="Résumé du projet (affiché sur la homepage)" />
           </div>
 
-          <div className="bg-white rounded-2xl border border-gray-100 p-5">
-            <label className="block text-xs font-heading font-semibold text-gray-500 uppercase tracking-wider mb-2">Étude de cas complète</label>
-            <textarea value={formData.contenuComplet} onChange={(e) => updateField('contenuComplet', e.target.value)} rows={14} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm font-mono resize-none" placeholder="Contenu riche (Markdown supporté)..." />
+          <div className="rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+            <label className="block text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider mb-2">Étude de cas complète</label>
+            <textarea value={formData.contenuComplet} onChange={(e) => updateField('contenuComplet', e.target.value)} rows={14} className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm font-mono resize-none transition-all" placeholder="Contenu riche (Markdown supporté)..." />
           </div>
 
-          <div className="bg-white rounded-2xl border border-gray-100 p-5">
-            <label className="block text-xs font-heading font-semibold text-gray-500 uppercase tracking-wider mb-2">Images du projet</label>
-            <div className="flex flex-wrap gap-3 mb-4">
+          <div className="rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+            <label className="block text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider mb-3">Images du projet</label>
+            <div className="flex flex-wrap gap-4 mb-4">
               {images.map((img, index) => (
                 <div key={img.id || index} className="relative group">
-                  <img src={img.url} alt={img.alt || `Image ${index + 1}`} className={`w-20 h-20 object-cover rounded-xl border-2 ${img.url === imagePrincipale ? 'border-violet' : 'border-gray-200'}`} />
-                  <div className="absolute inset-0 bg-black/40 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1">
-                    <button type="button" onClick={() => setAsMain(img.url)} className="p-1 bg-white rounded-lg" title="Image principale">
-                      <svg className="w-3 h-3 text-violet" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                  <img src={img.url} alt={img.alt || `Image ${index + 1}`} className={`w-20 h-20 object-cover rounded-2xl border-2 transition-all ${img.url === imagePrincipale ? 'border-violet-400 shadow-[0_0_15px_rgba(167,139,250,0.4)]' : 'border-white/10'}`} />
+                  <div className="absolute inset-0 bg-black/60 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 backdrop-blur-sm">
+                    <button type="button" onClick={() => setAsMain(img.url)} className="p-1.5 bg-white/10 hover:bg-white/20 rounded-xl transition-all" title="Image principale">
+                      <svg className="w-3.5 h-3.5 text-violet-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
                     </button>
-                    <button type="button" onClick={() => removeImage(index)} className="p-1 bg-red-500 rounded-lg" title="Supprimer">
-                      <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                    <button type="button" onClick={() => removeImage(index)} className="p-1.5 bg-red-600/80 hover:bg-red-600 rounded-xl transition-all" title="Supprimer">
+                      <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
                     </button>
                   </div>
                   {img.url === imagePrincipale && (
-                    <span className="absolute -top-1.5 -right-1.5 bg-violet text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">★</span>
+                    <span className="absolute -top-1.5 -right-1.5 bg-violet-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center shadow-md">★</span>
                   )}
                 </div>
               ))}
             </div>
             <input ref={fileInputRef} type="file" accept="image/jpeg,image/png,image/webp,image/avif" multiple onChange={handleUpload} className="hidden" />
-            <button type="button" onClick={() => fileInputRef.current?.click()} disabled={uploading} className="px-4 py-2 border-2 border-dashed border-gray-300 rounded-xl text-xs text-gray-500 hover:border-violet-300 hover:text-violet transition-all disabled:opacity-50">
+            <button type="button" onClick={() => fileInputRef.current?.click()} disabled={uploading} className="px-5 py-3 border-2 border-dashed border-white/20 rounded-2xl text-xs font-heading font-medium text-gray-300 hover:border-violet-400 hover:text-white hover:bg-white/5 transition-all disabled:opacity-50">
               {uploading ? 'Upload en cours...' : '+ Ajouter des images'}
             </button>
           </div>
         </div>
 
-        <div className="space-y-5">
-          <div className="bg-white rounded-2xl border border-gray-100 p-5">
-            <h3 className="font-heading font-semibold text-gray-900 text-sm mb-4">Publication</h3>
-            <label className="flex items-center gap-3 cursor-pointer mb-3"><input type="checkbox" checked={formData.estPublie} onChange={(e) => updateField('estPublie', e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-violet focus:ring-violet" /><span className="text-sm text-gray-700">Publié</span></label>
-            <label className="flex items-center gap-3 cursor-pointer mb-4"><input type="checkbox" checked={formData.featured} onChange={(e) => updateField('featured', e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-violet focus:ring-violet" /><span className="text-sm text-gray-700">Mis en avant</span></label>
-            <div className="space-y-2">
-              <button type="button" onClick={(e) => handleSubmit(e, true)} disabled={loading || !formData.titre} className="w-full py-2.5 bg-violet text-white font-heading font-semibold text-sm rounded-xl hover:bg-violet-700 transition-all disabled:opacity-50">{loading ? 'Enregistrement...' : 'Publier'}</button>
-              <button type="button" onClick={(e) => handleSubmit(e, false)} disabled={loading || !formData.titre} className="w-full py-2.5 border border-gray-200 text-gray-700 font-heading font-semibold text-sm rounded-xl hover:bg-gray-50 transition-all disabled:opacity-50">Enregistrer comme brouillon</button>
+        <div className="space-y-6">
+          <div className="rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+            <h3 className="font-heading font-semibold text-white text-sm mb-4">Publication</h3>
+            <label className="flex items-center gap-3 cursor-pointer mb-3"><input type="checkbox" checked={formData.estPublie} onChange={(e) => updateField('estPublie', e.target.checked)} className="w-4 h-4 rounded bg-white/5 border-white/20 text-violet-600 focus:ring-violet-500/20" /><span className="text-sm text-gray-300 font-light">Publié</span></label>
+            <label className="flex items-center gap-3 cursor-pointer mb-6"><input type="checkbox" checked={formData.featured} onChange={(e) => updateField('featured', e.target.checked)} className="w-4 h-4 rounded bg-white/5 border-white/20 text-violet-600 focus:ring-violet-500/20" /><span className="text-sm text-gray-300 font-light">Mis en avant</span></label>
+            <div className="space-y-3">
+              <button type="button" onClick={(e) => handleSubmit(e, true)} disabled={loading || !formData.titre} className="w-full py-3 bg-white text-gray-950 font-heading font-bold text-sm rounded-2xl hover:bg-violet-100 transition-all duration-300 disabled:opacity-50 shadow-[0_0_20px_rgba(255,255,255,0.15)]">{loading ? 'Enregistrement...' : 'Publier'}</button>
+              <button type="button" onClick={(e) => handleSubmit(e, false)} disabled={loading || !formData.titre} className="w-full py-3 bg-white/5 border border-white/10 text-white font-heading font-semibold text-sm rounded-2xl hover:bg-white/10 transition-all duration-300 disabled:opacity-50">Enregistrer comme brouillon</button>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl border border-gray-100 p-5">
-            <label className="block text-xs font-heading font-semibold text-gray-500 uppercase tracking-wider mb-2">Catégorie</label>
-            <select value={formData.categorie} onChange={(e) => updateField('categorie', e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm">{categories.map((cat) => (<option key={cat.valeur} value={cat.valeur}>{cat.label}</option>))}</select>
+          <div className="rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+            <label className="block text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider mb-2">Catégorie</label>
+            <select value={formData.categorie} onChange={(e) => updateField('categorie', e.target.value)} className="w-full px-4 py-3 rounded-2xl bg-[#05020a] border border-white/10 text-white focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm transition-all">{categories.map((cat) => (<option key={cat.valeur} value={cat.valeur}>{cat.label}</option>))}</select>
           </div>
 
-          <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
-            <div><label className="block text-xs font-heading font-semibold text-gray-500 uppercase tracking-wider mb-2">Client</label><input type="text" value={formData.client} onChange={(e) => updateField('client', e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm" placeholder="Nom du client" /></div>
-            <div><label className="block text-xs font-heading font-semibold text-gray-500 uppercase tracking-wider mb-2">Date de réalisation</label><input type="date" value={formData.dateRealisation} onChange={(e) => updateField('dateRealisation', e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm" /></div>
+          <div className="rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)] space-y-4">
+            <div><label className="block text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider mb-2">Client</label><input type="text" value={formData.client} onChange={(e) => updateField('client', e.target.value)} className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm transition-all" placeholder="Nom du client" /></div>
+            <div><label className="block text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider mb-2">Date de réalisation</label><input type="date" value={formData.dateRealisation} onChange={(e) => updateField('dateRealisation', e.target.value)} className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm transition-all [&::-webkit-calendar-picker-indicator]:invert" /></div>
           </div>
 
-          <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
-            <div><label className="block text-xs font-heading font-semibold text-gray-500 uppercase tracking-wider mb-2">Lien du projet</label><input type="url" value={formData.lienProjet} onChange={(e) => updateField('lienProjet', e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm" placeholder="https://..." /></div>
-            <div><label className="block text-xs font-heading font-semibold text-gray-500 uppercase tracking-wider mb-2">Lien Figma</label><input type="url" value={formData.lienFigma} onChange={(e) => updateField('lienFigma', e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm" placeholder="https://figma.com/..." /></div>
-            <div><label className="block text-xs font-heading font-semibold text-gray-500 uppercase tracking-wider mb-2">Lien GitHub</label><input type="url" value={formData.lienGithub} onChange={(e) => updateField('lienGithub', e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm" placeholder="https://github.com/..." /></div>
+          <div className="rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)] space-y-4">
+            <div><label className="block text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider mb-2">Lien du projet</label><input type="url" value={formData.lienProjet} onChange={(e) => updateField('lienProjet', e.target.value)} className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm transition-all" placeholder="https://..." /></div>
+            <div><label className="block text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider mb-2">Lien Figma</label><input type="url" value={formData.lienFigma} onChange={(e) => updateField('lienFigma', e.target.value)} className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm transition-all" placeholder="https://figma.com/..." /></div>
+            <div><label className="block text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider mb-2">Lien GitHub</label><input type="url" value={formData.lienGithub} onChange={(e) => updateField('lienGithub', e.target.value)} className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm transition-all" placeholder="https://github.com/..." /></div>
           </div>
 
-          <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
-            <h3 className="font-heading font-semibold text-gray-900 text-sm">SEO</h3>
-            <div><label className="block text-xs font-medium text-gray-500 mb-1">Meta Title</label><input type="text" value={formData.metaTitle} onChange={(e) => updateField('metaTitle', e.target.value)} className="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-xs" placeholder="Titre SEO (60-70 caractères)" /></div>
-            <div><label className="block text-xs font-medium text-gray-500 mb-1">Meta Description</label><textarea value={formData.metaDescription} onChange={(e) => updateField('metaDescription', e.target.value)} rows={3} className="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-xs resize-none" placeholder="Description SEO (150-160 caractères)" /></div>
-            <div><label className="block text-xs font-medium text-gray-500 mb-1">Mots-clés (séparés par des virgules)</label><input type="text" value={formData.metaKeywords} onChange={(e) => updateField('metaKeywords', e.target.value)} className="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-xs" placeholder="design, ui, ux, web..." /></div>
+          <div className="rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)] space-y-4">
+            <h3 className="font-heading font-semibold text-white text-sm">SEO</h3>
+            <div><label className="block text-xs font-light text-gray-400 mb-1.5">Meta Title</label><input type="text" value={formData.metaTitle} onChange={(e) => updateField('metaTitle', e.target.value)} className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-xs transition-all" placeholder="Titre SEO (60-70 caractères)" /></div>
+            <div><label className="block text-xs font-light text-gray-400 mb-1.5">Meta Description</label><textarea value={formData.metaDescription} onChange={(e) => updateField('metaDescription', e.target.value)} rows={3} className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-xs resize-none transition-all" placeholder="Description SEO (150-160 caractères)" /></div>
+            <div><label className="block text-xs font-light text-gray-400 mb-1.5">Mots-clés (séparés par des virgules)</label><input type="text" value={formData.metaKeywords} onChange={(e) => updateField('metaKeywords', e.target.value)} className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-xs transition-all" placeholder="design, ui, ux, web..." /></div>
           </div>
         </div>
       </div>

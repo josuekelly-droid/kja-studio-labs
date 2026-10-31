@@ -40,15 +40,15 @@ export function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-6">
       {error && (
-        <div className="bg-red-50 text-red-600 text-sm p-3 rounded-xl border border-red-100">
+        <div className="bg-red-500/10 text-red-400 text-sm p-4 rounded-2xl border border-red-500/20 backdrop-blur-md">
           {error}
         </div>
       )}
 
       <div>
-        <label htmlFor="email" className="block text-sm font-heading font-medium text-gray-700 mb-1.5">
+        <label htmlFor="email" className="block text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider mb-2">
           Email
         </label>
         <input
@@ -57,13 +57,13 @@ export function LoginForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none transition-all text-sm"
+          className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none transition-all text-sm"
           placeholder="admin@kja-studio-labs.com"
         />
       </div>
 
       <div>
-        <label htmlFor="password" className="block text-sm font-heading font-medium text-gray-700 mb-1.5">
+        <label htmlFor="password" className="block text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider mb-2">
           Mot de passe
         </label>
         <input
@@ -72,7 +72,7 @@ export function LoginForm() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none transition-all text-sm"
+          className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none transition-all text-sm"
           placeholder="••••••••"
         />
       </div>
@@ -80,9 +80,9 @@ export function LoginForm() {
       <button
         type="submit"
         disabled={loading}
-        className="w-full py-3 bg-violet text-white font-heading font-semibold rounded-xl hover:bg-violet-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full py-3.5 bg-white text-gray-950 font-heading font-bold rounded-2xl hover:bg-violet-100 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_25px_rgba(255,255,255,0.15)] hover:scale-[1.01]"
       >
-        {loading ? 'Connexion...' : 'Se connecter'}
+        {loading ? 'Connexion en cours...' : 'Se connecter'}
       </button>
     </form>
   );

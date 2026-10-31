@@ -4,7 +4,12 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export function BlogDeleteButton({ articleId }: { articleId: string; articleTitre: string }) {
+interface BlogDeleteButtonProps {
+  articleId: string;
+  articleTitre?: string;
+}
+
+export function BlogDeleteButton({ articleId }: BlogDeleteButtonProps) {
   const router = useRouter();
   const [confirming, setConfirming] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -16,17 +21,29 @@ export function BlogDeleteButton({ articleId }: { articleId: string; articleTitr
       if (res.ok) router.refresh();
     } catch (erreur) {
       console.error('Erreur suppression:', erreur);
+    } finally {
+      setLoading(false);
+      setConfirming(false);
     }
-    setLoading(false);
-    setConfirming(false);
   }
 
   if (confirming) {
     return (
-      <div className="flex items-center gap-1.5">
-        <span className="text-xs text-gray-400">Supprimer ?</span>
-        <button onClick={handleDelete} disabled={loading} className="text-xs font-medium text-white bg-red-500 px-2 py-0.5 rounded-md hover:bg-red-600 transition-all disabled:opacity-50">Oui</button>
-        <button onClick={() => setConfirming(false)} className="text-xs font-medium text-gray-400 hover:text-gray-600 transition-all">Non</button>
+      <div className="flex items-center gap-1.5 bg-white/5 p-1 rounded-xl border border-white/10 backdrop-blur-md">
+        <span className="text-xs text-gray-300 font-light px-2">Supprimer ?</span>
+        <button 
+          onClick={handleDelete} 
+          disabled={loading} 
+          className="px-3 py-1 text-xs font-heading font-semibold text-white bg-red-600/80 rounded-lg hover:bg-red-600 transition-all disabled:opacity-50"
+        >
+          {loading ? '...' : 'Oui'}
+        </button>
+        <button 
+          onClick={() => setConfirming(false)} 
+          className="px-2.5 py-1 text-xs font-heading font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-lg transition-all"
+        >
+          Non
+        </button>
       </div>
     );
   }
@@ -34,7 +51,7 @@ export function BlogDeleteButton({ articleId }: { articleId: string; articleTitr
   return (
     <button
       onClick={() => setConfirming(true)}
-      className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
+      className="p-2.5 text-red-400 hover:bg-red-500/10 border border-red-500/20 rounded-xl transition-all duration-300 disabled:opacity-50"
       title="Supprimer"
     >
       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -40,12 +40,12 @@ export function AvisActions({ avisId, estApprouve }: { avisId: string; estApprou
   }
 
   return (
-    <div className="flex items-center gap-1.5 shrink-0">
+    <div className="flex items-center gap-2 shrink-0">
       {!estApprouve ? (
         <button
           onClick={approuver}
           disabled={loading}
-          className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-all disabled:opacity-50"
+          className="p-2.5 text-emerald-400 hover:bg-emerald-500/10 border border-emerald-500/20 rounded-xl transition-all disabled:opacity-50"
           title="Approuver"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -56,7 +56,7 @@ export function AvisActions({ avisId, estApprouve }: { avisId: string; estApprou
         <button
           onClick={desapprouver}
           disabled={loading}
-          className="p-2 text-yellow-600 hover:bg-yellow-50 rounded-lg transition-all disabled:opacity-50"
+          className="p-2.5 text-amber-400 hover:bg-amber-500/10 border border-amber-500/20 rounded-xl transition-all disabled:opacity-50"
           title="Désapprouver"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -66,17 +66,17 @@ export function AvisActions({ avisId, estApprouve }: { avisId: string; estApprou
       )}
 
       {confirmDelete ? (
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1.5 bg-white/5 p-1 rounded-xl border border-white/10 backdrop-blur-md">
           <button
             onClick={supprimer}
             disabled={loading}
-            className="px-2 py-1 text-xs font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 transition-all disabled:opacity-50"
+            className="px-3 py-1.5 text-xs font-heading font-semibold text-white bg-red-600/80 rounded-lg hover:bg-red-600 transition-all disabled:opacity-50"
           >
             Confirmer
           </button>
           <button
             onClick={() => setConfirmDelete(false)}
-            className="px-2 py-1 text-xs font-medium text-gray-500 hover:bg-gray-100 rounded-lg transition-all"
+            className="px-3 py-1.5 text-xs font-heading font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-lg transition-all"
           >
             Annuler
           </button>
@@ -85,7 +85,7 @@ export function AvisActions({ avisId, estApprouve }: { avisId: string; estApprou
         <button
           onClick={() => setConfirmDelete(true)}
           disabled={loading}
-          className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-all disabled:opacity-50"
+          className="p-2.5 text-red-400 hover:bg-red-500/10 border border-red-500/20 rounded-xl transition-all disabled:opacity-50"
           title="Supprimer"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

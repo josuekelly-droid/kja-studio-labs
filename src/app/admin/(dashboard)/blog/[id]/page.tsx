@@ -16,14 +16,22 @@ export default async function ModifierArticlePage({ params }: { params: Promise<
   if (!article) notFound();
 
   return (
-    <div>
-      <nav className="flex items-center gap-2 text-xs text-gray-400 mb-4">
-        <Link href="/admin/blog" className="hover:text-violet transition-colors">Blog</Link>
+    <div className="space-y-6">
+      <nav className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-violet-200/80 backdrop-blur-md">
+        <Link href="/admin/blog" className="hover:text-white transition-colors">Blog</Link>
         <span>/</span>
-        <span className="text-gray-600 font-medium truncate max-w-[200px]">{article.titre || 'Modifier'}</span>
+        <span className="text-white font-medium truncate max-w-[200px]">{article.titre || 'Modifier'}</span>
       </nav>
-      <h1 className="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-6">Modifier l&apos;article</h1>
-      <BlogForm article={JSON.parse(JSON.stringify(article))} />
+
+      <div>
+        <h1 className="text-xl sm:text-2xl font-heading font-bold text-white tracking-tight">
+          Modifier l&apos;article
+        </h1>
+      </div>
+
+      <div className="rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 p-6 sm:p-8 lg:p-10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+        <BlogForm article={JSON.parse(JSON.stringify(article))} />
+      </div>
     </div>
   );
 }
