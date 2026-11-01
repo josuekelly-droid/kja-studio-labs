@@ -54,7 +54,7 @@ const expertise = [
 
 export default function AProposPage() {
   return (
-    <>
+    <div className="bg-[#05020a] text-white selection:bg-violet-600 selection:text-white min-h-screen">
       <JsonLd
         data={{
           '@context': 'https://schema.org',
@@ -77,51 +77,54 @@ export default function AProposPage() {
       />
 
       {/* Hero Section */}
-      <section className="pt-32 sm:pt-36 lg:pt-44 pb-16 sm:pb-20 lg:pb-24 bg-[#05020a] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-30 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[140px]" />
-          <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-indigo-600/15 rounded-full blur-[120px]" />
-        </div>
+      <section className="relative pt-36 sm:pt-40 lg:pt-48 pb-20 sm:pb-24 lg:pb-28 px-4 sm:px-6 lg:px-12 overflow-hidden border-b border-white/10">
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-full max-w-5xl h-96 bg-gradient-to-b from-violet-600/15 via-purple-600/5 to-transparent blur-3xl rounded-full pointer-events-none" aria-hidden="true" />
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <nav className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-violet-200/80 mb-8 backdrop-blur-md">
+        <div className="max-w-4xl mx-auto relative z-10 text-center space-y-6">
+          <nav className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.03] border border-white/15 text-xs text-violet-300 backdrop-blur-md" aria-label="Fil d'ariane">
             <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
-            <span>/</span>
+            <span className="text-gray-600">/</span>
             <span className="text-white font-medium">À propos</span>
           </nav>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-bold text-white tracking-tight mb-6">
-            À propos de <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-300">KJA Studio Labs</span>
-          </h1>
-          <p className="text-base sm:text-xl text-gray-400 font-light max-w-2xl mx-auto leading-relaxed">
+          <div className="space-y-3">
+            <span className="text-[10px] uppercase tracking-widest font-mono text-violet-400 font-semibold block">
+              // 01. STUDIO IDENTITY & VISION
+            </span>
+            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-heading font-black text-white tracking-tight">
+              À propos de <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-300 via-purple-200 to-white">KJA Studio Labs</span>
+            </h1>
+          </div>
+
+          <p className="text-base sm:text-lg text-gray-400 font-light max-w-2xl mx-auto leading-relaxed">
             Studio créatif d&apos;ingénierie web. Nous concevons des solutions digitales d&apos;exception sur mesure pour les entreprises et entrepreneurs à travers le monde francophone.
           </p>
         </div>
       </section>
 
       {/* Histoire & Stats Section */}
-      <section className="py-20 sm:py-24 lg:py-32 bg-[#05020a] relative border-t border-white/10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-12 relative">
+        <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div>
-              <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/30 text-violet-300 font-heading font-medium text-xs rounded-full mb-6 backdrop-blur-md">
-                Notre histoire
+            <div className="space-y-6">
+              <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/20 text-violet-300 font-mono font-semibold text-[10px] rounded-full uppercase tracking-widest">
+                // OUR STORY
               </span>
-              <h2 className="text-2xl sm:text-4xl font-heading font-bold text-white tracking-tight mb-6">
+              <h2 className="text-2xl sm:text-4xl font-heading font-black text-white tracking-tight">
                 De la passion à l&apos;expertise d&apos;élite
               </h2>
-              <div className="space-y-4 text-gray-400 font-light leading-relaxed text-sm sm:text-base">
+              <div className="space-y-4 text-gray-300 font-light leading-relaxed text-sm sm:text-base">
                 <p>
-                  Fondé par <strong className="text-white font-medium">Kelly Josué AKPLOGAN</strong>, KJA Studio Labs est né d&apos;une passion profonde pour le design d&apos;interfaces et l&apos;architecture logicielle moderne.
+                  Fondé par <strong className="text-white font-semibold">Kelly Josué AKPLOGAN</strong>, KJA Studio Labs est né d&apos;une passion profonde pour le design d&apos;interfaces et l&apos;architecture logicielle moderne.
                 </p>
                 <p>
                   L&apos;objectif est clair : proposer un service premium qui couvre l&apos;intégralité du cycle de vie d&apos;un projet digital, de la première esquisse au déploiement en production, en passant par l&apos;automatisation et la synchronisation des données.
                 </p>
                 <p>
-                  Aujourd&apos;hui, KJA Studio Labs accompagne des <strong className="text-white font-medium">startups, PME et entrepreneurs visionnaires</strong> <br /> dans la création de leurs plateformes web, avec un souci constant de la performance, du référencement et de l&apos;ergonomie.
+                  Aujourd&apos;hui, KJA Studio Labs accompagne des <strong className="text-white font-semibold">startups, PME et entrepreneurs visionnaires</strong> dans la création de leurs plateformes web, avec un souci constant de la performance, du référencement et de l&apos;ergonomie.
                 </p>
                 <p>
-                  Notre mission : rendre le digital sur-mesure et ultra-performant pour tous les acteurs ambitieux en <strong className="text-white font-medium">France, Belgique, Suisse, Canada, Luxembourg et en Afrique</strong>.
+                  Notre mission : rendre le digital sur-mesure et ultra-performant pour tous les acteurs ambitieux en <strong className="text-white font-semibold">France, Belgique, Suisse, Canada, Luxembourg et en Afrique</strong>.
                 </p>
               </div>
             </div>
@@ -135,9 +138,9 @@ export default function AProposPage() {
               ].map((stat) => (
                 <div 
                   key={stat.label} 
-                  className="p-6 rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:border-violet-500/40 transition-all duration-300 flex items-center gap-6"
+                  className="p-6 sm:p-7 rounded-3xl bg-[#0c0616]/85 backdrop-blur-2xl border border-white/10 hover:border-violet-500/40 shadow-[0_10px_40px_rgba(0,0,0,0.5)] transition-all duration-300 flex items-center gap-6"
                 >
-                  <span className="text-3xl sm:text-4xl font-heading font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-300 shrink-0 w-20 text-center">
+                  <span className="text-3xl sm:text-4xl font-mono font-black text-violet-400 shrink-0 w-24 text-center">
                     {stat.chiffre}
                   </span>
                   <p className="text-sm sm:text-base text-gray-300 font-light">{stat.label}</p>
@@ -149,13 +152,13 @@ export default function AProposPage() {
       </section>
 
       {/* Valeurs Section */}
-      <section className="py-20 sm:py-24 lg:py-32 bg-[#05020a] relative border-t border-white/10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/30 text-violet-300 font-heading font-medium text-xs rounded-full mb-4 backdrop-blur-md">
-              Nos valeurs
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-12 relative border-t border-white/10">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/20 text-violet-300 font-mono font-semibold text-[10px] rounded-full uppercase tracking-widest">
+              // CORE VALUES
             </span>
-            <h2 className="text-2xl sm:text-4xl font-heading font-bold text-white tracking-tight mb-4">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-heading font-black text-white tracking-tight">
               Les principes qui guident nos réalisations
             </h2>
             <p className="text-base sm:text-lg text-gray-400 font-light max-w-xl mx-auto leading-relaxed">
@@ -163,21 +166,23 @@ export default function AProposPage() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid sm:grid-cols-2 gap-8">
             {valeurs.map((valeur, index) => (
               <div 
                 key={valeur.titre} 
-                className="p-8 rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:border-violet-500/50 transition-all duration-500 group"
+                className="p-8 sm:p-10 rounded-3xl bg-[#0c0616]/85 backdrop-blur-2xl border border-white/10 hover:border-violet-500/40 shadow-[0_10px_40px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_60px_rgba(139,92,246,0.2)] transition-all duration-500 group flex flex-col justify-between"
               >
-                <span className="text-4xl font-heading font-bold text-violet-500/30 group-hover:text-violet-400 transition-colors duration-300">
-                  0{index + 1}
-                </span>
-                <h3 className="font-heading font-bold text-xl text-white mt-4 mb-3 tracking-tight">
-                  {valeur.titre}
-                </h3>
-                <p className="text-sm sm:text-base text-gray-400 font-light leading-relaxed">
-                  {valeur.description}
-                </p>
+                <div>
+                  <span className="text-4xl font-mono font-black text-violet-400/80 group-hover:text-violet-300 transition-colors duration-300">
+                    0{index + 1}
+                  </span>
+                  <h3 className="font-heading font-bold text-xl sm:text-2xl text-white mt-4 mb-3 tracking-tight group-hover:text-violet-300 transition-colors">
+                    {valeur.titre}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-400 font-light leading-relaxed">
+                    {valeur.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
@@ -185,13 +190,13 @@ export default function AProposPage() {
       </section>
 
       {/* Expertises Détaillées Section */}
-      <section className="py-20 sm:py-24 lg:py-32 bg-[#05020a] relative border-t border-white/10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/30 text-violet-300 font-heading font-medium text-xs rounded-full mb-4 backdrop-blur-md">
-              Nos expertises
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-12 relative border-t border-white/10">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/20 text-violet-300 font-mono font-semibold text-[10px] rounded-full uppercase tracking-widest">
+              // CAPABILITIES
             </span>
-            <h2 className="text-2xl sm:text-4xl font-heading font-bold text-white tracking-tight mb-4">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-heading font-black text-white tracking-tight">
               Trois domaines d&apos;excellence
             </h2>
             <p className="text-base sm:text-lg text-gray-400 font-light max-w-xl mx-auto leading-relaxed">
@@ -203,30 +208,28 @@ export default function AProposPage() {
             {expertise.map((exp, index) => (
               <div 
                 key={exp.titre} 
-                className="p-8 sm:p-10 rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:border-violet-500/30 transition-all duration-500"
+                className="p-8 sm:p-12 rounded-3xl bg-[#0c0616]/85 backdrop-blur-2xl border border-white/10 hover:border-violet-500/40 shadow-[0_10px_40px_rgba(0,0,0,0.5)] transition-all duration-500"
               >
-                <div className="grid lg:grid-cols-3 gap-6 lg:gap-10 items-start">
-                  <div>
-                    <span className="text-xs font-heading font-bold text-violet-400 uppercase tracking-wider">
-                      Expertise 0{index + 1}
+                <div className="grid lg:grid-cols-3 gap-6 lg:gap-12 items-center">
+                  <div className="space-y-2">
+                    <span className="text-xs font-mono font-semibold text-violet-400 uppercase tracking-widest block">
+                      // EXPERTISE 0{index + 1}
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-heading font-bold text-white mt-2 mb-2 tracking-tight">
+                    <h3 className="text-2xl sm:text-3xl font-heading font-bold text-white tracking-tight">
                       {exp.titre}
                     </h3>
                   </div>
-                  <div className="lg:col-span-2">
-                    <p className="text-gray-400 font-light leading-relaxed mb-6 text-sm sm:text-base">
+                  <div className="lg:col-span-2 space-y-6">
+                    <p className="text-gray-300 font-light leading-relaxed text-sm sm:text-base">
                       {exp.description}
                     </p>
-                    <div className="flex flex-wrap gap-2.5">
+                    <div className="flex flex-wrap gap-3">
                       {exp.points.map((point) => (
                         <span 
                           key={point} 
-                          className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/30 text-violet-300 text-xs font-medium rounded-full backdrop-blur-md"
+                          className="inline-flex items-center gap-2 px-4 py-2 bg-white/[0.03] border border-white/10 text-violet-300 text-xs font-mono rounded-xl backdrop-blur-md"
                         >
-                          <svg className="w-3.5 h-3.5 text-violet-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                          </svg>
+                          <span className="w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0 shadow-[0_0_8px_rgba(167,139,250,0.8)]" />
                           {point}
                         </span>
                       ))}
@@ -240,26 +243,28 @@ export default function AProposPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 sm:py-28 lg:py-36 bg-[#05020a] relative overflow-hidden border-t border-white/10">
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-12 relative overflow-hidden border-t border-white/10">
         <div className="absolute inset-0 opacity-25 pointer-events-none" aria-hidden="true">
           <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-violet-600/25 rounded-full blur-[160px] -translate-x-1/2 -translate-y-1/2" />
         </div>
 
-        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-heading font-bold text-white tracking-tight mb-6">
+        <div className="relative z-10 max-w-3xl mx-auto text-center space-y-6">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-heading font-black text-white tracking-tight">
             Prêt à donner vie à votre projet ?
           </h2>
-          <p className="text-base sm:text-xl text-gray-400 font-light mb-10 max-w-xl mx-auto leading-relaxed">
+          <p className="text-gray-400 font-light text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
             Discutons ensemble de vos objectifs et construisons la solution sur-mesure qui fera la différence.
           </p>
-          <Link 
-            href="/contact" 
-            className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-950 font-heading font-bold text-sm sm:text-base rounded-full hover:bg-violet-100 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-105"
-          >
-            Démarrer un projet
-          </Link>
+          <div className="pt-2">
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-950 text-xs font-heading font-bold uppercase tracking-wider rounded-2xl hover:bg-violet-100 transition-all duration-300 shadow-[0_0_25px_rgba(255,255,255,0.2)] hover:scale-105"
+            >
+              Démarrer un projet
+            </Link>
+          </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

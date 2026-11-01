@@ -125,11 +125,11 @@ export default async function OffrePage({ params }: Props) {
               {contratsLabels[offre.typeContrat] || offre.typeContrat}
             </span>
             <span className="px-3.5 py-1.5 bg-white/5 border border-white/10 text-gray-300 rounded-full font-light">
-              📍 {offre.localisation}
+               {offre.localisation}
             </span>
             {offre.salaire && (
               <span className="px-3.5 py-1.5 bg-white/5 border border-white/10 text-emerald-400 rounded-full font-medium">
-                💰 {offre.salaire}
+                 {offre.salaire}
               </span>
             )}
           </div>
