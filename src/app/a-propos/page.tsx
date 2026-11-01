@@ -121,7 +121,7 @@ export default function AProposPage() {
                   L&apos;objectif est clair : proposer un service premium qui couvre l&apos;intégralité du cycle de vie d&apos;un projet digital, de la première esquisse au déploiement en production, en passant par l&apos;automatisation et la synchronisation des données.
                 </p>
                 <p>
-                  Aujourd&apos;hui, KJA Studio Labs accompagne des <strong className="text-white font-semibold">startups, PME et entrepreneurs visionnaires</strong> dans la création de leurs plateformes web, avec un souci constant de la performance, du référencement et de l&apos;ergonomie.
+                  Aujourd&apos;hui, KJA Studio Labs accompagne des <strong className="text-white font-semibold">startups, PME et entrepreneurs visionnaires</strong> <br /> dans la création de leurs plateformes web, avec un souci constant de la performance, du référencement et de l&apos;ergonomie.
                 </p>
                 <p>
                   Notre mission : rendre le digital sur-mesure et ultra-performant pour tous les acteurs ambitieux en <strong className="text-white font-semibold">France, Belgique, Suisse, Canada, Luxembourg et en Afrique</strong>.
