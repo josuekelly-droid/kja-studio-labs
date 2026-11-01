@@ -40,15 +40,19 @@ export default async function OffrePage({ params }: Props) {
     .map((p: string) => `<p>${p.replace(/\n/g, '<br />')}</p>`)
     .join('');
 
+  const expirationDate = offre.dateExpiration 
+    ? offre.dateExpiration.toISOString() 
+    : new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
+
   return (
-    <>
+    <div className="bg-[#05020a] text-white selection:bg-violet-600 selection:text-white min-h-screen">
       <JsonLd data={{
         '@context': 'https://schema.org',
         '@type': 'JobPosting',
         title: offre.titre,
         description: offre.description.slice(0, 300),
         datePosted: offre.createdAt.toISOString(),
-        validThrough: offre.dateExpiration?.toISOString() || new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+        validThrough: expirationDate,
         employmentType: offre.typeContrat,
         directApply: true,
         industry: 'Technologie, Design, Développement Web',
@@ -94,35 +98,38 @@ export default async function OffrePage({ params }: Props) {
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: siteConfig.url }, { '@type': 'ListItem', position: 2, name: 'Carrières', item: `${siteConfig.url}/carrieres` }, { '@type': 'ListItem', position: 3, name: offre.titre, item: `${siteConfig.url}/carrieres/${offre.slug}` }] }} />
 
       {/* Hero Section */}
-      <section className="pt-32 sm:pt-36 lg:pt-44 pb-16 sm:pb-20 lg:pb-24 bg-[#05020a] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-30 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[140px]" />
-          <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-indigo-600/15 rounded-full blur-[120px]" />
-        </div>
+      <section className="relative pt-36 sm:pt-40 lg:pt-48 pb-20 sm:pb-24 lg:pb-28 px-4 sm:px-6 lg:px-12 overflow-hidden border-b border-white/10">
+        {/* Halo lumineux d'arrière-plan haute précision */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-full max-w-5xl h-96 bg-gradient-to-b from-violet-600/15 via-purple-600/5 to-transparent blur-3xl rounded-full pointer-events-none" />
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <nav className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-violet-200/80 mb-8 backdrop-blur-md">
+        <div className="max-w-4xl mx-auto relative z-10 text-center space-y-6">
+          <nav className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 px-3.5 py-1 rounded-full bg-white/[0.03] border border-white/15 text-xs text-violet-300 backdrop-blur-md">
             <Link href="/" className="hover:text-white transition-colors shrink-0">Accueil</Link>
-            <span className="shrink-0">/</span>
+            <span className="text-gray-600 shrink-0">/</span>
             <Link href="/carrieres" className="hover:text-white transition-colors shrink-0">Carrières</Link>
-            <span className="shrink-0">/</span>
+            <span className="text-gray-600 shrink-0">/</span>
             <span className="text-white font-medium break-words">{offre.titre}</span>
           </nav>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-bold text-white tracking-tight mb-6 break-words">
-            {offre.titre}
-          </h1>
+          <div className="space-y-3">
+            <span className="text-[10px] uppercase tracking-widest font-mono text-violet-400 font-semibold block">
+              // CAREER OPPORTUNITY
+            </span>
+            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-heading font-black text-white tracking-tight break-words">
+              {offre.titre}
+            </h1>
+          </div>
           
-          <div className="flex flex-wrap justify-center gap-3 text-xs sm:text-sm text-gray-300">
-            <span className="px-3.5 py-1.5 bg-violet-600/25 text-violet-300 border border-violet-500/40 rounded-full uppercase tracking-wider font-semibold">
-              {contratsLabels[offre.typeContrat]}
+          <div className="flex flex-wrap justify-center gap-3 pt-2 font-mono text-xs">
+            <span className="px-3.5 py-1.5 bg-violet-500/10 text-violet-300 border border-violet-500/20 rounded-full font-semibold uppercase tracking-widest">
+              {contratsLabels[offre.typeContrat] || offre.typeContrat}
             </span>
             <span className="px-3.5 py-1.5 bg-white/5 border border-white/10 text-gray-300 rounded-full font-light">
-              {offre.localisation}
+              📍 {offre.localisation}
             </span>
             {offre.salaire && (
-              <span className="px-3.5 py-1.5 bg-white/5 border border-white/10 text-gray-300 rounded-full font-light">
-                {offre.salaire}
+              <span className="px-3.5 py-1.5 bg-white/5 border border-white/10 text-emerald-400 rounded-full font-medium">
+                💰 {offre.salaire}
               </span>
             )}
           </div>
@@ -130,22 +137,25 @@ export default async function OffrePage({ params }: Props) {
       </section>
 
       {/* Main Content Section */}
-      <section className="py-20 sm:py-24 lg:py-32 bg-[#05020a] relative border-t border-white/10">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-invert max-w-none bg-[#0c0616]/70 backdrop-blur-2xl rounded-3xl border border-white/10 p-8 sm:p-12 shadow-[0_8px_32px_rgba(0,0,0,0.4)] text-gray-300 font-light leading-relaxed">
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-12 relative">
+        <div className="max-w-3xl mx-auto space-y-12">
+          {/* Description HTML */}
+          <div className="prose prose-invert max-w-none rounded-3xl bg-[#0c0616]/85 backdrop-blur-2xl border border-white/10 p-8 sm:p-12 lg:p-16 shadow-[0_10px_40px_rgba(0,0,0,0.5)] text-gray-300 font-light leading-relaxed">
             <div dangerouslySetInnerHTML={{ __html: descriptionHTML }} />
           </div>
 
+          {/* Compétences recherchées */}
           {offre.competences.length > 0 && (
-            <div className="mt-12 p-8 rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
-              <h3 className="font-heading font-bold text-lg sm:text-xl text-white mb-6 tracking-tight">
-                Compétences recherchées
+            <div className="p-8 sm:p-10 rounded-3xl bg-[#0c0616]/80 backdrop-blur-2xl border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+              <h3 className="font-heading font-black text-xl text-white mb-6 tracking-tight flex items-center gap-2">
+                <span className="text-violet-400 font-mono text-xs">// 01.</span>
+                <span>Compétences recherchées</span>
               </h3>
               <div className="flex flex-wrap gap-2.5">
                 {offre.competences.map((comp) => (
                   <span 
                     key={comp} 
-                    className="px-4 py-2 bg-violet-500/10 border border-violet-500/30 text-violet-300 text-xs font-medium rounded-full backdrop-blur-md"
+                    className="px-4 py-2 bg-violet-500/10 border border-violet-500/20 text-violet-300 text-xs font-mono font-medium rounded-full backdrop-blur-xl"
                   >
                     {comp}
                   </span>
@@ -154,22 +164,25 @@ export default async function OffrePage({ params }: Props) {
             </div>
           )}
 
-          <div className="mt-12 p-8 sm:p-12 rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-violet-500/30 shadow-[0_8px_32px_rgba(0,0,0,0.4)] text-center">
-            <h3 className="font-heading font-bold text-xl sm:text-2xl text-white mb-3 tracking-tight">
+          {/* Call to action de candidature */}
+          <div className="p-8 sm:p-12 rounded-3xl bg-[#0c0616]/90 backdrop-blur-2xl border border-violet-500/40 shadow-[0_10px_50px_rgba(139,92,246,0.2)] text-center space-y-6">
+            <h3 className="font-heading font-black text-2xl sm:text-3xl text-white tracking-tight">
               Cette offre vous intéresse ?
             </h3>
-            <p className="text-gray-400 font-light text-sm sm:text-base mb-8 max-w-md mx-auto leading-relaxed">
-              Envoyez votre dossier de candidature directement à notre équipe à l&apos;adresse ci-dessous.
+            <p className="text-gray-400 font-light text-sm sm:text-base max-w-md mx-auto leading-relaxed">
+              Envoyez votre dossier de candidature (CV, portfolio ou réalisations marquantes) directement à notre équipe.
             </p>
-            <a 
-              href={`mailto:${offre.emailContact}?subject=Candidature - ${encodeURIComponent(offre.titre)}`} 
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-950 font-heading font-bold text-sm sm:text-base rounded-full hover:bg-violet-100 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-105"
-            >
-              Postuler : {offre.emailContact}
-            </a>
+            <div className="pt-2">
+              <a 
+                href={`mailto:${offre.emailContact}?subject=Candidature - ${encodeURIComponent(offre.titre)}`} 
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-950 font-heading font-bold text-xs uppercase tracking-wider rounded-2xl hover:bg-violet-100 transition-all duration-300 shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:scale-105"
+              >
+                Postuler par Email ({offre.emailContact})
+              </a>
+            </div>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

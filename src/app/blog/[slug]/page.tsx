@@ -5,7 +5,6 @@ import { prisma } from '@/lib/prisma';
 import { siteConfig } from '@/config/site';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { notFound } from 'next/navigation';
-import { marked } from 'marked';
 
 export const dynamic = 'force-dynamic';
 
@@ -61,7 +60,7 @@ export default async function ArticlePage({ params }: Props) {
     .join('');
 
   return (
-    <>
+    <div className="bg-[#05020a] text-white selection:bg-violet-600 selection:text-white min-h-screen">
       <JsonLd
         data={{
           '@context': 'https://schema.org',
@@ -89,59 +88,59 @@ export default async function ArticlePage({ params }: Props) {
       />
 
       {/* Hero Section */}
-      <section className="pt-32 sm:pt-36 lg:pt-44 pb-16 sm:pb-20 lg:pb-24 bg-[#05020a] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-30 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[140px]" />
-          <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-indigo-600/15 rounded-full blur-[120px]" />
-        </div>
+      <section className="relative pt-36 sm:pt-40 lg:pt-48 pb-20 sm:pb-24 lg:pb-28 px-4 sm:px-6 lg:px-12 overflow-hidden border-b border-white/10">
+        {/* Halo lumineux d'arrière-plan haute précision */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-full max-w-5xl h-96 bg-gradient-to-b from-violet-600/15 via-purple-600/5 to-transparent blur-3xl rounded-full pointer-events-none" />
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <nav className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-violet-200/80 mb-8 backdrop-blur-md">
+        <div className="max-w-4xl mx-auto relative z-10 text-center space-y-6">
+          <nav className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 px-3.5 py-1 rounded-full bg-white/[0.03] border border-white/15 text-xs text-violet-300 backdrop-blur-md">
             <Link href="/" className="hover:text-white transition-colors shrink-0">Accueil</Link>
-            <span className="shrink-0">/</span>
+            <span className="text-gray-600 shrink-0">/</span>
             <Link href="/blog" className="hover:text-white transition-colors shrink-0">Blog</Link>
-            <span className="shrink-0">/</span>
+            <span className="text-gray-600 shrink-0">/</span>
             <span className="text-white font-medium break-words text-center">{article.titre}</span>
           </nav>
           
-          <span className="inline-block px-3.5 py-1.5 bg-violet-600/25 text-violet-300 border border-violet-500/40 font-heading font-medium text-xs rounded-full mb-6 backdrop-blur-md uppercase tracking-wider">
-            {categoriesLabels[article.categorie] || article.categorie}
-          </span>
+          <div>
+            <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/20 text-violet-300 font-mono font-semibold text-[10px] rounded-full uppercase tracking-widest mb-4">
+              {categoriesLabels[article.categorie] || article.categorie}
+            </span>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-bold text-white tracking-tight mb-6 break-words">
-            {article.titre}
-          </h1>
+            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-heading font-black text-white tracking-tight mb-6 break-words">
+              {article.titre}
+            </h1>
+          </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm text-gray-400 font-light">
-            <span className="text-white font-medium">{article.author.name || siteConfig.name}</span>
-            <span>•</span>
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-mono text-gray-400">
+            <span className="text-white font-semibold">{article.author.name || siteConfig.name}</span>
+            <span className="text-gray-600">•</span>
             <span>{new Date(article.createdAt).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-            <span>•</span>
-            <span>{article.tempsLecture} min de lecture</span>
+            <span className="text-gray-600">•</span>
+            <span className="text-violet-300">{article.tempsLecture} min de lecture</span>
           </div>
         </div>
       </section>
 
       {/* Content Section */}
-      <section className="py-20 sm:py-24 lg:py-32 bg-[#05020a] relative border-t border-white/10">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-12 relative">
+        <div className="max-w-3xl mx-auto space-y-12">
           {article.imagePrincipale && (
-            <div className="rounded-3xl overflow-hidden mb-12 shadow-[0_20px_60px_rgba(0,0,0,0.6)] border border-white/10 bg-white/5">
+            <div className="rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] border border-white/10 bg-[#0c0616]/80 backdrop-blur-2xl">
               <img src={article.imagePrincipale} alt={article.titre} className="w-full h-auto object-cover" />
             </div>
           )}
 
-          <div className="prose prose-invert max-w-none bg-[#0c0616]/70 backdrop-blur-2xl rounded-3xl border border-white/10 p-8 sm:p-12 shadow-[0_8px_32px_rgba(0,0,0,0.4)] text-gray-300 font-light leading-relaxed">
+          <div className="prose prose-invert max-w-none rounded-3xl bg-[#0c0616]/85 backdrop-blur-2xl border border-white/10 p-8 sm:p-12 lg:p-16 shadow-[0_10px_40px_rgba(0,0,0,0.5)] text-gray-300 font-light leading-relaxed">
             <div dangerouslySetInnerHTML={{ __html: contenuHTML }} />
           </div>
 
           {article.tags.length > 0 && (
-            <div className="mt-12 p-6 rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 flex flex-wrap gap-2.5 items-center">
-              <span className="text-xs text-gray-400 font-light mr-2">Tags :</span>
+            <div className="p-8 rounded-3xl bg-[#0c0616]/80 backdrop-blur-2xl border border-white/10 flex flex-wrap gap-2.5 items-center shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+              <span className="text-xs font-mono text-gray-400 uppercase tracking-wider mr-2">// Tags :</span>
               {article.tags.map((tag) => (
                 <span 
                   key={tag} 
-                  className="px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/30 text-violet-300 text-xs font-medium rounded-full backdrop-blur-md"
+                  className="px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/20 text-violet-300 text-xs font-mono font-medium rounded-full backdrop-blur-xl"
                 >
                   #{tag}
                 </span>
@@ -150,6 +149,6 @@ export default async function ArticlePage({ params }: Props) {
           )}
         </div>
       </section>
-    </>
+    </div>
   );
 }

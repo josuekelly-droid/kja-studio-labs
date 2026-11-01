@@ -31,69 +31,88 @@ export default async function PortfolioPage() {
   });
 
   return (
-    <>
+    <div className="bg-[#05020a] text-white selection:bg-violet-600 selection:text-white min-h-screen">
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Portfolio KJA Studio Labs', url: `${siteConfig.url}/portfolio` }} />
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: siteConfig.url }, { '@type': 'ListItem', position: 2, name: 'Portfolio', item: `${siteConfig.url}/portfolio` }] }} />
 
       {/* Hero Section */}
-      <section className="pt-32 sm:pt-36 lg:pt-44 pb-20 sm:pb-24 lg:pb-28 bg-[#05020a] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-30 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[140px]" />
-          <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-indigo-600/15 rounded-full blur-[120px]" />
-        </div>
-        
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <nav className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-violet-200/80 mb-8 backdrop-blur-md">
+      <section className="relative pt-36 sm:pt-40 lg:pt-48 pb-20 sm:pb-24 lg:pb-28 px-4 sm:px-6 lg:px-12 overflow-hidden border-b border-white/10">
+        {/* Halo lumineux d'arrière-plan haute précision */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-full max-w-5xl h-96 bg-gradient-to-b from-violet-600/15 via-purple-600/5 to-transparent blur-3xl rounded-full pointer-events-none" />
+
+        <div className="max-w-4xl mx-auto relative z-10 text-center space-y-6">
+          <nav className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.03] border border-white/15 text-xs text-violet-300 backdrop-blur-md">
             <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
-            <span>/</span>
+            <span className="text-gray-600">/</span>
             <span className="text-white font-medium">Portfolio</span>
           </nav>
-          
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-bold text-white tracking-tight mb-6">
-            Notre <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-300">Portfolio</span>
-          </h1>
-          <p className="text-base sm:text-xl text-gray-400 font-light max-w-xl mx-auto leading-relaxed">
-            Découvrez nos projets et études de cas conçus avec exigence et créativité.
+
+          <div className="space-y-3">
+            <span className="text-[10px] uppercase tracking-widest font-mono text-violet-400 font-semibold block">
+              // 01. SHOWCASE & CASE STUDIES
+            </span>
+            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-heading font-black text-white tracking-tight">
+              Notre <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-300 via-purple-200 to-white">Portfolio</span>
+            </h1>
+          </div>
+
+          <p className="text-base sm:text-lg text-gray-400 font-light max-w-xl mx-auto leading-relaxed">
+            Découvrez nos projets d&apos;exception et études de cas conçus avec rigueur technique et direction artistique d&apos;élite.
           </p>
         </div>
       </section>
 
       {/* Portfolio Grid Section */}
-      <section className="py-20 sm:py-24 lg:py-32 bg-[#05020a] relative border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-12 relative">
+        <div className="max-w-7xl mx-auto">
           {projets.length === 0 ? (
-            <div className="text-center py-20">
-              <p className="text-gray-400 text-lg font-light">Aucun projet pour le moment.</p>
+            <div className="rounded-3xl bg-[#0c0616]/80 backdrop-blur-2xl border border-white/10 p-16 text-center shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+              <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-4 text-gray-400">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+              </div>
+              <p className="text-gray-200 text-sm font-medium">Aucun projet répertorié pour le moment.</p>
+              <p className="text-xs text-gray-500 font-light mt-1">Nos dernières réalisations apparaîtront ici prochainement.</p>
             </div>
           ) : (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {projets.map((projet) => (
                 <Link 
                   key={projet.id} 
                   href={`/portfolio/${projet.slug}`} 
-                  className="rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 hover:border-violet-500/50 shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_60px_rgba(139,92,246,0.15)] transition-all duration-500 overflow-hidden group block flex flex-col justify-between"
+                  className="rounded-3xl bg-[#0c0616]/80 backdrop-blur-2xl border border-white/10 hover:border-violet-500/40 shadow-[0_10px_40px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_60px_rgba(139,92,246,0.2)] transition-all duration-500 overflow-hidden group flex flex-col justify-between"
                 >
-                  <div className="aspect-video bg-white/5 flex items-center justify-center overflow-hidden relative">
+                  <div className="aspect-[16/11] bg-black/40 overflow-hidden relative">
                     {projet.imagePrincipale ? (
                       <img 
                         src={projet.imagePrincipale} 
                         alt={projet.titre} 
+                        loading="lazy"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
                       />
                     ) : (
-                      <span className="text-4xl text-gray-600">🖼️</span>
+                      <div className="w-full h-full bg-violet-950/20 flex items-center justify-center text-violet-400">
+                        <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                      </div>
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0c0616]/80 via-transparent to-transparent opacity-60" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                      <span className="text-white text-xs font-mono tracking-widest uppercase flex items-center gap-2">
+                        Découvrir l&apos;étude de cas →
+                      </span>
+                    </div>
                   </div>
                   
-                  <div className="p-6 sm:p-7">
-                    <span className="inline-block px-3 py-1 rounded-full bg-violet-600/25 text-violet-300 border border-violet-500/40 text-[10px] font-heading font-semibold uppercase tracking-wider mb-3">
+                  <div className="p-8">
+                    <span className="inline-block px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-300 text-[10px] font-mono font-semibold uppercase tracking-widest mb-3">
                       {categoriesLabels[projet.categorie] || projet.categorie}
                     </span>
-                    <h3 className="font-heading font-bold text-lg sm:text-xl text-white group-hover:text-violet-300 transition-colors line-clamp-1">
+                    <h3 className="font-heading font-bold text-xl text-white group-hover:text-violet-300 transition-colors line-clamp-1 mb-2">
                       {projet.titre}
                     </h3>
-                    <p className="text-sm text-gray-400 font-light mt-2 line-clamp-2 leading-relaxed">
+                    <p className="text-sm text-gray-400 font-light line-clamp-2 leading-relaxed">
                       {projet.descriptionCourte}
                     </p>
                   </div>
@@ -103,6 +122,6 @@ export default async function PortfolioPage() {
           )}
         </div>
       </section>
-    </>
+    </div>
   );
 }
