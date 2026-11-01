@@ -69,28 +69,31 @@ export default async function HomePage() {
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: siteConfig.url }] }} />
 
       {/* ============ HERO SECTION (IMMERSIVE & EDITORIAL) ============ */}
-      <section className="relative min-h-[100svh] flex flex-col justify-between pt-32 pb-16 px-4 sm:px-6 lg:px-12 border-b border-white/10">
-        {/* Ambient glow backgrounds */}
+      <section className="relative min-h-[100svh] flex flex-col justify-between pt-32 pb-16 px-4 sm:px-6 lg:px-12 border-b border-white/10 overflow-hidden">
+        {/* Halos lumineux d'arrière-plan haute précision */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-[350px] sm:h-[500px] bg-gradient-to-tr from-violet-600/20 via-purple-600/10 to-indigo-500/0 rounded-full blur-[140px] animate-pulse" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-[350px] sm:h-[500px] bg-gradient-to-tr from-violet-600/20 via-purple-600/10 to-indigo-500/0 rounded-full blur-[160px] animate-pulse" />
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
         </div>
 
         {/* Top bar info */}
         <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs tracking-widest uppercase text-violet-300/80 font-mono">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-950/60 border border-violet-500/30 backdrop-blur-md">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-            <span>Disponible pour nouveaux projets</span>
+          <div className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-violet-950/60 border border-violet-500/30 backdrop-blur-xl shadow-[0_0_20px_rgba(139,92,246,0.15)]">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            </span>
+            <span className="text-[10px] font-mono tracking-wider font-semibold text-white">Disponible pour nouveaux projets</span>
           </div>
-          <span className="hidden md:inline-block text-gray-500">// STUDIO CRÉATIF & TECHNIQUE — 2026</span>
+          <span className="hidden md:inline-block text-gray-500 text-[10px] font-mono tracking-widest">// STUDIO CRÉATIF & TECHNIQUE — 2026</span>
         </div>
 
         {/* Main Hero Content */}
         <div className="relative z-10 max-w-7xl mx-auto w-full my-auto py-12">
           <div className="grid lg:grid-cols-12 gap-8 items-end">
             <div className="lg:col-span-8">
-              <div className="mb-6 inline-block">
-                <img src="/logo/kja-studio-labs.webp" alt="KJA Studio Labs" className="h-12 sm:h-16 lg:h-20 drop-shadow-[0_0_30px_rgba(139,92,246,0.3)]" />
+              <div className="mb-6 inline-block group">
+                <img src="/logo/kja-studio-labs.webp" alt="KJA Studio Labs" className="h-12 sm:h-16 lg:h-20 object-contain drop-shadow-[0_0_30px_rgba(139,92,246,0.4)]" />
               </div>
               <h1 className="font-heading font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[1.02] mb-8">
                 Nous créons <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-300 via-purple-200 to-white">l'excellence numérique</span> et le code.
@@ -101,13 +104,13 @@ export default async function HomePage() {
                 Studio francophone indépendant. Nous concevons des expériences web d'avant-garde, alliant design émotionnel et performances fullstack absolues.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link href="/portfolio" className="group relative px-8 py-4 bg-white text-gray-950 font-heading font-bold text-sm tracking-wider uppercase rounded-full overflow-hidden transition-all duration-300 hover:bg-violet-100 hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]">
+                <Link href="/portfolio" className="group relative px-8 py-4 bg-white text-gray-950 font-heading font-bold text-xs tracking-wider uppercase rounded-2xl overflow-hidden transition-all duration-300 hover:bg-violet-100 shadow-[0_0_25px_rgba(255,255,255,0.2)] hover:scale-[1.02]">
                   <span className="relative z-10 flex items-center gap-2">
                     Voir les projets
                     <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                   </span>
                 </Link>
-                <Link href="/contact" className="px-8 py-4 bg-white/5 border border-white/10 hover:border-violet-500/50 text-white font-heading font-semibold text-sm tracking-wider uppercase rounded-full backdrop-blur-md transition-all duration-300 hover:bg-white/10">
+                <Link href="/contact" className="px-8 py-4 bg-white/[0.03] border border-white/10 hover:border-violet-500/40 text-white font-heading font-semibold text-xs tracking-wider uppercase rounded-2xl backdrop-blur-xl transition-all duration-300 hover:bg-white/[0.08]">
                   Lancer un brief
                 </Link>
               </div>
@@ -115,12 +118,12 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Bottom ticker/stats preview */}
+        {/* Bottom stats preview */}
         <div className="relative z-10 max-w-7xl mx-auto w-full pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6">
           {stats.map((stat, i) => (
             <div key={i} className="flex flex-col">
-              <span className="font-mono text-2xl sm:text-3xl font-bold text-white mb-1">{stat.valeur}</span>
-              <span className="text-xs tracking-wider text-gray-400 uppercase">{stat.label}</span>
+              <span className="font-mono text-2xl sm:text-3xl font-black text-white mb-1 tracking-tight">{stat.valeur}</span>
+              <span className="text-[10px] font-mono tracking-widest text-gray-400 uppercase">{stat.label}</span>
             </div>
           ))}
         </div>
@@ -131,10 +134,10 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
             <div>
-              <span className="font-mono text-xs tracking-widest text-violet-400 uppercase block mb-3">// 01. EXPERTISES</span>
-              <h2 className="text-3xl sm:text-5xl font-heading font-bold tracking-tight">Savoir-faire sur mesure</h2>
+              <span className="font-mono text-xs tracking-widest text-violet-400 uppercase block mb-3 font-semibold">// 01. EXPERTISES</span>
+              <h2 className="text-3xl sm:text-5xl font-heading font-black tracking-tight">Savoir-faire sur mesure</h2>
             </div>
-            <p className="text-gray-400 max-w-md text-sm sm:text-base font-light">
+            <p className="text-gray-400 max-w-md text-sm sm:text-base font-light leading-relaxed">
               Une maîtrise totale de la chaîne de valeur numérique, du concept visuel jusqu'au déploiement cloud hautement scalable.
             </p>
           </div>
@@ -144,16 +147,16 @@ export default async function HomePage() {
               <Link 
                 key={service.titre} 
                 href={service.lien}
-                className="group relative p-8 sm:p-10 rounded-3xl bg-gradient-to-b from-white/[0.07] to-white/[0.02] border border-white/10 hover:border-violet-500/50 transition-all duration-500 flex flex-col justify-between overflow-hidden shadow-2xl hover:-translate-y-1.5"
+                className="group relative p-8 sm:p-10 rounded-3xl bg-[#0c0616]/80 backdrop-blur-2xl border border-white/10 hover:border-violet-500/40 transition-all duration-500 flex flex-col justify-between overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.5)] hover:-translate-y-1.5"
               >
                 <div className="absolute top-0 right-0 w-48 h-48 bg-violet-600/10 rounded-full blur-3xl pointer-events-none group-hover:bg-violet-500/20 transition-all duration-500" />
                 
                 <div>
                   <div className="flex justify-between items-center mb-10">
-                    <span className="font-mono text-xs px-3 py-1 rounded-full bg-white/5 border border-white/10 text-violet-300">
+                    <span className="font-mono text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-300 font-medium">
                       {service.tag}
                     </span>
-                    <span className="font-mono text-2xl font-bold text-white/20 group-hover:text-violet-400 transition-colors">
+                    <span className="font-mono text-2xl font-black text-white/20 group-hover:text-violet-400 transition-colors">
                       0{index + 1}
                     </span>
                   </div>
@@ -165,7 +168,7 @@ export default async function HomePage() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-2 text-sm font-heading font-semibold text-violet-400 group-hover:text-white transition-colors">
+                <div className="flex items-center gap-2 text-xs font-heading font-semibold text-violet-400 group-hover:text-white transition-colors">
                   <span>Explorer le service</span>
                   <svg className="w-4 h-4 transition-transform group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -182,11 +185,11 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
-              <span className="font-mono text-xs tracking-widest text-violet-400 uppercase block mb-3">// 02. PORTFOLIO</span>
-              <h2 className="text-3xl sm:text-5xl font-heading font-bold tracking-tight">Travaux récents</h2>
+              <span className="font-mono text-xs tracking-widest text-violet-400 uppercase block mb-3 font-semibold">// 02. PORTFOLIO</span>
+              <h2 className="text-3xl sm:text-5xl font-heading font-black tracking-tight">Travaux récents</h2>
             </div>
             {totalProjets > 3 && (
-              <Link href="/portfolio" className="px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:border-white/30 text-sm font-semibold tracking-wide transition-all self-start md:self-auto hover:bg-white/10">
+              <Link href="/portfolio" className="px-6 py-3 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/25 text-xs font-mono font-semibold tracking-wider uppercase transition-all self-start md:self-auto hover:bg-white/[0.08] backdrop-blur-xl">
                 Tous les projets ({totalProjets})
               </Link>
             )}
@@ -198,7 +201,7 @@ export default async function HomePage() {
                 <Link 
                   key={projet.id} 
                   href={`/portfolio/${projet.slug}`}
-                  className="group block rounded-3xl overflow-hidden bg-white/[0.03] border border-white/10 hover:border-violet-500/50 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(139,92,246,0.15)] hover:-translate-y-2"
+                  className="group block rounded-3xl overflow-hidden bg-[#0c0616]/80 backdrop-blur-2xl border border-white/10 hover:border-violet-500/40 transition-all duration-500 shadow-[0_10px_40px_rgba(0,0,0,0.5)] hover:-translate-y-2"
                 >
                   <div className="aspect-[16/11] bg-black/40 overflow-hidden relative">
                     {projet.imagePrincipale ? (
@@ -215,7 +218,7 @@ export default async function HomePage() {
                     </div>
                   </div>
                   <div className="p-8">
-                    <span className="font-mono text-xs text-violet-400 uppercase tracking-wider block mb-2">
+                    <span className="font-mono text-[10px] text-violet-400 uppercase tracking-widest font-semibold block mb-2">
                       {categoriesLabels[projet.categorie] || projet.categorie}
                     </span>
                     <h3 className="font-heading font-bold text-xl text-white group-hover:text-violet-300 transition-colors line-clamp-1 mb-3">
@@ -230,7 +233,7 @@ export default async function HomePage() {
             </div>
           ) : (
             <div className="text-center py-20 bg-white/[0.02] rounded-3xl border border-dashed border-white/10">
-              <p className="text-gray-400 font-mono text-sm">Aucun projet répertorié pour le moment.</p>
+              <p className="text-gray-400 font-mono text-xs">Aucun projet répertorié pour le moment.</p>
             </div>
           )}
         </div>
@@ -242,11 +245,11 @@ export default async function HomePage() {
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
               <div>
-                <span className="font-mono text-xs tracking-widest text-violet-400 uppercase block mb-3">// 03. INSIGHTS</span>
-                <h2 className="text-3xl sm:text-5xl font-heading font-bold tracking-tight">Pensées & Articles</h2>
+                <span className="font-mono text-xs tracking-widest text-violet-400 uppercase block mb-3 font-semibold">// 03. INSIGHTS</span>
+                <h2 className="text-3xl sm:text-5xl font-heading font-black tracking-tight">Pensées & Articles</h2>
               </div>
               {totalArticles > 6 && (
-                <Link href="/blog" className="px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:border-white/30 text-sm font-semibold tracking-wide transition-all self-start md:self-auto hover:bg-white/10">
+                <Link href="/blog" className="px-6 py-3 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/25 text-xs font-mono font-semibold tracking-wider uppercase transition-all self-start md:self-auto hover:bg-white/[0.08] backdrop-blur-xl">
                   Tous les articles ({totalArticles})
                 </Link>
               )}
@@ -254,7 +257,7 @@ export default async function HomePage() {
 
             <div className="grid md:grid-cols-3 gap-8">
               {articlesRecents.map((article) => (
-                <Link key={article.id} href={`/blog/${article.slug}`} className="group block rounded-3xl overflow-hidden bg-white/[0.03] border border-white/10 hover:border-violet-500/50 transition-all duration-500 hover:-translate-y-2">
+                <Link key={article.id} href={`/blog/${article.slug}`} className="group block rounded-3xl overflow-hidden bg-[#0c0616]/80 backdrop-blur-2xl border border-white/10 hover:border-violet-500/40 transition-all duration-500 shadow-[0_10px_40px_rgba(0,0,0,0.5)] hover:-translate-y-2">
                   <div className="aspect-[16/10] bg-black/40 overflow-hidden">
                     {article.imagePrincipale ? (
                       <img src={article.imagePrincipale} alt={article.titre} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
@@ -266,11 +269,11 @@ export default async function HomePage() {
                   </div>
                   <div className="p-8">
                     <div className="flex items-center justify-between gap-3 mb-3">
-                      <span className="font-mono text-xs text-violet-400 uppercase tracking-wider">
+                      <span className="font-mono text-[10px] text-violet-400 uppercase tracking-widest font-semibold">
                         {blogCategoriesLabels[article.categorie] || article.categorie}
                       </span>
                       {article.tempsLecture && (
-                        <span className="font-mono text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-full">
+                        <span className="font-mono text-[10px] text-gray-400 bg-white/5 border border-white/5 px-2.5 py-1 rounded-full">
                           {article.tempsLecture} min
                         </span>
                       )}
@@ -281,8 +284,8 @@ export default async function HomePage() {
                     <p className="text-gray-400 text-sm line-clamp-2 font-light leading-relaxed mb-6">
                       {article.extrait}
                     </p>
-                    <span className="font-mono text-xs text-gray-500">
-                      {new Date(article.createdAt).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    <span className="font-mono text-[10px] text-gray-500">
+                      {new Date(article.createdAt).toLocaleDateString('fr-FR', { year: 'numeric', month: 'short', day: 'numeric' })}
                     </span>
                   </div>
                 </Link>
@@ -297,34 +300,36 @@ export default async function HomePage() {
         <section className="py-28 sm:py-36 px-4 sm:px-6 lg:px-12 relative border-b border-white/10">
           <div className="max-w-7xl mx-auto">
             <div className="text-center max-w-2xl mx-auto mb-20">
-              <span className="font-mono text-xs tracking-widest text-violet-400 uppercase block mb-3">// 04. TÉMOIGNAGES</span>
-              <h2 className="text-3xl sm:text-5xl font-heading font-bold tracking-tight mb-4">Ce qu'ils en disent</h2>
+              <span className="font-mono text-xs tracking-widest text-violet-400 uppercase block mb-3 font-semibold">// 04. TÉMOIGNAGES</span>
+              <h2 className="text-3xl sm:text-5xl font-heading font-black tracking-tight mb-4">Ce qu'ils en disent</h2>
               <p className="text-gray-400 font-light">La confiance et le succès de nos partenaires sont nos plus beaux trophées.</p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
               {avisRecents.slice(0, 3).map((avis, index) => (
-                <div key={avis.id} className={`p-8 sm:p-10 rounded-3xl bg-white/[0.03] border border-white/10 flex flex-col justify-between ${index === 0 ? 'md:col-span-2' : ''}`}>
+                <div key={avis.id} className={`p-8 sm:p-10 rounded-3xl bg-[#0c0616]/80 backdrop-blur-2xl border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex flex-col justify-between ${index === 0 ? 'md:col-span-2' : ''}`}>
                   <div>
-                    <div className="flex items-center gap-1 mb-6 text-amber-400">
+                    <div className="flex items-center gap-1 mb-6">
                       {Array.from({ length: 5 }).map((_, i) => (
-                        <svg key={i} className={`w-4 h-4 ${i < avis.note ? 'text-amber-400' : 'text-gray-700'}`} fill="currentColor" viewBox="0 0 20 20">
+                        <svg key={i} className={`w-4 h-4 ${i < avis.note ? 'text-amber-400 drop-shadow-[0_0_6px_rgba(250,204,21,0.4)]' : 'text-white/10'}`} fill="currentColor" viewBox="0 0 20 20">
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                       ))}
                     </div>
-                    <p className="text-base sm:text-lg text-gray-300 font-light italic leading-relaxed mb-8">
-                      &ldquo;{avis.commentaire}&rdquo;
-                    </p>
+                    <div className="p-4 bg-white/[0.03] rounded-2xl border border-white/10 mb-8">
+                      <p className="text-sm sm:text-base text-gray-200 font-light italic leading-relaxed">
+                        &ldquo;{avis.commentaire}&rdquo;
+                      </p>
+                    </div>
                   </div>
                   <div className="flex items-center gap-4 pt-6 border-t border-white/10">
-                    <div className="w-12 h-12 rounded-full bg-violet-600/30 border border-violet-500/30 flex items-center justify-center font-heading font-bold text-violet-300">
-                      {avis.nomClient.charAt(0)}
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-600/30 to-purple-600/10 border border-violet-500/30 flex items-center justify-center font-heading font-black text-violet-300 shadow-md">
+                      {avis.nomClient.charAt(0).toUpperCase()}
                     </div>
                     <div>
                       <h4 className="font-heading font-bold text-white text-base">{avis.nomClient}</h4>
                       {(avis.poste || avis.entreprise) && (
-                        <p className="text-xs text-gray-400 font-mono mt-0.5">
+                        <p className="text-[10px] text-gray-400 font-mono mt-0.5">
                           {avis.poste}{avis.poste && avis.entreprise && ' • '}{avis.entreprise}
                         </p>
                       )}
@@ -340,11 +345,11 @@ export default async function HomePage() {
       {/* ============ CALL TO ACTION FINAL (HIGH IMPACT) ============ */}
       <section className="py-32 sm:py-44 px-4 sm:px-6 lg:px-12 relative text-center overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[800px] h-[350px] sm:h-[500px] bg-violet-600/20 rounded-full blur-[160px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[800px] h-[350px] sm:h-[500px] bg-violet-600/20 rounded-full blur-[180px]" />
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto">
-          <span className="font-mono text-xs tracking-widest text-violet-400 uppercase block mb-4">// COLLABORATION</span>
+          <span className="font-mono text-xs tracking-widest text-violet-400 uppercase block mb-4 font-semibold">// COLLABORATION</span>
           <h2 className="text-4xl sm:text-6xl lg:text-7xl font-heading font-black tracking-tight mb-8">
             Prêt à marquer <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-300 via-white to-violet-400">les esprits ?</span>
@@ -353,10 +358,10 @@ export default async function HomePage() {
             Discutons dès aujourd'hui de votre vision et donnons vie à une expérience numérique d'exception.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href="/contact" className="w-full sm:w-auto px-10 py-5 bg-white text-gray-950 font-heading font-bold text-sm tracking-wider uppercase rounded-full shadow-[0_0_50px_rgba(255,255,255,0.3)] hover:bg-violet-100 transition-all duration-300">
+            <Link href="/contact" className="w-full sm:w-auto px-10 py-5 bg-white text-gray-950 font-heading font-bold text-xs tracking-wider uppercase rounded-2xl shadow-[0_0_40px_rgba(255,255,255,0.25)] hover:bg-violet-100 transition-all duration-300 hover:scale-105">
               Démarrer le projet
             </Link>
-            <Link href="/services" className="w-full sm:w-auto px-10 py-5 bg-white/5 border border-white/10 hover:border-violet-500/50 text-white font-heading font-semibold text-sm tracking-wider uppercase rounded-full backdrop-blur-md transition-all duration-300">
+            <Link href="/services" className="w-full sm:w-auto px-10 py-5 bg-white/[0.03] border border-white/10 hover:border-violet-500/40 text-white font-heading font-semibold text-xs tracking-wider uppercase rounded-2xl backdrop-blur-xl transition-all duration-300 hover:bg-white/[0.08]">
               Voir nos services
             </Link>
           </div>
