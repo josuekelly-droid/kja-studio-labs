@@ -96,12 +96,12 @@ export default async function CarrieresPage() {
                         </span>
                         
                         <span className="text-gray-400 bg-white/5 border border-white/5 px-3 py-1 rounded-full flex items-center gap-1.5 text-[11px]">
-                          📍 {offre.localisation}
+                           {offre.localisation}
                         </span>
                         
                         {offre.salaire && (
                           <span className="text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full text-[11px]">
-                            💰 {offre.salaire}
+                             {offre.salaire}
                           </span>
                         )}
                       </div>

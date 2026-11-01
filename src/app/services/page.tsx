@@ -38,7 +38,7 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <>
+    <div className="bg-[#05020a] text-white selection:bg-violet-600 selection:text-white min-h-screen">
       <JsonLd data={{ 
         '@context': 'https://schema.org', 
         '@type': 'BreadcrumbList', 
@@ -49,66 +49,80 @@ export default function ServicesPage() {
       }} />
 
       {/* Hero Section */}
-      <section className="pt-32 sm:pt-36 lg:pt-44 pb-20 sm:pb-24 lg:pb-28 bg-[#05020a] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-30 pointer-events-none">
-          <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[140px]" />
-          <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-indigo-600/15 rounded-full blur-[120px]" />
-        </div>
-        
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <nav className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-violet-200/80 mb-8 backdrop-blur-md">
+      <section className="relative pt-36 sm:pt-40 lg:pt-48 pb-20 sm:pb-24 lg:pb-28 px-4 sm:px-6 lg:px-12 overflow-hidden border-b border-white/10">
+        {/* Halo lumineux d'arrière-plan haute précision */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-full max-w-5xl h-96 bg-gradient-to-b from-violet-600/15 via-purple-600/5 to-transparent blur-3xl rounded-full pointer-events-none" />
+
+        <div className="max-w-4xl mx-auto relative z-10 text-center space-y-6">
+          <nav className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.03] border border-white/15 text-xs text-violet-300 backdrop-blur-md" aria-label="Fil d'ariane">
             <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
-            <span>/</span>
+            <span className="text-gray-600">/</span>
             <span className="text-white font-medium">Services</span>
           </nav>
           
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-bold text-white tracking-tight mb-6">
-            Nos Domaines d&apos;<span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-300">Expertise</span>
-          </h1>
-          <p className="text-base sm:text-xl text-gray-400 font-light max-w-2xl mx-auto leading-relaxed">
-            Trois expertises complémentaires pour concevoir, développer et connecter vos projets digitaux de A à Z avec un standard d&apos;excellence.
+          <div className="space-y-3">
+            <span className="text-[10px] uppercase tracking-widest font-mono text-violet-400 font-semibold block">
+              // OUR CORE CAPABILITIES
+            </span>
+            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-heading font-black text-white tracking-tight">
+              Nos Domaines d&apos;<span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-300 via-purple-200 to-white">Expertise</span>
+            </h1>
+          </div>
+
+          <p className="text-base sm:text-lg text-gray-400 font-light max-w-2xl mx-auto leading-relaxed">
+            Trois expertises complémentaires pour concevoir, développer et connecter vos projets digitaux de A à Z avec un standard d&apos;excellence absolu.
           </p>
         </div>
       </section>
 
       {/* Services Grid Section */}
-      <section className="py-20 sm:py-24 lg:py-32 bg-[#05020a] relative">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-12 relative">
+        <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-3 gap-8">
             {services.map((s, index) => (
               <Link 
                 key={s.titre} 
                 href={s.lien} 
-                className="group relative p-8 sm:p-10 rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 hover:border-violet-500/50 shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_60px_rgba(139,92,246,0.15)] transition-all duration-500 flex flex-col justify-between"
+                className="group relative p-8 sm:p-10 rounded-3xl bg-[#0c0616]/85 backdrop-blur-2xl border border-white/10 hover:border-violet-500/40 shadow-[0_10px_40px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_60px_rgba(139,92,246,0.2)] transition-all duration-500 flex flex-col justify-between"
               >
-                <div>
-                  <span className="text-4xl font-heading font-bold text-violet-400/70 group-hover:text-violet-300 transition-colors">
-                    0{index + 1}
-                  </span>
-                  <h3 className="font-heading font-bold text-xl sm:text-2xl text-white mt-4 mb-4 group-hover:text-violet-300 transition-colors">
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <span className="text-3xl sm:text-4xl font-mono font-black text-violet-400/80 group-hover:text-violet-300 transition-colors">
+                      0{index + 1}
+                    </span>
+                    <div className="w-10 h-10 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-violet-300 group-hover:bg-violet-600/20 group-hover:border-violet-500/30 transition-all">
+                      <svg className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  <h3 className="font-heading font-bold text-xl sm:text-2xl text-white group-hover:text-violet-300 transition-colors tracking-tight">
                     {s.titre}
                   </h3>
-                  <p className="text-sm text-gray-400 font-light leading-relaxed mb-6">
+
+                  <p className="text-xs sm:text-sm text-gray-400 font-light leading-relaxed">
                     {s.description}
                   </p>
                   
-                  <ul className="space-y-3 mb-8">
+                  <ul className="space-y-2.5 pt-2">
                     {s.points.map((point) => (
                       <li key={point} className="flex items-center gap-3 text-xs sm:text-sm text-gray-300 font-light">
-                        <span className="w-5 h-5 rounded-full bg-violet-500/10 border border-violet-500/30 flex items-center justify-center shrink-0">
-                          <svg className="w-3 h-3 text-violet-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                          </svg>
-                        </span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0 shadow-[0_0_8px_rgba(167,139,250,0.8)]" />
                         {point}
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <span className="inline-flex items-center gap-2 text-violet-300 font-heading font-semibold text-sm group-hover:gap-3 group-hover:text-white transition-all">
-                  Découvrir ce service <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
-                </span>
+                <div className="pt-8 mt-8 border-t border-white/5 flex items-center justify-between">
+                  <span className="text-xs font-mono font-semibold uppercase tracking-wider text-violet-300 group-hover:text-white transition-colors">
+                    Découvrir ce service
+                  </span>
+                  <span aria-hidden="true" className="text-violet-400 font-mono transition-transform group-hover:translate-x-1.5">
+                    →
+                  </span>
+                </div>
               </Link>
             ))}
           </div>
@@ -116,26 +130,28 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 sm:py-28 bg-[#05020a] relative overflow-hidden border-t border-white/10">
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-violet-600/30 rounded-full blur-[160px] -translate-x-1/2 -translate-y-1/2" />
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-12 relative overflow-hidden border-t border-white/10">
+        <div className="absolute inset-0 opacity-25 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-violet-600/25 rounded-full blur-[160px] -translate-x-1/2 -translate-y-1/2" />
         </div>
         
-        <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-6 tracking-tight">
+        <div className="relative z-10 max-w-3xl mx-auto text-center space-y-6">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-heading font-black text-white tracking-tight">
             Un projet en tête ?
           </h2>
-          <p className="text-gray-400 font-light text-base sm:text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+          <p className="text-gray-400 font-light text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
             Discutons de vos besoins et trouvons la solution idéale pour propulser votre entreprise sur le devant de la scène digitale.
           </p>
-          <Link 
-            href="/contact" 
-            className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-950 text-sm sm:text-base font-heading font-bold rounded-full hover:bg-violet-100 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-105"
-          >
-            Contactez-nous
-          </Link>
+          <div className="pt-2">
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-950 text-xs font-heading font-bold uppercase tracking-wider rounded-2xl hover:bg-violet-100 transition-all duration-300 shadow-[0_0_25px_rgba(255,255,255,0.2)] hover:scale-105"
+            >
+              Contactez-nous
+            </Link>
+          </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

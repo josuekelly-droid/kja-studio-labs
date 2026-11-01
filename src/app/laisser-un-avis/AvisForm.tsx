@@ -42,14 +42,14 @@ export function AvisForm() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.erreur || 'Erreur lors de l\'envoi');
+        setError(data.erreur || 'Erreur lors de l’envoi');
         return;
       }
 
       setSuccess(true);
       setFormData({ nomClient: '', entreprise: '', poste: '', note: 5, commentaire: '' });
     } catch {
-      setError('Erreur réseau. Réessayez.');
+      setError('Erreur réseau. Veuillez réessayer.');
     } finally {
       setLoading(false);
     }
@@ -57,17 +57,19 @@ export function AvisForm() {
 
   if (success) {
     return (
-      <div className="text-center py-10">
-        <div className="text-6xl mb-6">🎉</div>
-        <h2 className="text-2xl font-heading font-bold text-white mb-3">
+      <div className="text-center py-16 p-8 sm:p-12 rounded-3xl bg-[#0c0616]/85 backdrop-blur-2xl border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+        <div className="w-16 h-16 bg-violet-500/10 border border-violet-500/30 rounded-2xl flex items-center justify-center mx-auto mb-6 backdrop-blur-md shadow-[0_0_20px_rgba(139,92,246,0.2)]">
+          <span className="text-3xl">🎉</span>
+        </div>
+        <h2 className="text-2xl sm:text-3xl font-heading font-black text-white mb-3 tracking-tight">
           Merci pour votre avis !
         </h2>
-        <p className="text-gray-400 font-light mb-8 max-w-md mx-auto leading-relaxed">
-          Votre avis a bien été envoyé. Il sera publié après validation par notre équipe.
+        <p className="text-gray-400 font-light text-sm sm:text-base mb-8 max-w-md mx-auto leading-relaxed">
+          Votre retour a bien été transmis. Il sera publié après validation par notre équipe.
         </p>
         <button
           onClick={() => setSuccess(false)}
-          className="inline-flex items-center justify-center px-8 py-3.5 bg-white text-gray-950 font-heading font-bold text-sm rounded-full hover:bg-violet-100 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:scale-105"
+          className="inline-flex items-center justify-center px-7 py-3.5 bg-white/[0.03] border border-white/15 text-white font-heading font-semibold text-xs uppercase tracking-wider rounded-2xl hover:bg-white/[0.08] hover:border-violet-500/40 transition-all duration-300 backdrop-blur-xl"
         >
           Laisser un autre avis
         </button>
@@ -76,17 +78,18 @@ export function AvisForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6 p-8 sm:p-12 rounded-3xl bg-[#0c0616]/85 backdrop-blur-2xl border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
       {error && (
-        <div className="bg-red-500/10 text-red-400 text-sm p-4 rounded-2xl border border-red-500/20 backdrop-blur-md">
-          {error}
+        <div className="bg-red-500/10 text-red-400 text-xs font-mono p-4 rounded-2xl border border-red-500/20 backdrop-blur-md flex items-center gap-3">
+          <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />
+          <span>{error}</span>
         </div>
       )}
 
       {/* Note */}
-      <div className="text-center">
-        <label className="block text-sm font-heading font-semibold text-gray-300 mb-3">
-          Votre note
+      <div className="text-center space-y-3 pb-6 border-b border-white/5">
+        <label className="block text-xs font-mono uppercase tracking-wider text-gray-300">
+          Votre note <span className="text-violet-400">*</span>
         </label>
         <div className="flex items-center justify-center gap-2">
           {[1, 2, 3, 4, 5].map((star) => (
@@ -96,11 +99,13 @@ export function AvisForm() {
               onClick={() => updateField('note', star)}
               onMouseEnter={() => setHoverNote(star)}
               onMouseLeave={() => setHoverNote(0)}
-              className="transition-transform hover:scale-110 focus:outline-none"
+              className="transition-transform hover:scale-110 focus:outline-none p-1"
             >
               <svg
-                className={`w-8 h-8 sm:w-10 sm:h-10 transition-colors ${
-                  star <= (hoverNote || formData.note) ? 'text-yellow-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.4)]' : 'text-white/20'
+                className={`w-8 h-8 sm:w-9 sm:h-9 transition-colors ${
+                  star <= (hoverNote || formData.note) 
+                    ? 'text-amber-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.4)]' 
+                    : 'text-white/15'
                 }`}
                 fill="currentColor"
                 viewBox="0 0 20 20"
@@ -110,19 +115,19 @@ export function AvisForm() {
             </button>
           ))}
         </div>
-        <p className="text-xs text-violet-300 font-light mt-2">
-          {formData.note === 5 && 'Excellent !'}
-          {formData.note === 4 && 'Très bien'}
-          {formData.note === 3 && 'Bien'}
-          {formData.note === 2 && 'Moyen'}
-          {formData.note === 1 && 'Peut mieux faire'}
+        <p className="text-xs font-mono text-violet-300">
+          {formData.note === 5 && '// Excellent !'}
+          {formData.note === 4 && '// Très bien'}
+          {formData.note === 3 && '// Bien'}
+          {formData.note === 2 && '// Moyen'}
+          {formData.note === 1 && '// Peut mieux faire'}
         </p>
       </div>
 
       {/* Nom */}
-      <div>
-        <label htmlFor="nom" className="block text-sm font-heading font-semibold text-gray-300 mb-2">
-          Votre nom *
+      <div className="space-y-2">
+        <label htmlFor="nom" className="block text-xs font-mono uppercase tracking-wider text-gray-300">
+          Votre nom <span className="text-violet-400">*</span>
         </label>
         <input
           id="nom"
@@ -130,15 +135,15 @@ export function AvisForm() {
           value={formData.nomClient}
           onChange={(e) => updateField('nomClient', e.target.value)}
           required
-          className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm transition-all"
+          className="w-full px-4.5 py-3.5 rounded-2xl bg-white/[0.03] border border-white/10 text-white placeholder-gray-600 focus:border-violet-500/50 focus:ring-4 focus:ring-violet-500/15 outline-none text-sm transition-all font-light"
           placeholder="Jean Dupont"
         />
       </div>
 
       {/* Entreprise + Poste */}
-      <div className="grid sm:grid-cols-2 gap-4">
-        <div>
-          <label htmlFor="entreprise" className="block text-sm font-heading font-semibold text-gray-300 mb-2">
+      <div className="grid sm:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <label htmlFor="entreprise" className="block text-xs font-mono uppercase tracking-wider text-gray-300">
             Entreprise
           </label>
           <input
@@ -146,12 +151,12 @@ export function AvisForm() {
             type="text"
             value={formData.entreprise}
             onChange={(e) => updateField('entreprise', e.target.value)}
-            className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm transition-all"
+            className="w-full px-4.5 py-3.5 rounded-2xl bg-white/[0.03] border border-white/10 text-white placeholder-gray-600 focus:border-violet-500/50 focus:ring-4 focus:ring-violet-500/15 outline-none text-sm transition-all font-light"
             placeholder="Nom de votre entreprise"
           />
         </div>
-        <div>
-          <label htmlFor="poste" className="block text-sm font-heading font-semibold text-gray-300 mb-2">
+        <div className="space-y-2">
+          <label htmlFor="poste" className="block text-xs font-mono uppercase tracking-wider text-gray-300">
             Poste
           </label>
           <input
@@ -159,16 +164,16 @@ export function AvisForm() {
             type="text"
             value={formData.poste}
             onChange={(e) => updateField('poste', e.target.value)}
-            className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm transition-all"
-            placeholder="CEO, Designer..."
+            className="w-full px-4.5 py-3.5 rounded-2xl bg-white/[0.03] border border-white/10 text-white placeholder-gray-600 focus:border-violet-500/50 focus:ring-4 focus:ring-violet-500/15 outline-none text-sm transition-all font-light"
+            placeholder="CEO, Lead Designer..."
           />
         </div>
       </div>
 
       {/* Commentaire */}
-      <div>
-        <label htmlFor="commentaire" className="block text-sm font-heading font-semibold text-gray-300 mb-2">
-          Votre avis *
+      <div className="space-y-2">
+        <label htmlFor="commentaire" className="block text-xs font-mono uppercase tracking-wider text-gray-300">
+          Votre avis <span className="text-violet-400">*</span>
         </label>
         <textarea
           id="commentaire"
@@ -176,24 +181,35 @@ export function AvisForm() {
           onChange={(e) => updateField('commentaire', e.target.value)}
           required
           rows={5}
-          className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 outline-none text-sm resize-none transition-all"
+          className="w-full px-4.5 py-3.5 rounded-2xl bg-white/[0.03] border border-white/10 text-white placeholder-gray-600 focus:border-violet-500/50 focus:ring-4 focus:ring-violet-500/15 outline-none text-sm resize-none transition-all font-light"
           placeholder="Partagez votre expérience avec KJA Studio Labs... (minimum 10 caractères)"
         />
-        <p className="text-xs text-gray-500 font-light mt-1.5 text-right">
-          {formData.commentaire.length} / 500 caractères minimum
-        </p>
+        <div className="flex justify-between items-center text-xs font-mono text-gray-500 pt-1">
+          <span>// Minimum 10 caractères</span>
+          <span>{formData.commentaire.length} car.</span>
+        </div>
       </div>
 
       {/* Submit */}
       <button
         type="submit"
         disabled={loading || !formData.nomClient || formData.commentaire.length < 10}
-        className="w-full py-4 bg-white text-gray-950 font-heading font-bold text-sm rounded-2xl hover:bg-violet-100 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_25px_rgba(255,255,255,0.15)] hover:scale-[1.02]"
+        className="w-full py-4 bg-white text-gray-950 font-heading font-bold text-xs uppercase tracking-wider rounded-2xl hover:bg-violet-100 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_25px_rgba(255,255,255,0.2)] hover:scale-[1.01]"
       >
-        {loading ? 'Envoi en cours...' : 'Envoyer mon avis'}
+        {loading ? (
+          <span className="inline-flex items-center gap-2">
+            <svg className="w-4 h-4 animate-spin text-gray-950" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span>Envoi en cours...</span>
+          </span>
+        ) : (
+          'Envoyer mon avis'
+        )}
       </button>
 
-      <p className="text-xs text-gray-500 font-light text-center">
+      <p className="text-[11px] font-mono text-gray-500 text-center">
         Votre avis sera publié après validation par notre équipe.
       </p>
     </form>

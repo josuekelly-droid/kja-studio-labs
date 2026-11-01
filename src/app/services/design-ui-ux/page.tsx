@@ -70,50 +70,54 @@ const services = [
 
 export default function DesignUIUXPage() {
   return (
-    <>
+    <div className="bg-[#05020a] text-white selection:bg-violet-600 selection:text-white min-h-screen">
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'Service', name: 'UI/UX Design', provider: { '@type': 'Organization', name: siteConfig.name }, description: 'Design UI/UX premium : recherche UX, wireframes, prototypes Figma, design systems.', url: `${siteConfig.url}/services/design-ui-ux` }} />
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: siteConfig.url }, { '@type': 'ListItem', position: 2, name: 'Services', item: `${siteConfig.url}/services` }, { '@type': 'ListItem', position: 3, name: 'UI/UX Design', item: `${siteConfig.url}/services/design-ui-ux` }] }} />
 
       {/* Hero Section */}
-      <section className="pt-32 sm:pt-36 lg:pt-44 pb-20 sm:pb-24 lg:pb-28 bg-[#05020a] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-30 pointer-events-none">
-          <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[140px]" />
-          <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-indigo-600/15 rounded-full blur-[120px]" />
-        </div>
-        
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <nav className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-violet-200/80 mb-8 backdrop-blur-md">
+      <section className="relative pt-36 sm:pt-40 lg:pt-48 pb-20 sm:pb-24 lg:pb-28 px-4 sm:px-6 lg:px-12 overflow-hidden border-b border-white/10">
+        {/* Halo lumineux d'arrière-plan haute précision */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-full max-w-5xl h-96 bg-gradient-to-b from-violet-600/15 via-purple-600/5 to-transparent blur-3xl rounded-full pointer-events-none" />
+
+        <div className="max-w-4xl mx-auto relative z-10 text-center space-y-6">
+          <nav className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.03] border border-white/15 text-xs text-violet-300 backdrop-blur-md">
             <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
-            <span>/</span>
+            <span className="text-gray-600">/</span>
             <Link href="/services" className="hover:text-white transition-colors">Services</Link>
-            <span>/</span>
+            <span className="text-gray-600">/</span>
             <span className="text-white font-medium">UI/UX Design</span>
           </nav>
           
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-bold text-white tracking-tight mb-6">
-            UI/UX <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-300">Design</span>
-          </h1>
-          <p className="text-base sm:text-xl text-gray-400 font-light max-w-2xl mx-auto leading-relaxed">
-            Des interfaces qui captivent, des expériences qui convertissent. Chaque écran est pensé avec une obsession : vos utilisateurs.
+          <div className="space-y-3">
+            <span className="text-[10px] uppercase tracking-widest font-mono text-violet-400 font-semibold block">
+              // 01. UI/UX DESIGN & PRODUCT CRAFT
+            </span>
+            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-heading font-black text-white tracking-tight">
+              UI/UX <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-300 via-purple-200 to-white">Design</span>
+            </h1>
+          </div>
+
+          <p className="text-base sm:text-lg text-gray-400 font-light max-w-2xl mx-auto leading-relaxed">
+            Des interfaces qui captivent, des expériences qui convertissent. Chaque écran est sculpté avec une obsession : vos utilisateurs.
           </p>
         </div>
       </section>
 
       {/* Vision Section */}
-      <section className="py-20 sm:py-24 lg:py-32 bg-[#05020a] relative border-t border-white/10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <div>
-              <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/30 text-violet-300 font-heading font-medium text-xs rounded-full mb-6 backdrop-blur-md">
-                Notre vision
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-12 relative">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="space-y-6">
+              <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/20 text-violet-300 font-mono font-semibold text-[10px] rounded-full uppercase tracking-widest">
+                // OUR VISION
               </span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white mb-6 tracking-tight">
+              <h2 className="text-2xl sm:text-4xl font-heading font-black text-white tracking-tight">
                 Le design au service de vos objectifs business
               </h2>
-              <div className="space-y-4 text-gray-400 font-light leading-relaxed">
-                <p>Un beau design ne suffit pas. Il doit être <strong className="text-white font-medium">fonctionnel, intuitif et orienté résultats</strong>. Chaque pixel, chaque interaction est pensée pour guider vos utilisateurs vers l&apos;action souhaitée et générer de la valeur pour votre entreprise.</p>
-                <p>Notre approche combine <strong className="text-white font-medium">recherche utilisateur approfondie</strong>, principes d&apos;ergonomie cognitive et tendances design actuelles pour créer des interfaces qui marquent les esprits.</p>
-                <p>Nous concevons des expériences <strong className="text-white font-medium">responsive, accessibles (WCAG 2.1) et performantes</strong>, adaptées à tous les écrans et à tous les utilisateurs, quel que soit leur contexte.</p>
+              <div className="space-y-4 text-gray-300 font-light leading-relaxed text-sm sm:text-base">
+                <p>Un beau design ne suffit pas. Il doit être <strong className="text-white font-semibold">fonctionnel, intuitif et orienté résultats</strong>. Chaque pixel et chaque micro-interaction sont pensés pour guider vos utilisateurs vers l&apos;action souhaitée.</p>
+                <p>Notre approche combine <strong className="text-white font-semibold">recherche utilisateur approfondie</strong>, principes d&apos;ergonomie cognitive et standards internationaux (Awwwards) pour créer des interfaces d&apos;exception.</p>
+                <p>Nous concevons des expériences <strong className="text-white font-semibold">responsive, accessibles (WCAG 2.1) et performantes</strong>, adaptées à tous les environnements digitaux.</p>
               </div>
             </div>
 
@@ -124,14 +128,14 @@ export default function DesignUIUXPage() {
                 { titre: 'Accessibilité WCAG 2.1', desc: 'Interfaces inclusives pour tous les utilisateurs' },
                 { titre: 'Performance visuelle', desc: 'Animations fluides, temps de chargement optimisés' },
               ].map((item) => (
-                <div key={item.titre} className="flex gap-4 p-5 rounded-2xl bg-[#0c0616]/70 backdrop-blur-xl border border-white/10 hover:border-violet-500/40 transition-all duration-300">
-                  <div className="w-8 h-8 rounded-full bg-violet-500/10 border border-violet-500/30 flex items-center justify-center shrink-0 mt-0.5">
-                    <svg className="w-4 h-4 text-violet-400" fill="currentColor" viewBox="0 0 20 20">
+                <div key={item.titre} className="flex gap-4 p-6 rounded-3xl bg-[#0c0616]/85 backdrop-blur-2xl border border-white/10 hover:border-violet-500/40 transition-all duration-300 shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+                  <div className="w-8 h-8 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center shrink-0 mt-0.5 text-violet-400">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-heading font-semibold text-white text-sm sm:text-base">{item.titre}</h3>
+                    <h3 className="font-heading font-bold text-white text-base">{item.titre}</h3>
                     <p className="text-xs sm:text-sm text-gray-400 font-light mt-1">{item.desc}</p>
                   </div>
                 </div>
@@ -142,17 +146,17 @@ export default function DesignUIUXPage() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 sm:py-24 lg:py-32 bg-[#05020a] relative border-t border-white/10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/30 text-violet-300 font-heading font-medium text-xs rounded-full mb-4 backdrop-blur-md">
-              Ce que nous faisons
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-12 relative border-t border-white/10">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/20 text-violet-300 font-mono font-semibold text-[10px] rounded-full uppercase tracking-widest">
+              // EXPERTISES & CAPABILITIES
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white mb-4 tracking-tight">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-heading font-black text-white tracking-tight">
               Nos prestations UI/UX
             </h2>
             <p className="text-gray-400 font-light max-w-xl mx-auto text-sm sm:text-base">
-              Un accompagnement complet, de la stratégie au pixel final
+              Un accompagnement complet et sur mesure, de la stratégie au pixel final.
             </p>
           </div>
 
@@ -160,18 +164,18 @@ export default function DesignUIUXPage() {
             {services.map((s) => (
               <div 
                 key={s.titre} 
-                className="p-6 rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 hover:border-violet-500/50 shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_60px_rgba(139,92,246,0.15)] transition-all duration-500 text-center group flex flex-col items-center justify-between"
+                className="p-8 rounded-3xl bg-[#0c0616]/85 backdrop-blur-2xl border border-white/10 hover:border-violet-500/40 shadow-[0_10px_40px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_60px_rgba(139,92,246,0.2)] transition-all duration-500 group flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-2xl bg-violet-600/20 border border-violet-500/40 flex items-center justify-center text-violet-300 mb-5 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_20px_rgba(139,92,246,0.2)] mx-auto">
+                  <div className="w-12 h-12 rounded-2xl bg-violet-600/10 border border-violet-500/20 flex items-center justify-center text-violet-300 mb-6 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_20px_rgba(139,92,246,0.15)]">
                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <h3 className="font-heading font-bold text-white text-base mb-2 group-hover:text-violet-300 transition-colors">
+                  <h3 className="font-heading font-bold text-white text-lg mb-2 group-hover:text-violet-300 transition-colors">
                     {s.titre}
                   </h3>
-                  <p className="text-xs text-gray-400 font-light leading-relaxed">
+                  <p className="text-xs sm:text-sm text-gray-400 font-light leading-relaxed">
                     {s.desc}
                   </p>
                 </div>
@@ -182,31 +186,31 @@ export default function DesignUIUXPage() {
       </section>
 
       {/* Processus Section */}
-      <section className="py-20 sm:py-24 lg:py-32 bg-[#05020a] relative border-t border-white/10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/30 text-violet-300 font-heading font-medium text-xs rounded-full mb-4 backdrop-blur-md">
-              Méthodologie
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-12 relative border-t border-white/10">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/20 text-violet-300 font-mono font-semibold text-[10px] rounded-full uppercase tracking-widest">
+              // DESIGN PROCESS
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white mb-4 tracking-tight">
-              Notre processus de design en 6 étapes
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-heading font-black text-white tracking-tight">
+              Notre processus en 6 étapes
             </h2>
             <p className="text-gray-400 font-light max-w-xl mx-auto text-sm sm:text-base">
-              De la recherche à l&apos;itération continue, une approche éprouvée
+              De la recherche fondamentale à l&apos;itération continue, une méthodologie rigoureuse.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {processus.map((p) => (
               <div 
                 key={p.etape} 
-                className="p-8 rounded-3xl bg-[#0c0616]/70 backdrop-blur-2xl border border-white/10 hover:border-violet-500/50 shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_60px_rgba(139,92,246,0.15)] transition-all duration-500 group flex flex-col justify-between"
+                className="p-8 sm:p-10 rounded-3xl bg-[#0c0616]/85 backdrop-blur-2xl border border-white/10 hover:border-violet-500/40 shadow-[0_10px_40px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_60px_rgba(139,92,246,0.2)] transition-all duration-500 group flex flex-col justify-between"
               >
                 <div>
-                  <span className="text-4xl font-heading font-bold text-violet-400/70 group-hover:text-violet-300 transition-colors">
+                  <span className="text-4xl font-mono font-black text-violet-400/80 group-hover:text-violet-300 transition-colors">
                     {p.etape}
                   </span>
-                  <h3 className="font-heading font-bold text-white text-lg mt-4 mb-3 group-hover:text-violet-300 transition-colors">
+                  <h3 className="font-heading font-bold text-white text-xl mt-4 mb-3 group-hover:text-violet-300 transition-colors">
                     {p.titre}
                   </h3>
                   <p className="text-xs sm:text-sm text-gray-400 font-light leading-relaxed">
@@ -220,17 +224,17 @@ export default function DesignUIUXPage() {
       </section>
 
       {/* Outils Section */}
-      <section className="py-20 sm:py-24 lg:py-32 bg-[#05020a] relative border-t border-white/10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/30 text-violet-300 font-heading font-medium text-xs rounded-full mb-4 backdrop-blur-md">
-              Outils
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-12 relative border-t border-white/10">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <span className="inline-block px-3.5 py-1.5 bg-violet-500/10 border border-violet-500/20 text-violet-300 font-mono font-semibold text-[10px] rounded-full uppercase tracking-widest">
+              // DESIGN STACK
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white mb-4 tracking-tight">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-heading font-black text-white tracking-tight">
               Nos outils de prédilection
             </h2>
             <p className="text-gray-400 font-light max-w-xl mx-auto text-sm sm:text-base">
-              Les meilleurs logiciels pour un design efficace et collaboratif
+              Les logiciels de référence pour un design collaboratif, fluide et hautement performant.
             </p>
           </div>
 
@@ -238,16 +242,16 @@ export default function DesignUIUXPage() {
             {outils.map((outil) => (
               <div 
                 key={outil.nom} 
-                className="p-6 rounded-2xl bg-[#0c0616]/70 backdrop-blur-xl border border-white/10 hover:border-violet-500/50 shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:shadow-[0_15px_40px_rgba(139,92,246,0.12)] transition-all duration-300 text-center group flex flex-col items-center justify-between"
+                className="p-7 rounded-3xl bg-[#0c0616]/85 backdrop-blur-2xl border border-white/10 hover:border-violet-500/40 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_15px_40px_rgba(139,92,246,0.15)] transition-all duration-300 text-center group flex flex-col items-center justify-between"
               >
-                <div>
-                  <div className="p-3 rounded-xl bg-white/5 border border-white/10 w-fit mx-auto mb-4 group-hover:bg-violet-600/20 transition-colors">
+                <div className="w-full">
+                  <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 w-fit mx-auto mb-5 group-hover:bg-violet-600/20 group-hover:border-violet-500/30 transition-colors">
                     <img src={outil.logo} alt={outil.nom} className="h-8 w-8 object-contain filter brightness-200" />
                   </div>
-                  <h3 className="font-heading font-bold text-white text-base mb-2 group-hover:text-violet-300 transition-colors">
+                  <h3 className="font-heading font-bold text-white text-lg mb-2 group-hover:text-violet-300 transition-colors">
                     {outil.nom}
                   </h3>
-                  <p className="text-xs text-gray-400 font-light leading-relaxed">
+                  <p className="text-xs sm:text-sm text-gray-400 font-light leading-relaxed">
                     {outil.description}
                   </p>
                 </div>
@@ -258,26 +262,28 @@ export default function DesignUIUXPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 sm:py-28 bg-[#05020a] relative overflow-hidden border-t border-white/10">
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-violet-600/30 rounded-full blur-[160px] -translate-x-1/2 -translate-y-1/2" />
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-12 relative overflow-hidden border-t border-white/10">
+        <div className="absolute inset-0 opacity-25 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-violet-600/25 rounded-full blur-[160px] -translate-x-1/2 -translate-y-1/2" />
         </div>
         
-        <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-6 tracking-tight">
+        <div className="relative z-10 max-w-3xl mx-auto text-center space-y-6">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-heading font-black text-white tracking-tight">
             Un projet de design en tête ?
           </h2>
-          <p className="text-gray-400 font-light text-base sm:text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+          <p className="text-gray-400 font-light text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
             Parlons-en et créons ensemble une expérience exceptionnelle pour marquer durablement vos utilisateurs.
           </p>
-          <Link 
-            href="/contact" 
-            className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-950 text-sm sm:text-base font-heading font-bold rounded-full hover:bg-violet-100 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-105"
-          >
-            Démarrer un projet
-          </Link>
+          <div className="pt-2">
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-950 text-xs font-heading font-bold uppercase tracking-wider rounded-2xl hover:bg-violet-100 transition-all duration-300 shadow-[0_0_25px_rgba(255,255,255,0.2)] hover:scale-105"
+            >
+              Démarrer un projet
+            </Link>
+          </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
