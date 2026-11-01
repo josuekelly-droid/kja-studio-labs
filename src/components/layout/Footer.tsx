@@ -65,39 +65,45 @@ const reseaux = [
 export default function Footer() {
   return (
     <footer className="bg-[#05020a] text-white border-t border-white/10 relative overflow-hidden">
-      {/* Ambient glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-violet-600/10 rounded-full blur-[140px] pointer-events-none" aria-hidden="true" />
+      {/* Halo lumineux d'arrière-plan haute précision */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-violet-600/10 rounded-full blur-[160px] pointer-events-none" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-12 py-16 sm:py-20 lg:py-24">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-16">
           
-          {/* Brand */}
-          <div className="sm:col-span-2 lg:col-span-2">
-            <Link href="/" className="inline-flex items-center gap-3 mb-6 group">
-              <img
-                src="/logo/kja-studio-labs.webp"
-                alt="KJA Studio Labs"
-                className="h-10 sm:h-12 w-auto drop-shadow-[0_0_20px_rgba(139,92,246,0.3)]"
-              />
+          {/* Brand & Bio */}
+          <div className="sm:col-span-2 lg:col-span-2 space-y-6">
+            <Link href="/" className="inline-flex items-center gap-3.5 group">
+              <div className="relative">
+                <img
+                  src="/logo/kja-studio-labs.webp"
+                  alt="KJA Studio Labs"
+                  className="h-10 sm:h-12 w-auto object-contain drop-shadow-[0_0_20px_rgba(139,92,246,0.4)] group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 rounded-xl bg-violet-500/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
               <span className="font-heading font-bold text-white text-base sm:text-lg tracking-tight">
                 KJA Studio Labs
               </span>
             </Link>
-            <p className="text-gray-400 text-sm leading-relaxed mb-8 max-w-sm font-light">
-              Studio créatif francophone d'élite. Design UI/UX, développement web fullstack et connectivité sur mesure. Performance et esthétique sans compromis.
+            
+            <p className="text-gray-400 text-xs sm:text-sm leading-relaxed max-w-sm font-light">
+              Studio créatif francophone d&apos;élite. Design UI/UX, développement web fullstack et connectivité sur mesure. Performance et esthétique sans compromis.
             </p>
             
-            <div className="flex gap-3">
+            <div className="flex items-center gap-3 pt-2">
               {reseaux.map((reseau) => (
                 <a
                   key={reseau.nom}
                   href={reseau.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-white hover:bg-violet-600/30 hover:border-violet-500/50 transition-all duration-300"
+                  className="w-10 h-10 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-gray-300 hover:text-white hover:bg-violet-600/20 hover:border-violet-500/40 transition-all duration-300 shadow-md group"
                   aria-label={reseau.nom}
                 >
-                  {reseau.icon}
+                  <span className="transition-transform duration-300 group-hover:scale-110">
+                    {reseau.icon}
+                  </span>
                 </a>
               ))}
             </div>
@@ -105,11 +111,11 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="font-mono text-xs uppercase tracking-widest text-violet-400 mb-6">// Services</h4>
+            <h4 className="font-mono text-xs uppercase tracking-widest text-violet-400 font-semibold mb-6">// Services</h4>
             <ul className="space-y-3">
               {footerLinks.services.map((lien) => (
                 <li key={lien.href}>
-                  <Link href={lien.href} className="text-gray-400 hover:text-white transition-colors text-sm font-light">
+                  <Link href={lien.href} className="text-gray-400 hover:text-white transition-colors text-xs sm:text-sm font-light">
                     {lien.titre}
                   </Link>
                 </li>
@@ -117,13 +123,13 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Entreprise */}
+          {/* Entreprise / Studio */}
           <div>
-            <h4 className="font-mono text-xs uppercase tracking-widest text-violet-400 mb-6">// Studio</h4>
+            <h4 className="font-mono text-xs uppercase tracking-widest text-violet-400 font-semibold mb-6">// Studio</h4>
             <ul className="space-y-3">
               {footerLinks.entreprise.map((lien) => (
                 <li key={lien.href}>
-                  <Link href={lien.href} className="text-gray-400 hover:text-white transition-colors text-sm font-light">
+                  <Link href={lien.href} className="text-gray-400 hover:text-white transition-colors text-xs sm:text-sm font-light">
                     {lien.titre}
                   </Link>
                 </li>
@@ -131,30 +137,31 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
-          <div>
-            <h4 className="font-mono text-xs uppercase tracking-widest text-violet-400 mb-6">// Contact</h4>
-            <ul className="space-y-3 mb-6">
-              <li>
-                <a href={`mailto:${siteConfig.contact.email}`} className="text-gray-300 hover:text-white transition-colors text-sm font-mono break-all">
-                  {siteConfig.contact.email}
-                </a>
-              </li>
-            </ul>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:border-violet-500/50 text-white font-heading font-semibold text-xs uppercase tracking-wider backdrop-blur-md transition-all duration-300 hover:bg-white/10"
-            >
-              Démarrer un projet
-            </Link>
+          {/* Contact Direct */}
+          <div className="space-y-4">
+            <h4 className="font-mono text-xs uppercase tracking-widest text-violet-400 font-semibold mb-6">// Contact</h4>
+            <div>
+              <a href={`mailto:${siteConfig.contact.email}`} className="text-xs sm:text-sm text-gray-300 hover:text-white transition-colors font-mono underline decoration-violet-500/30 break-all">
+                {siteConfig.contact.email}
+              </a>
+            </div>
+            <div className="pt-2">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-6 py-3.5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-violet-500/40 text-white font-heading font-bold text-xs uppercase tracking-wider backdrop-blur-xl transition-all duration-300 hover:bg-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:scale-[1.02]"
+              >
+                Démarrer un projet
+              </Link>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="border-t border-white/10 relative z-10">
+      {/* Barre de Bas de Page */}
+      <div className="border-t border-white/10 relative z-10 bg-black/30 backdrop-blur-md">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12 py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-            <p className="text-gray-500 text-xs font-mono">
+            <p className="text-gray-500 text-[11px] font-mono">
               &copy; {new Date().getFullYear()} {siteConfig.name}. Tous droits réservés.
             </p>
             <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
