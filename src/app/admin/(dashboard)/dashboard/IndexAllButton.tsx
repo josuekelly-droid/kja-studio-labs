@@ -31,20 +31,31 @@ export function IndexAllButton() {
   }
 
   return (
-    <div className={`rounded-3xl p-6 transition-all bg-[#0c0616]/70 backdrop-blur-2xl border shadow-[0_8px_32px_rgba(0,0,0,0.4)] ${
-      success === true ? 'border-emerald-500/40 bg-emerald-500/5' :
-      success === false ? 'border-red-500/40 bg-red-500/5' :
-      'border-white/10 hover:border-violet-500/30'
+    <div className={`relative overflow-hidden rounded-3xl p-6 sm:p-8 transition-all duration-500 bg-[#0c0616]/80 backdrop-blur-2xl border shadow-[0_10px_40px_rgba(0,0,0,0.5)] ${
+      success === true ? 'border-emerald-500/40 bg-emerald-500/[0.03]' :
+      success === false ? 'border-red-500/40 bg-red-500/[0.03]' :
+      'border-white/10 hover:border-violet-500/40'
     }`}>
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h3 className="font-heading font-bold text-white text-sm sm:text-base tracking-tight">Indexation Google</h3>
-          <p className="text-xs sm:text-sm text-gray-400 font-light mt-1">Soumettre toutes les pages à Google en un clic</p>
+      {/* Halo lumineux d'arrière-plan */}
+      <div className="absolute -right-20 -bottom-20 w-60 h-60 bg-violet-600/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="text-[9px] uppercase tracking-widest font-mono text-violet-400 font-semibold">Google Indexing API</span>
+            <span className="text-gray-600">•</span>
+            <span className="text-[9px] uppercase tracking-widest font-mono text-gray-400">Instant Dispatch</span>
+          </div>
+          <h3 className="font-heading font-bold text-white text-base sm:text-lg tracking-tight">Indexation Globale</h3>
+          <p className="text-xs sm:text-sm text-gray-400 font-light max-w-xl">
+            Soumettre et synchroniser l&apos;ensemble des URL dynamiques de votre studio directement auprès des robots d&apos;indexation.
+          </p>
         </div>
+
         <button
           onClick={handleIndexAll}
           disabled={loading}
-          className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-gray-950 font-heading font-bold text-xs sm:text-sm rounded-2xl hover:bg-violet-100 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shrink-0 shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:scale-[1.02]"
+          className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-white text-gray-950 font-heading font-bold text-xs sm:text-sm rounded-2xl hover:bg-violet-100 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shrink-0 shadow-[0_0_25px_rgba(255,255,255,0.15)] hover:scale-[1.02]"
         >
           {loading ? (
             <>
@@ -52,23 +63,24 @@ export function IndexAllButton() {
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
               </svg>
-              Indexation...
+              <span>Synchronisation...</span>
             </>
           ) : (
             <>
               <svg className="w-4 h-4 text-gray-950" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
-              Tout indexer
+              <span>Tout indexer maintenant</span>
             </>
           )}
         </button>
       </div>
+
       {message && (
-        <div className={`mt-4 text-xs font-light flex items-center gap-2 px-4 py-2.5 rounded-xl border backdrop-blur-md ${
-          success ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : 'bg-red-500/10 text-red-400 border-red-500/20'
+        <div className={`relative z-10 mt-5 text-xs font-mono flex items-center gap-2 px-4 py-3 rounded-2xl border backdrop-blur-xl animate-fadeIn ${
+          success ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20' : 'bg-red-500/10 text-red-300 border-red-500/20'
         }`}>
-          <span className={`w-1.5 h-1.5 rounded-full ${success ? 'bg-emerald-400' : 'bg-red-400'}`} />
+          <span className={`w-2 h-2 rounded-full ${success ? 'bg-emerald-400 animate-pulse' : 'bg-red-400'}`} />
           {message}
         </div>
       )}
