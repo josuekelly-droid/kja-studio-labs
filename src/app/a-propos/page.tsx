@@ -131,8 +131,8 @@ export default function AProposPage() {
 
             <div className="space-y-4">
               {[
-                { chiffre: '50+', label: 'Projets réalisés avec succès' },
-                { chiffre: '15+', label: 'Clients réguliers et partenaires' },
+                { chiffre: '10+', label: 'Projets réalisés avec succès' },
+                { chiffre: '8+', label: 'Clients réguliers et partenaires' },
                 { chiffre: '3', label: 'Domaines d\'expertise complémentaires' },
                 { chiffre: '100%', label: 'Des projets livrés dans les règles de l\'art' },
               ].map((stat) => (
