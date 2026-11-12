@@ -35,8 +35,8 @@ const services = [
 ];
 
 const stats = [
-  { valeur: '50+', label: 'Projets livrés' },
-  { valeur: '15+', label: 'Partenaires fidèles' },
+  { valeur: '10+', label: 'Projets livrés' },
+  { valeur: '8+', label: 'Partenaires fidèles' },
   { valeur: '3+', label: 'Années d’expertise' },
   { valeur: '100%', label: 'Performance SEO' },
 ];
