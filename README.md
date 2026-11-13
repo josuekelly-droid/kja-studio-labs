@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KJA Studio Labs
 
-## Getting Started
+> Studio créatif d'ingénierie web et d'architecture digitale.
 
-First, run the development server:
+## À propos
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**KJA Studio Labs** est un studio spécialisé dans la conception d'expériences numériques d'exception. Nous accompagnons les entreprises, startups et entrepreneurs à travers le monde dans la réalisation de plateformes web performantes, scalables et dotées d'un design d'avant-garde.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Domaines d'Expertise
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Design UI/UX :** Recherche utilisateur, wireframes, prototypes interactifs Figma, design systems et tests d'utilisabilité.
+- **Développement Fullstack :** Applications web modernes sous **Next.js**, React, TypeScript, Node.js, Python, PostgreSQL, MongoDB et Supabase.
+- **Solutions Connect :** Intégrations API sur mesure, webhooks, automatisation de workflows (Zapier, Make, n8n) et synchronisation de SaaS.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Stack Technique & Architecture
 
-## Learn More
+- **Framework :** Next.js (App Router, SSR, SSG, ISR)
+- **Langage :** TypeScript / JavaScript (ES6+)
+- **Styling :** Tailwind CSS, Design System sur mesure
+- **Base de données & ORM :** PostgreSQL, MongoDB, Prisma ORM, Supabase
+- **DevOps & Outils :** Docker, Vercel, Git, CI/CD
 
-To learn more about Next.js, take a look at the following resources:
+## Liens & Production
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Site officiel :** [kja-studio-labs.com](https://kja-studio-labs.com) 
+- **Contact :** [contact@kja-studio-labs.com](mailto:contact@kja-studio-labs.com)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<div align="center">
+  <p>Conçu avec passion et rigueur par <strong>Kelly Josué AKPLOGAN</strong></p>
+  <p>© 2026 KJA Studio Labs. Tous droits réservés.</p>
+</div>
